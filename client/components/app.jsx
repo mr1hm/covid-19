@@ -24,10 +24,13 @@ export default class App extends Component {
       .then(info => {
         let data = Object.entries(info).shift()[1];
         data.sort((a, b) => b.latest.confirmed - a.latest.confirmed);
-        console.log(data);
         this.setState({ data, dataView: data });
       })
       .catch(err => console.error(err));
+  }
+
+  handleShowAll() {
+    this.setState({ data })
   }
 
   handleInputChange(e) {
