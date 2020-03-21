@@ -78,6 +78,7 @@ export default class App extends Component {
         </main>
         <DataTable data={data} dataView={dataView} />
       </>
+      // WE CAN CONDITIONALLY RENDER DATA OR DATAVIEW HERE. data={`${dataView ? dataView : data}`}
     );
   }
 }
