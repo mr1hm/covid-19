@@ -37,7 +37,19 @@ export default class DataTable extends Component {
                     <td>{val.latest.deaths}</td>
                   </tr>
                 );
-              })}
+              }) : dataView.map((val, i) => {
+                return (
+                  <tr key={i}>
+                    <th scope="row">{val.country_code}</th>
+                    <td>{val.country}</td>
+                    <td>{val.province}</td>
+                    <td>{val.latest.confirmed}</td>
+                    <td>{val.latest.recovered}</td>
+                    <td>{val.latest.deaths}</td>
+                  </tr>
+                );
+              })
+              }
             </tbody>
           </table>
         </section>

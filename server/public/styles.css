@@ -6,6 +6,7 @@ body {
   margin-top: 1em;
   border-bottom: 1px solid black;
   text-transform: uppercase;
+  letter-spacing: 1px;
   animation: header-border ease-in-out 0.75s both;
 }
 
