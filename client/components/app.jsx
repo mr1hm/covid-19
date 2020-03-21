@@ -25,17 +25,52 @@ export default class App extends Component {
         let data = Object.entries(info).shift()[1];
         data.sort((a, b) => b.latest.confirmed - a.latest.confirmed);
         console.log(data);
-        this.setState({ data });
+        this.setState({ data, dataView: data });
       })
       .catch(err => console.error(err));
   }
 
+  handleInputChange(e) {
+    const name = e.target.name, value = e.target.value
+    this.setState({ [name]: value })
+  }
+
+  handleSearchSubmit(e) {
+    const { searchInput } = this.state;
+    const keyCode = e.keyCode || e.which;
+    if (keyCode === 13) {
+      const copy = this.state.data.slice();
+      const dataView = copy.filter((val, i) => {
+        if (searchInput.toUpperCase() === 'US') return val.country === 'US';
+        if (searchInput.length > 2) {
+          if ((val.country.toLowerCase() === searchInput.toLowerCase())) return val.country.toLowerCase() === searchInput.toLowerCase();
+          else return val.country.toLowerCase().includes(searchInput.toLowerCase());
+        } else {
+          return val.country_code.toLowerCase() === searchInput.toLowerCase();
+        }
+      });
+      console.log(dataView);
+      this.setState({ dataView, searchInput: '' });
+    }
+  }
+
   render() {
-    const { data } = this.state;
+    const { data, dataView, searchInput } = this.state;
+    if (data.length === 0) return <div>LOADING...</div>
     return (
       <>
         <Header />
-        <DataTable data={data} />
+        <main className="search-container container">
+          <section className="row">
+            <div className="input-group mb-3 search-input">
+              <div className="input-group-prepend">
+                <span className="input-group-text" id="basic-addon1">@</span>
+              </div>
+              <input name="searchInput" value={searchInput} onKeyPress={this.handleSearchSubmit} onChange={this.handleInputChange} type="text" className="form-control" placeholder="Country" aria-label="Country" aria-describedby="basic-addon1" />
+            </div>
+          </section>
+        </main>
+        <DataTable data={data} dataView={dataView} />
       </>
     );
   }
