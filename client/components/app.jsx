@@ -62,11 +62,14 @@ export default class App extends Component {
         <Header />
         <main className="search-container container">
           <section className="row">
-            <div className="input-group mb-3 search-input">
-              <div className="input-group-prepend">
-                <span className="input-group-text" id="basic-addon1">@</span>
+            <div className="col d-flex flex-column align-items-center">
+              <h6 className="search-input-label">SEARCH BY COUNTRY OR COUNTRY CODE</h6>
+              <div className="input-group mb-3 search-input">
+                <div className="input-group-prepend">
+                  <span className="input-group-text" id="basic-addon1">@</span>
+                </div>
+                <input name="searchInput" value={searchInput} onKeyPress={this.handleSearchSubmit} onChange={this.handleInputChange} type="text" className="form-control" placeholder="Country" aria-label="Country" aria-describedby="basic-addon1" />
               </div>
-              <input name="searchInput" value={searchInput} onKeyPress={this.handleSearchSubmit} onChange={this.handleInputChange} type="text" className="form-control" placeholder="Country" aria-label="Country" aria-describedby="basic-addon1" />
             </div>
           </section>
         </main>
