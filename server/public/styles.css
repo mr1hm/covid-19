@@ -15,6 +15,10 @@ body {
   100% {width: 100%;}
 }
 
+.search-input {
+  margin-top: 1em;
+}
+
 .data-container {
   margin-top: 5em;
 }
