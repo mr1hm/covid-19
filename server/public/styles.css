@@ -1,0 +1,19 @@
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.header-container {
+  margin-top: 1em;
+  border-bottom: 1px solid black;
+  text-transform: uppercase;
+  animation: header-border ease-in-out 0.75s both;
+}
+
+@keyframes header-border {
+  0% {width: 15%;}
+  100% {width: 100%;}
+}
+
+.data-container {
+  margin-top: 5em;
+}

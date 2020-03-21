@@ -4,5 +4,5 @@ import App from './components/app';
 
 ReactDOM.render(
   <App />,
-  document.querySelector('#root')
+  document.querySelector('#covid-19-tracker')
 );
