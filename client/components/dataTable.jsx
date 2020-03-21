@@ -4,17 +4,26 @@ export default class DataTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      data: [],
+      showAll: false,
     };
+  }
+
+  handleShowAllBtn() {
+    this.setState({ showAll: true })
+    setTimeout(() => this.setState({ showAll: false }), 1000);
   }
 
   render() {
     const { data, dataView } = this.props;
+    // IF SHOW ALL IS TRUE SHOW DATA NOT DATAVIEW.
+    // if (this.state.showAll)
     return (
       <main className="data-container container">
         <section className="row">
           <h5>INFECTIONS</h5>
-          <table className="table">
+          <button onClick={this.handleShowAllBtn} className="btn btn-dark">Show All</button>
+          <table className="table data-table">
             <thead>
               <tr>
                 <th scope="col">Country Code</th>
