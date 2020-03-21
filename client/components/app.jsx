@@ -7,7 +7,11 @@ export default class App extends Component {
     super(props);
     this.state = {
       data: [],
+      dataView: [],
+      searchInput: '',
     };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
   }
 
   componentDidMount() {
