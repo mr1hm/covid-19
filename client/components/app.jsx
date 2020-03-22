@@ -66,19 +66,19 @@ export default class App extends Component {
     }
   }
 
+  setTooltipContent(info) {
+    this.setState({ setContent: info, content: info })
+  }
+
   render() {
-    const { data, dataView, searchInput, showAll } = this.state;
+    const { data, dataView, searchInput, showAll, content, setContent } = this.state;
+    const mapWidth = 1080, height = mapWidth / 2;
     if (data.length === 0) return <div>LOADING...</div>
     return (
       <>
         <Header />
-        <main className="usa-map-container container">
-          <section className="map">
-            <div className="col d-flex justify-content-center">
-              <USAMap customize={this.statesCustomConfig()} onClick={this.mapHandler} />
-            </div>
-          </section>
-        </main>
+        <WorldMap data={data} setTooltipContent={this.setTooltipContent} />
+        <ReactTooltip>{content}</ReactTooltip>
         <main className="search-container container">
           <section className="row">
             <div className="col d-flex flex-column align-items-center">
