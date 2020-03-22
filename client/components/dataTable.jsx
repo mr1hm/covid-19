@@ -5,24 +5,16 @@ export default class DataTable extends Component {
     super(props);
     this.state = {
       data: [],
-      showAll: false,
     };
   }
 
-  handleShowAllBtn() {
-    this.setState({ showAll: true })
-    setTimeout(() => this.setState({ showAll: false }), 1000);
-  }
-
   render() {
-    const { data, dataView } = this.props;
-    // IF SHOW ALL IS TRUE SHOW DATA NOT DATAVIEW.
-    // if (this.state.showAll)
+    const { data, dataView, handleShowAllBtn } = this.props;
     return (
       <main className="data-container container">
         <section className="row">
           <h5>INFECTIONS</h5>
-          <button onClick={this.handleShowAllBtn} className="btn btn-dark">Show All</button>
+          <button onClick={() => handleShowAllBtn()} className="btn btn-dark">Show All</button>
           <table className="table data-table">
             <thead>
               <tr>
@@ -35,18 +27,7 @@ export default class DataTable extends Component {
               </tr>
             </thead>
             <tbody>
-              {dataView.length === 0 ? data.map((val, i) => {
-                return (
-                  <tr key={i}>
-                    <th scope="row">{val.country_code}</th>
-                    <td>{val.country}</td>
-                    <td>{val.province}</td>
-                    <td>{val.latest.confirmed}</td>
-                    <td>{val.latest.recovered}</td>
-                    <td>{val.latest.deaths}</td>
-                  </tr>
-                );
-              }) : dataView.map((val, i) => {
+              {data.map((val, i) => {
                 return (
                   <tr key={i}>
                     <th scope="row">{val.country_code}</th>
