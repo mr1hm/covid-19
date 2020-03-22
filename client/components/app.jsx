@@ -132,9 +132,8 @@ export default class App extends Component {
             </div>
           </section>
         </main>
-        <DataTable data={data} dataView={dataView} />
+        {showAll ? <DataTable handleShowAllBtn={this.handleShowAllBtn} data={data} /> : <DataTable handleShowAllBtn={this.handleShowAllBtn} data={dataView.length > 0 ? dataView : data} />}
       </>
-      // WE CAN CONDITIONALLY RENDER DATA OR DATAVIEW HERE. data={`${dataView ? dataView : data}`}
     );
   }
 }
