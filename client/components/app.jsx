@@ -13,11 +13,13 @@ export default class App extends Component {
       dataView: [],
       searchInput: '',
       showAll: false,
+      setContent: '',
+      content: '',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleShowAllBtn = this.handleShowAllBtn.bind(this);
-    this.mapHandler = this.mapHandler.bind(this);
+    this.setTooltipContent = this.setTooltipContent.bind(this);
   }
 
   componentDidMount() {
