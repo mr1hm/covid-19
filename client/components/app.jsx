@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Header from './layout/header';
 import DataTable from './dataTable';
-import USAMap from 'react-usa-map';
+import WorldMap from './worldMap';
+import ReactTooltip from 'react-tooltip';
 import abbrState from './stateHelper';
 
 export default class App extends Component {
@@ -12,11 +13,13 @@ export default class App extends Component {
       dataView: [],
       searchInput: '',
       showAll: false,
+      setContent: '',
+      content: '',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleShowAllBtn = this.handleShowAllBtn.bind(this);
-    this.mapHandler = this.mapHandler.bind(this);
+    this.setTooltipContent = this.setTooltipContent.bind(this);
   }
 
   componentDidMount() {
@@ -33,49 +36,6 @@ export default class App extends Component {
       })
       .catch(err => console.error(err));
   }
-
-  mapHandler(e) {
-    console.log(e.target.dataset.title);
-    alert(e.target.dataset.name);
-  }
-
-  statesCustomConfig() {
-    const data = this.state.data.slice();
-    const USData = data.filter((val, i) => val.country === 'US');
-    let sortedUSData = USData.sort((a, b) => b.latest.confirmed - a.latest.confirmed),
-      colorData = ['#8B0000', '#EE0000', '#FF0000', '#FF6D6D', '#FF6F6F', '#FF7777', '#FF9090', '#FF9393', '#FFCDCD', '#FFD5D5'],
-      USDataFinal = [];
-    console.log(sortedUSData);
-    for (let i = 0; i < sortedUSData.length; i++) {
-      if (i < 10) {
-        sortedUSData[i].color = colorData[i];
-        USDataFinal.push(sortedUSData[i]);
-      } else {
-        break;
-      }
-    }
-    let stateCustomizeObj = {};
-    for (let state = 0; state < USDataFinal.length; state++) {
-      if (USDataFinal[state].color) {
-        stateCustomizeObj[`${abbrState(USDataFinal[state].province, 'abbr')}`] = {
-          fill: `${USDataFinal[state].color}`,
-          clickHandler: e => console.log('DANGER', e.target.dataset)
-        }
-      }
-    }
-    console.log(stateCustomizeObj)
-    return stateCustomizeObj;
-  }
-  // {
-  //   "CA": {
-  //     fill: 'red',
-  //       clickHandler: e => console.log('custom handler for california', e.target.dataset),
-  //   },
-  //   "TX": {
-  //     fill: 'blue',
-  //       clickHandler: e => console.log('custom handler for texas', e.target.dataset),
-  //   }
-  // }
 
   handleShowAllBtn() {
     this.setState({ showAll: !this.state.showAll })
@@ -106,19 +66,19 @@ export default class App extends Component {
     }
   }
 
+  setTooltipContent(info) {
+    this.setState({ setContent: info, content: info })
+  }
+
   render() {
-    const { data, dataView, searchInput, showAll } = this.state;
+    const { data, dataView, searchInput, showAll, content, setContent } = this.state;
+    const mapWidth = 1080, height = mapWidth / 2;
     if (data.length === 0) return <div>LOADING...</div>
     return (
       <>
         <Header />
-        <main className="usa-map-container container">
-          <section className="map">
-            <div className="col d-flex justify-content-center">
-              <USAMap customize={this.statesCustomConfig()} onClick={this.mapHandler} />
-            </div>
-          </section>
-        </main>
+        <WorldMap data={data} setTooltipContent={this.setTooltipContent} />
+        <ReactTooltip>{content}</ReactTooltip>
         <main className="search-container container">
           <section className="row">
             <div className="col d-flex flex-column align-items-center">
