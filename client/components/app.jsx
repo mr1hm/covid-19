@@ -11,9 +11,12 @@ export default class App extends Component {
       data: [],
       dataView: [],
       searchInput: '',
+      showAll: false,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+    this.handleShowAllBtn = this.handleShowAllBtn.bind(this);
+    this.mapHandler = this.mapHandler.bind(this);
   }
 
   componentDidMount() {
