@@ -101,16 +101,24 @@ export default class App extends Component {
         }
       });
       console.log(dataView);
-      this.setState({ dataView, searchInput: '' });
+      if (showAll) this.setState({ dataView, searchInput: '', showAll: false });
+      else this.setState({ dataView, searchInput: '' });
     }
   }
 
   render() {
-    const { data, dataView, searchInput } = this.state;
+    const { data, dataView, searchInput, showAll } = this.state;
     if (data.length === 0) return <div>LOADING...</div>
     return (
       <>
         <Header />
+        <main className="usa-map-container container">
+          <section className="map">
+            <div className="col d-flex justify-content-center">
+              <USAMap customize={this.statesCustomConfig()} onClick={this.mapHandler} />
+            </div>
+          </section>
+        </main>
         <main className="search-container container">
           <section className="row">
             <div className="col d-flex flex-column align-items-center">
