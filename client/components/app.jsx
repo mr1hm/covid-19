@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Header from './layout/header';
 import DataTable from './dataTable';
-import USAMap from 'react-usa-map';
+import WorldMap from './worldMap';
+import ReactTooltip from 'react-tooltip';
 import abbrState from './stateHelper';
 
 export default class App extends Component {
