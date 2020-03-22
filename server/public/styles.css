@@ -15,6 +15,19 @@ body {
   100% {width: 100%;}
 }
 
+.usa-map-container {
+  margin-top: 2em;
+}
+
+path {
+  pointer-events: all;
+}
+
+path:hover {
+  opacity: 0.50;
+  cursor: pointer;
+}
+
 .search-input-label {
   margin-top: 1em;
 }
