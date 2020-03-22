@@ -38,8 +38,7 @@ export default class DataTable extends Component {
                     <td>{val.latest.deaths}</td>
                   </tr>
                 );
-              })
-              }
+              })}
             </tbody>
           </table>
         </section>
