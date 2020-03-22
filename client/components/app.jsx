@@ -87,7 +87,7 @@ export default class App extends Component {
   }
 
   handleSearchSubmit(e) {
-    const { searchInput } = this.state;
+    const { searchInput, showAll } = this.state;
     const keyCode = e.keyCode || e.which;
     if (keyCode === 13) {
       const copy = this.state.data.slice();
