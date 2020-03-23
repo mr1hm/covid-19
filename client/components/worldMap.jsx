@@ -1,16 +1,19 @@
 import React, { Component, memo } from 'react';
 import { ComposableMap, ZoomableGroup, Geographies, Geography } from 'react-simple-maps';
+import { VectorMap } from 'react-jvectormap';
 
 class WorldMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      setContent: '',
-      content: '',
+      center: [0, 0],
+      zoom: 1,
+      currentCountry: null,
     };
     this.roundedPop = this.roundedPop.bind(this);
-    this.filterData = this.filterData.bind(this);
     this.getPercentage = this.getPercentage.bind(this);
+    this.handleGeographyClick = this.handleGeographyClick.bind(this);
+    this.handleRegionClick = this.handleRegionClick.bind(this);
   }
 
   roundedPop(num) {
@@ -33,26 +36,70 @@ class WorldMap extends Component {
     }
   }
 
-  filterData() {
-    const { data } = this.props;
+  handleRegionClick(e, countryCode) {
+    console.log(countryCode);
+  }
 
+  projection() {
+    return geoTimes().translate([800 / 2, 400 / 2]).scale(160);
+  }
+
+  handleGeographyClick(geography) {
+    console.log(geography);
+    const path = geoPath().projection(this.projection());
+    const centroid = this.projection().invert(path.centroid(geography));
+    this.setState({ center: centroid, zoom: 4, currentCountry: geography.properties.iso_a3 });
   }
 
   render() {
-    const { data, setTooltipContent } = this.props;
+    const { data, setTooltipContent, countryCodeData } = this.props;
     const geoUrl = "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
     return (
       <main className="world-map-container container">
         <section className="row">
           <div className="col d-flex justify-content-center">
-            <ComposableMap data-tip="" projectionConfig={{ scale: 150 }} width={800} height={400} style={{ width: '100%', height: '100%', }}>
-              <ZoomableGroup>
+            <VectorMap
+              map={`world_mill`}
+              backgroundColor='#0077be'
+              zoomOnScroll={true}
+              containerStyle={{ width: '100%', height: '520px' }}
+              onRegionClick={this.handleRegionClick}
+              containerClassName="world-map"
+              regionStyle={{
+                initial: {
+                  fill: '#e4e4e4',
+                  'fill-opacity': 0.9,
+                  stroke: 'none',
+                  'stroke-width': 0,
+                  'stroke-opacity': 0,
+                },
+                hover: {
+                  'fill-opacity': 0.8,
+                  cursor: 'pointer',
+                },
+                selected: {
+                  fill: '#2938bc',
+                },
+                selectedHover: {}
+              }}
+              regionsSelectable={true}
+              series={{
+                regions: [
+                  {
+                    values: countryCodeData,
+                    scale: ['#146804', '#ff0000'],
+                    normalizeFunction: 'polynomial',
+                  }
+                ]
+              }}
+            />
+            {/* <ComposableMap data-tip="" projectionConfig={{ scale: 150 }} width={800} height={400} style={{ width: '100%', height: '100%', }}>
+              <ZoomableGroup center={this.state.center} zoom={this.state.zoom}>
                 <Geographies geography={geoUrl}>
                   {({ geographies }) => geographies.map(geo =>
                     <Geography onMouseEnter={() => {
                       let tooltip = '';
                       const { NAME, POP_EST, ISO_A2 } = geo.properties;
-                      console.log(POP_EST);
                       const confirmed = data.filter(val => val.country_code === ISO_A2);
                       let totalInfected, totalRecovered, totalDeaths;
                       if (confirmed.length > 1) {
