@@ -6,9 +6,10 @@ class WorldMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      center: [0, 0],
-      zoom: 1,
-      currentCountry: null,
+      map: 'world_mill',
+      // center: [0, 0],
+      // zoom: 1,
+      // currentCountry: null,
     };
     this.roundedPop = this.roundedPop.bind(this);
     this.getPercentage = this.getPercentage.bind(this);
