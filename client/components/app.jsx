@@ -15,6 +15,7 @@ export default class App extends Component {
       showAll: false,
       setContent: '',
       content: '',
+      countryCodeData: null,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
