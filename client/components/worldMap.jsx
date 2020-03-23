@@ -134,11 +134,12 @@ class WorldMap extends Component {
                         }
                       }}
                       key={geo.rsmKey}
-                      geography={geo} />
+                      geography={geo}
+                      onClick={this.handleGeographyClick} />
                   )}
                 </Geographies>
               </ZoomableGroup>
-            </ComposableMap>
+            </ComposableMap> */}
           </div>
         </section>
       </main>
