@@ -32,8 +32,12 @@ export default class App extends Component {
       .then(res => res.json())
       .then(info => {
         let data = Object.entries(info).shift()[1];
-        data.sort((a, b) => b.latest.confirmed - a.latest.confirmed);
-        this.setState({ data, dataView: data });
+        data.sort((a, b) => b.latest.deaths - a.latest.deaths);
+        let confirmed = {};
+        for (let i = 0; i < data.length; i++) {
+          confirmed[data[i].country_code] = data[i].latest.deaths;
+        }
+        this.setState({ data, dataView: data, countryCodeData: confirmed });
       })
       .catch(err => console.error(err));
   }
