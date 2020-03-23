@@ -39,6 +39,10 @@ class WorldMap extends Component {
 
   handleRegionClick(e, countryCode) {
     console.log(countryCode);
+    if (countryCode === 'US') {
+      console.log(this.refs.map.getMapObject());
+      this.setState({ map: 'us_aea' });
+    }
   }
 
   projection() {
