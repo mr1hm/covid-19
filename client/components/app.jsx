@@ -33,8 +33,12 @@ export default class App extends Component {
       .then(info => {
         let data = Object.entries(info).shift()[1];
         data.sort((a, b) => b.latest.deaths - a.latest.deaths);
-        let confirmed = {};
+        let confirmed = {}, countries = [];
         for (let i = 0; i < data.length; i++) {
+          // countries.push(data[i].country);
+          // for (let countryIndex = 0; countryIndex < countries.lengthl countryIndex++) {
+          //   if (countries[z] === data[i].country)
+          // }
           confirmed[data[i].country_code] = data[i].latest.deaths;
         }
         this.setState({ data, dataView: data, countryCodeData: confirmed });
