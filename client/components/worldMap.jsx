@@ -64,7 +64,8 @@ class WorldMap extends Component {
         <section className="row">
           <div className="col d-flex justify-content-center">
             <VectorMap
-              map={`world_mill`}
+              map={this.state.map || 'world_mill'}
+              ref="map"
               backgroundColor='#0077be'
               zoomOnScroll={true}
               containerStyle={{ width: '100%', height: '520px' }}
