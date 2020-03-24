@@ -49,7 +49,7 @@ export default class App extends Component {
         console.log(USRegionsData);
         let stateData = {}, countries = [];
         for (let i = 0; i < USRegionsData.length; i++) {
-          stateData[abbrState(USRegionsData[i].province, 'abbr')] = USRegionsData[i].latest.deaths
+          stateData[`US-${abbrState(USRegionsData[i].province, 'abbr')}`] = USRegionsData[i].latest.deaths
         }
         console.log(stateData);
         this.setState({ data, dataView: data, USData, stateData });
