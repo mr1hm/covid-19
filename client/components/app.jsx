@@ -44,16 +44,15 @@ export default class App extends Component {
       .then(info => {
         let data = Object.entries(info).shift()[1];
         data.sort((a, b) => b.latest.deaths - a.latest.deaths);
-        const USData = data.filter(val => val.country_code === 'US');
-        let confirmed = {}, countries = [];
-        for (let i = 0; i < data.length; i++) {
-          // countries.push(data[i].country);
-          // for (let countryIndex = 0; countryIndex < countries.lengthl countryIndex++) {
-          //   if (countries[z] === data[i].country)
-          // }
-          confirmed[data[i].country_code] = data[i].latest.deaths;
+        const USData = data.filter(val => val.country_code === 'US').sort((a, b) => b.latest.deaths - a.latest.deaths);
+        const USRegionsData = USData.filter(val => !val.province.includes(','));
+        console.log(USRegionsData);
+        let stateData = {}, countries = [];
+        for (let i = 0; i < USRegionsData.length; i++) {
+          stateData[abbrState(USRegionsData[i].province, 'abbr')] = USRegionsData[i].latest.deaths
         }
-        this.setState({ data, dataView: data, USData });
+        console.log(stateData);
+        this.setState({ data, dataView: data, USData, stateData });
       })
       .catch(err => console.error(err));
   }
