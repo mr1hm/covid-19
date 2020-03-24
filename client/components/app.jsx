@@ -11,6 +11,7 @@ export default class App extends Component {
     this.state = {
       data: [],
       dataView: [],
+      USData: [],
       searchInput: '',
       showAll: false,
       setContent: '',
@@ -33,11 +34,16 @@ export default class App extends Component {
       .then(info => {
         let data = Object.entries(info).shift()[1];
         data.sort((a, b) => b.latest.deaths - a.latest.deaths);
-        let confirmed = {};
+        const USData = data.filter(val => val.country_code === 'US');
+        let confirmed = {}, countries = [];
         for (let i = 0; i < data.length; i++) {
+          // countries.push(data[i].country);
+          // for (let countryIndex = 0; countryIndex < countries.lengthl countryIndex++) {
+          //   if (countries[z] === data[i].country)
+          // }
           confirmed[data[i].country_code] = data[i].latest.deaths;
         }
-        this.setState({ data, dataView: data, countryCodeData: confirmed });
+        this.setState({ data, dataView: data, USData });
       })
       .catch(err => console.error(err));
   }
@@ -76,13 +82,13 @@ export default class App extends Component {
   }
 
   render() {
-    const { data, dataView, searchInput, showAll, content, setContent, countryCodeData } = this.state;
+    const { data, dataView, searchInput, showAll, content, setContent, countryCodeData, USData } = this.state;
     const mapWidth = 1080, height = mapWidth / 2;
     if (data.length === 0) return <div>LOADING...</div>
     return (
       <>
         <Header />
-        <WorldMap countryCodeData={countryCodeData} data={data} setTooltipContent={this.setTooltipContent} />
+        <WorldMap countryCodeData={countryCodeData} USData={USData} data={data} setTooltipContent={this.setTooltipContent} />
         <ReactTooltip>{content}</ReactTooltip>
         <main className="search-container container">
           <section className="row">
