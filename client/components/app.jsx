@@ -17,14 +17,11 @@ export default class App extends Component {
       stateData: null,
       searchInput: '',
       showAll: false,
-      setContent: '',
-      content: '',
       countryCodeData: null,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleShowAllBtn = this.handleShowAllBtn.bind(this);
-    this.setTooltipContent = this.setTooltipContent.bind(this);
   }
 
   componentDidMount() {
@@ -88,12 +85,8 @@ export default class App extends Component {
     }
   }
 
-  setTooltipContent(info) {
-    this.setState({ setContent: info, content: info })
-  }
-
   render() {
-    const { data, dataView, searchInput, showAll, content, setContent, countryCodeData, USData, stateData } = this.state;
+    const { data, dataView, searchInput, showAll, countryCodeData, USData, stateData } = this.state;
     const mapWidth = 1080, height = mapWidth / 2;
     if (data.length === 0) return <div>LOADING...</div>
     return (
@@ -104,7 +97,6 @@ export default class App extends Component {
           <section className="row">
             <div className="col d-flex">
               <button className="btn world-view">World</button>
-              {/* <label htmlFor="country-views">Choose A Country</label> */}
               <select name="countryView" id="country-views">
                 {Object.entries(countryListObjByCode).map((val, i) => {
                   return (
