@@ -47,40 +47,32 @@ class WorldMap extends Component {
     }
   }
 
-  handleRegionClick(e, countryCode) {
-    console.log(countryCode);
-    if (countryCode === 'US') {
-      console.log(this.refs.map.getMapObject());
-      this.setState({ map: 'us_aea' });
-    }
-  }
-
-  projection() {
-    return geoTimes().translate([800 / 2, 400 / 2]).scale(160);
-  }
-
-  handleGeographyClick(geography) {
-    console.log(geography);
-    const path = geoPath().projection(this.projection());
-    const centroid = this.projection().invert(path.centroid(geography));
-    this.setState({ center: centroid, zoom: 4, currentCountry: geography.properties.iso_a3 });
+  handleRegionClick(e, countryRegionCode) {
+    this.refs.map.$mapObject.tip.hide();
+    const stateName = abbrState(countryRegionCode.split('-')[1], 'name');
+    console.log(this.refs.map.getMapObject());
+    const state = this.props.USData.filter(val => val.province === stateName);
+    console.log(state);
+    const totalInfected = state[0].latest.confirmed;
+    const totalRecovered = state[0].latest.recovered;
+    const totalDeaths = state[0].latest.deaths;
+    this.setState(prevState => ({ regionClicked: true, regionData: { ...prevState.regionData, stateName, infected: totalInfected, recovered: totalRecovered, deaths: totalDeaths } }))
   }
 
   render() {
-    const { data, setTooltipContent, countryCodeData } = this.props;
-    const geoUrl = "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
+    const { data, USData, setTooltipContent, countryCodeData } = this.props;
     return (
-      <main className="world-map-container container">
+      <main className="world-map-container container-fluid">
         <section className="row">
-          <div className="col d-flex justify-content-center">
+          <div className="col d-flex justify-content-center world-map-col">
             <VectorMap
-              map={this.state.map || 'world_mill'}
+              map={this.state.map || 'us_aea'}
               ref="map"
               backgroundColor='#0077be'
-              zoomOnScroll={true}
-              containerStyle={{ width: '100%', height: '520px' }}
+              zoomOnScroll={false}
+
               onRegionClick={this.handleRegionClick}
-              containerClassName="world-map"
+              containerClassName={`world-map ${this.state.regionClicked ? 'regionClicked' : ''}`}
               regionStyle={{
                 initial: {
                   fill: '#e4e4e4',
@@ -97,6 +89,44 @@ class WorldMap extends Component {
                   fill: '#2938bc',
                 },
                 selectedHover: {}
+              }}
+              regionLabelStyle={{
+                initial: {
+                  'font-family': 'Poppins',
+                  'font-size': '12',
+                  'font-weight': 'bold',
+                  cursor: 'default',
+                  fill: 'black',
+                },
+                hover: {
+                  'fill-opacity': 0.8,
+                  cursor: 'pointer',
+                },
+                selected: {
+                  fill: '#2938bc',
+                },
+                selectedHover: {}
+              }}
+              labels={{
+                regions: {
+                  render: code => {
+                    return code.split('-')[1];
+                  },
+                  offsets: code => {
+                    return {
+                      'CA': [-10, 10],
+                      'ID': [0, 40],
+                      'OK': [25, 0],
+                      'LA': [-20, 0],
+                      'FL': [45, 0],
+                      'KY': [10, 5],
+                      'VA': [15, 5],
+                      'MI': [30, 30],
+                      'AK': [50, -25],
+                      'HI': [25, 60],
+                    }[code.split('-')[1]];
+                  }
+                }
               }}
               regionsSelectable={true}
               series={{
