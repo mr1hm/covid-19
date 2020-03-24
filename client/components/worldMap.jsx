@@ -59,7 +59,7 @@ class WorldMap extends Component {
   }
 
   render() {
-    const { data, USData, setTooltipContent, countryCodeData } = this.props;
+    const { data, USData, setTooltipContent, countryCodeData, stateData } = this.props;
     return (
       <main className="world-map-container container-fluid">
         <section className="row">
@@ -69,8 +69,9 @@ class WorldMap extends Component {
               ref="map"
               backgroundColor='#0077be'
               zoomOnScroll={false}
-
+              zoomStep={1.5}
               onRegionClick={this.handleRegionClick}
+              containerStyle={{ width: '100%', height: '600px' }}
               containerClassName={`world-map ${this.state.regionClicked ? 'regionClicked' : ''}`}
               regionStyle={{
                 initial: {
