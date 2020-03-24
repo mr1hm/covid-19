@@ -155,4 +155,4 @@ class WorldMap extends Component {
   }
 }
 
-export default memo(WorldMap);
+export default WorldMap;
