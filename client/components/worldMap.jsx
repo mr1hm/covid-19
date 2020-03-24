@@ -1,19 +1,29 @@
 import React, { Component, memo } from 'react';
-import { ComposableMap, ZoomableGroup, Geographies, Geography } from 'react-simple-maps';
+import { ComposableMap, ZoomableGroup, Geographies, Geography, Marker, Annotation } from 'react-simple-maps';
+import { geoCentroid } from 'd3-geo';
+import allStates from './data/allStates.json';
+import abbrState from './stateHelper';
+import RegionData from './regionData';
 import { VectorMap } from 'react-jvectormap';
 
 class WorldMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      map: 'world_mill',
-      // center: [0, 0],
-      // zoom: 1,
-      // currentCountry: null,
+      // map: 'world_mill',
+      center: [0, 0],
+      zoom: 1,
+      currentCountry: null,
+      regionClicked: false,
+      regionData: {
+        stateName: '',
+        infected: null,
+        recovered: null,
+        deaths: null,
+      },
     };
     this.roundedPop = this.roundedPop.bind(this);
     this.getPercentage = this.getPercentage.bind(this);
-    this.handleGeographyClick = this.handleGeographyClick.bind(this);
     this.handleRegionClick = this.handleRegionClick.bind(this);
   }
 
