@@ -99,6 +99,22 @@ export default class App extends Component {
     return (
       <>
         <Header />
+        <main className="view-filter-container container-fluid">
+          <h5>Region Selection</h5>
+          <section className="row">
+            <div className="col d-flex">
+              <button className="btn world-view">World</button>
+              {/* <label htmlFor="country-views">Choose A Country</label> */}
+              <select name="countryView" id="country-views">
+                {Object.entries(countryListObjByCode).map((val, i) => {
+                  return (
+                    <option key={i}>{val[1]}</option>
+                  );
+                })}
+              </select>
+            </div>
+          </section>
+        </main>
         <WorldMap stateData={stateData} countryCodeData={countryCodeData} USData={USData} data={data} setTooltipContent={this.setTooltipContent} />
         <ReactTooltip>{content}</ReactTooltip>
         <main className="search-container container">
