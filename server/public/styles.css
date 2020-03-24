@@ -23,6 +23,15 @@ hr {
   100% {width: 100%;}
 }
 
+.view-filter-container h5,
+.region-data h4 {
+  text-transform: uppercase;
+}
+
+.view-filter-container h5 {
+  margin-top: 0.5em;
+}
+
 .usa-map-container {
   margin-top: 2em;
 }
