@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from './layout/header';
 import DataTable from './dataTable';
-import WorldMap from './worldMap';
+import USMap from './maps/USMap';
 import ReactTooltip from 'react-tooltip';
 import abbrState from './stateHelper';
 import { countryListObjByCode } from './countries';
