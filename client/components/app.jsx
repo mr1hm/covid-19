@@ -36,7 +36,9 @@ export default class App extends Component {
     fetch(`https://services1.arcgis.com/0MSEUqKaxRlEPj5g/ArcGIS/rest/services/Coronavirus_2019_nCoV_Cases/FeatureServer/1/query?where=1=1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=standard&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=deaths,Confirmed,Recovered,Country_Region&returnGeometry=true&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=json&token=`)
       .then(res => res.json())
       .then(info => {
-        console.log(info);
+        const data2 = Object.entries(info).filter(val => val[0] === 'features')[0][1];
+        console.log(data2);
+        this.setState({ data2 });
       })
   }
 
@@ -48,7 +50,6 @@ export default class App extends Component {
         data.sort((a, b) => b.latest.deaths - a.latest.deaths);
         const USData = data.filter(val => val.country_code === 'US').sort((a, b) => b.latest.deaths - a.latest.deaths);
         const USRegionsData = USData.filter(val => !val.province.includes(','));
-        console.log(USRegionsData);
         let stateData = {}, countries = [];
         for (let i = 0; i < USRegionsData.length; i++) {
           stateData[`US-${abbrState(USRegionsData[i].province, 'abbr')}`] = USRegionsData[i].latest.deaths
