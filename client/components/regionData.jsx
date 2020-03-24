@@ -14,7 +14,8 @@ export default class RegionData extends Component {
     }
     return (
       <div className="col-4 d-flex flex-column region-data">
-        <i className="fas fa-long-arrow-alt-right"></i>
+        <i className="fas fa-arrow-right"></i>
+        <hr />
         <h4>{regionData.stateName}</h4>
         <p><span className="infections">Infections</span>: {regionData.infected}</p>
         <p><span className="recovered">Recovered</span>: {regionData.recovered}</p>
