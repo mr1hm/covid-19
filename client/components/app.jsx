@@ -12,6 +12,7 @@ export default class App extends Component {
       data: [],
       dataView: [],
       USData: [],
+      stateData: null,
       searchInput: '',
       showAll: false,
       setContent: '',
@@ -26,6 +27,15 @@ export default class App extends Component {
 
   componentDidMount() {
     this.getData();
+    this.getData2();
+  }
+
+  getData2() {
+    fetch(`https://services1.arcgis.com/0MSEUqKaxRlEPj5g/ArcGIS/rest/services/Coronavirus_2019_nCoV_Cases/FeatureServer/1/query?where=1=1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=standard&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=deaths,Confirmed,Recovered,Country_Region&returnGeometry=true&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=json&token=`)
+      .then(res => res.json())
+      .then(info => {
+        console.log(info);
+      })
   }
 
   getData() {
@@ -34,16 +44,15 @@ export default class App extends Component {
       .then(info => {
         let data = Object.entries(info).shift()[1];
         data.sort((a, b) => b.latest.deaths - a.latest.deaths);
-        const USData = data.filter(val => val.country_code === 'US');
-        let confirmed = {}, countries = [];
-        for (let i = 0; i < data.length; i++) {
-          // countries.push(data[i].country);
-          // for (let countryIndex = 0; countryIndex < countries.lengthl countryIndex++) {
-          //   if (countries[z] === data[i].country)
-          // }
-          confirmed[data[i].country_code] = data[i].latest.deaths;
+        const USData = data.filter(val => val.country_code === 'US').sort((a, b) => b.latest.deaths - a.latest.deaths);
+        const USRegionsData = USData.filter(val => !val.province.includes(','));
+        console.log(USRegionsData);
+        let stateData = {}, countries = [];
+        for (let i = 0; i < USRegionsData.length; i++) {
+          stateData[abbrState(USRegionsData[i].province, 'abbr')] = USRegionsData[i].latest.deaths
         }
-        this.setState({ data, dataView: data, USData });
+        console.log(stateData);
+        this.setState({ data, dataView: data, USData, stateData });
       })
       .catch(err => console.error(err));
   }
@@ -71,7 +80,6 @@ export default class App extends Component {
           return val.country_code.toLowerCase() === searchInput.toLowerCase();
         }
       });
-      console.log(dataView);
       if (showAll) this.setState({ dataView, searchInput: '', showAll: false });
       else this.setState({ dataView, searchInput: '' });
     }
@@ -82,13 +90,13 @@ export default class App extends Component {
   }
 
   render() {
-    const { data, dataView, searchInput, showAll, content, setContent, countryCodeData, USData } = this.state;
+    const { data, dataView, searchInput, showAll, content, setContent, countryCodeData, USData, stateData } = this.state;
     const mapWidth = 1080, height = mapWidth / 2;
     if (data.length === 0) return <div>LOADING...</div>
     return (
       <>
         <Header />
-        <WorldMap countryCodeData={countryCodeData} USData={USData} data={data} setTooltipContent={this.setTooltipContent} />
+        <WorldMap stateData={stateData} countryCodeData={countryCodeData} USData={USData} data={data} setTooltipContent={this.setTooltipContent} />
         <ReactTooltip>{content}</ReactTooltip>
         <main className="search-container container">
           <section className="row">

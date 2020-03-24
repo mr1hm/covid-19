@@ -50,9 +50,8 @@ class WorldMap extends Component {
   handleRegionClick(e, countryRegionCode) {
     this.refs.map.$mapObject.tip.hide();
     const stateName = abbrState(countryRegionCode.split('-')[1], 'name');
-    console.log(this.refs.map.getMapObject());
+    // const countryCode = countryRegionCode.split('-')[1];
     const state = this.props.USData.filter(val => val.province === stateName);
-    console.log(state);
     const totalInfected = state[0].latest.confirmed;
     const totalRecovered = state[0].latest.recovered;
     const totalDeaths = state[0].latest.deaths;
@@ -60,7 +59,7 @@ class WorldMap extends Component {
   }
 
   render() {
-    const { data, USData, setTooltipContent, countryCodeData } = this.props;
+    const { data, USData, setTooltipContent, countryCodeData, stateData } = this.props;
     return (
       <main className="world-map-container container-fluid">
         <section className="row">
@@ -70,8 +69,9 @@ class WorldMap extends Component {
               ref="map"
               backgroundColor='#0077be'
               zoomOnScroll={false}
-
+              zoomStep={1.5}
               onRegionClick={this.handleRegionClick}
+              containerStyle={{ width: '100%', height: '600px' }}
               containerClassName={`world-map ${this.state.regionClicked ? 'regionClicked' : ''}`}
               regionStyle={{
                 initial: {
@@ -124,6 +124,14 @@ class WorldMap extends Component {
                       'MI': [30, 30],
                       'AK': [50, -25],
                       'HI': [25, 60],
+                      'MN': [-15, 10],
+                      'NV': [0, -10],
+                      'WV': [-8, 5],
+                      'VT': [0, -5],
+                      'NH': [-3, 10],
+                      'CT': [0, -4],
+                      'MD': [0, -7],
+                      'TX': [10, 0],
                     }[code.split('-')[1]];
                   }
                 }
@@ -132,7 +140,7 @@ class WorldMap extends Component {
               series={{
                 regions: [
                   {
-                    values: countryCodeData,
+                    values: stateData,
                     scale: ['#146804', '#ff0000'],
                     normalizeFunction: 'polynomial',
                   }
@@ -147,4 +155,4 @@ class WorldMap extends Component {
   }
 }
 
-export default memo(WorldMap);
+export default WorldMap;

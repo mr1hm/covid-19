@@ -14,7 +14,7 @@ export default class DataTable extends Component {
       <main className="data-container container">
         <section className="row">
           <h5>INFECTIONS</h5>
-          <button onClick={() => handleShowAllBtn()} className="btn btn-dark">Show All</button>
+          <button onClick={() => handleShowAllBtn()} className="show-all-btn">Show All</button>
           <table className="table data-table">
             <thead>
               <tr>

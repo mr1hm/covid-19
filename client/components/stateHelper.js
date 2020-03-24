@@ -51,6 +51,8 @@ export default function abbrState(input, to) {
     ['West Virginia', 'WV'],
     ['Wisconsin', 'WI'],
     ['Wyoming', 'WY'],
+    ['District of Columbia', 'DC'],
+    ['Virgin Islands', 'VI'],
   ];
 
   if (to == 'abbr') {
