@@ -90,13 +90,13 @@ export default class App extends Component {
   }
 
   render() {
-    const { data, dataView, searchInput, showAll, content, setContent, countryCodeData, USData } = this.state;
+    const { data, dataView, searchInput, showAll, content, setContent, countryCodeData, USData, stateData } = this.state;
     const mapWidth = 1080, height = mapWidth / 2;
     if (data.length === 0) return <div>LOADING...</div>
     return (
       <>
         <Header />
-        <WorldMap countryCodeData={countryCodeData} USData={USData} data={data} setTooltipContent={this.setTooltipContent} />
+        <WorldMap stateData={stateData} countryCodeData={countryCodeData} USData={USData} data={data} setTooltipContent={this.setTooltipContent} />
         <ReactTooltip>{content}</ReactTooltip>
         <main className="search-container container">
           <section className="row">
