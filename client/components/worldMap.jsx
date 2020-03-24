@@ -139,58 +139,12 @@ class WorldMap extends Component {
                 ]
               }}
             />
-            {/* <ComposableMap data-tip="" projectionConfig={{ scale: 150 }} width={800} height={400} style={{ width: '100%', height: '100%', }}>
-              <ZoomableGroup center={this.state.center} zoom={this.state.zoom}>
-                <Geographies geography={geoUrl}>
-                  {({ geographies }) => geographies.map(geo =>
-                    <Geography onMouseEnter={() => {
-                      let tooltip = '';
-                      const { NAME, POP_EST, ISO_A2 } = geo.properties;
-                      const confirmed = data.filter(val => val.country_code === ISO_A2);
-                      let totalInfected, totalRecovered, totalDeaths;
-                      if (confirmed.length > 1) {
-                        totalInfected = confirmed.reduce((acc, val) => acc + val.latest.confirmed, 0);
-                        totalRecovered = confirmed.reduce((acc, val) => acc + val.latest.recovered, 0);
-                        totalDeaths = confirmed.reduce((acc, val) => acc + val.latest.deaths, 0);
-                      } else if (confirmed.length === 1) {
-                        totalInfected = confirmed[0].latest.confirmed;
-                        totalRecovered = confirmed[0].latest.recovered;
-                        totalDeaths = confirmed[0].latest.deaths;
-                      } else {
-                        totalInfected = `0`
-                        totalRecovered = `0`
-                        totalDeaths = `0`
-                      }
-                      tooltip = `${NAME} - ${this.roundedPop(POP_EST)} - INFECTED: ${totalInfected} [ ${this.getPercentage(totalInfected)} ] - RECOVERED: ${totalRecovered} - DEATHS: ${totalDeaths}`;
-                      setTooltipContent(tooltip);
-                    }}
-                      onMouseLeave={() => setTooltipContent('')}
-                      style={{
-                        default: {
-                          fill: '#D6D6DA',
-                          outline: 'none',
-                        },
-                        hover: {
-                          fill: '#F53',
-                          oultine: 'none',
-                        },
-                        pressed: {
-                          fill: '#E42',
-                          outline: 'none',
-                        }
-                      }}
-                      key={geo.rsmKey}
-                      geography={geo}
-                      onClick={this.handleGeographyClick} />
-                  )}
-                </Geographies>
-              </ZoomableGroup>
-            </ComposableMap> */}
           </div>
+          {this.state.regionClicked ? <RegionData regionData={this.state.regionData} /> : null}
         </section>
-      </main>
+      </main >
     );
   }
 }
 
-export default WorldMap;
+export default memo(WorldMap);
