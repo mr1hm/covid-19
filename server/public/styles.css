@@ -101,6 +101,12 @@ svg {
   margin-top: 5em;
 }
 
+.show-all-btn {
+  margin-left: 1em;
+  outline: none;
+  cursor: pointer;
+}
+
 .data-table {
   margin-top: 1em;
 }
