@@ -12,6 +12,7 @@ export default class App extends Component {
       data: [],
       dataView: [],
       USData: [],
+      stateData: null,
       searchInput: '',
       showAll: false,
       setContent: '',
