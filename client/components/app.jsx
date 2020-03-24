@@ -87,7 +87,6 @@ export default class App extends Component {
 
   render() {
     const { data, dataView, searchInput, showAll, countryCodeData, USData, stateData } = this.state;
-    const mapWidth = 1080, height = mapWidth / 2;
     if (data.length === 0) return <div>LOADING...</div>
     return (
       <>
