@@ -2,6 +2,14 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,.5);
+  width: 100%;
+}
+
 .header-container {
   margin-top: 1em;
   border-bottom: 1px solid black;
