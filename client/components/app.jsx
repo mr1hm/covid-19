@@ -34,6 +34,7 @@ export default class App extends Component {
       .then(info => {
         let data = Object.entries(info).shift()[1];
         data.sort((a, b) => b.latest.deaths - a.latest.deaths);
+        const USData = data.filter(val => val.country_code === 'US');
         let confirmed = {}, countries = [];
         for (let i = 0; i < data.length; i++) {
           // countries.push(data[i].country);
@@ -42,7 +43,7 @@ export default class App extends Component {
           // }
           confirmed[data[i].country_code] = data[i].latest.deaths;
         }
-        this.setState({ data, dataView: data, countryCodeData: confirmed });
+        this.setState({ data, dataView: data, USData });
       })
       .catch(err => console.error(err));
   }
