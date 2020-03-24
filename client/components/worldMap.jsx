@@ -140,7 +140,7 @@ class WorldMap extends Component {
               series={{
                 regions: [
                   {
-                    values: countryCodeData,
+                    values: stateData,
                     scale: ['#146804', '#ff0000'],
                     normalizeFunction: 'polynomial',
                   }
