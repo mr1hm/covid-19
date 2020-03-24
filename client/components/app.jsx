@@ -4,12 +4,14 @@ import DataTable from './dataTable';
 import WorldMap from './worldMap';
 import ReactTooltip from 'react-tooltip';
 import abbrState from './stateHelper';
+import { countryListObjByCode } from './countries';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [],
+      data2: [],
       dataView: [],
       USData: [],
       stateData: null,
