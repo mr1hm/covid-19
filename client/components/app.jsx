@@ -106,7 +106,7 @@ export default class App extends Component {
             </div>
           </section>
         </main>
-        <WorldMap stateData={stateData} countryCodeData={countryCodeData} USData={USData} data={data} />
+        <USMap stateData={stateData} countryCodeData={countryCodeData} USData={USData} data={data} />
         <main className="search-container container">
           <section className="row">
             <div className="col d-flex flex-column align-items-center">
