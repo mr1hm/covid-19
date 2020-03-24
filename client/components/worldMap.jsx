@@ -50,9 +50,8 @@ class WorldMap extends Component {
   handleRegionClick(e, countryRegionCode) {
     this.refs.map.$mapObject.tip.hide();
     const stateName = abbrState(countryRegionCode.split('-')[1], 'name');
-    console.log(this.refs.map.getMapObject());
+    // const countryCode = countryRegionCode.split('-')[1];
     const state = this.props.USData.filter(val => val.province === stateName);
-    console.log(state);
     const totalInfected = state[0].latest.confirmed;
     const totalRecovered = state[0].latest.recovered;
     const totalDeaths = state[0].latest.deaths;
