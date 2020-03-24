@@ -11,6 +11,7 @@ export default class App extends Component {
     this.state = {
       data: [],
       dataView: [],
+      USData: [],
       searchInput: '',
       showAll: false,
       setContent: '',
