@@ -80,7 +80,6 @@ export default class App extends Component {
           return val.country_code.toLowerCase() === searchInput.toLowerCase();
         }
       });
-      console.log(dataView);
       if (showAll) this.setState({ dataView, searchInput: '', showAll: false });
       else this.setState({ dataView, searchInput: '' });
     }
