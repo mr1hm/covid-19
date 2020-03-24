@@ -60,10 +60,6 @@ hr {
   100% {width: 60%}
 }
 
-.region-data h4 {
-  text-transform: uppercase;
-}
-
 .region-data .infections {
   color: purple;
 }
