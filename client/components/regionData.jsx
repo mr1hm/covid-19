@@ -11,7 +11,6 @@ export default class RegionData extends Component {
 
   render() {
     const { regionData, countryData, handleRegionClick, handleCountryClick } = this.props;
-    console.log(countryData);
     if (!regionData && !countryData) {
       return (
         <div className="col-4 d-flex flex-column region-data">

@@ -29,7 +29,6 @@ export default class WorldMap extends Component {
       if (countryNameA > countryNameB) return 1;
       return 0;
     });
-    console.log(sortedCountriesData);
     let countriesData = {};
     for (let i = 0; i < sortedCountriesData.length; i++) {
       const countryCode = sortedCountriesData[i].country_code;
@@ -46,7 +45,6 @@ export default class WorldMap extends Component {
   handleCountryData(e, countryCode) {
     this.refs.map.$mapObject.tip.hide();
     const countryArr = this.props.data.filter(val => val.country_code === countryCode);
-    console.log(countryArr);
     const totalInfected = countryArr.reduce((acc, val) => acc + val.latest.confirmed, 0);
     const totalRecovered = countryArr.reduce((acc, val) => acc + val.latest.recovered, 0);
     const totalDeaths = countryArr.reduce((acc, val) => acc + val.latest.deaths, 0);
