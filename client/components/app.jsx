@@ -117,7 +117,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { data, dataView, searchInput, showAll, countryCodeData, USData, stateData, mapView } = this.state;
+    const { data, dataView, countriesColorData, searchInput, showAll, countryCodeData, USData, stateData, mapView } = this.state;
     if (data.length === 0) return <div>LOADING...</div>
     return (
       <>
@@ -137,7 +137,7 @@ export default class App extends Component {
             </div>
           </section>
         </main>
-        {mapView === 'United States' ? <USMap stateData={stateData} countryCodeData={countryCodeData} USData={USData} data={data} /> : <WorldMap data={data} />}
+        {mapView === 'United States' ? <USMap stateData={stateData} countryCodeData={countryCodeData} data={data} /> : <WorldMap countriesColorData={countriesColorData} data={data} />}
         <main className="search-container container">
           <section className="row">
             <div className="col d-flex flex-column align-items-center">

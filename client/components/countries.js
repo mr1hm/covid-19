@@ -281,7 +281,7 @@ const countryListObjByCode = {
   "AU": "Australia",
   "AT": "Austria",
   "AZ": "Azerbaijan",
-  "BS": "Bahamas (the)",
+  "BS": "Bahamas",
   "BH": "Bahrain",
   "BD": "Bangladesh",
   "BB": "Barbados",
@@ -291,13 +291,13 @@ const countryListObjByCode = {
   "BJ": "Benin",
   "BM": "Bermuda",
   "BT": "Bhutan",
-  "BO": "Bolivia (Plurinational State of)",
+  "BO": "Bolivia",
   "BQ": "Bonaire, Sint Eustatius and Saba",
   "BA": "Bosnia and Herzegovina",
   "BW": "Botswana",
   "BV": "Bouvet Island",
   "BR": "Brazil",
-  "IO": "British Indian Ocean Territory (the)",
+  "IO": "British Indian Ocean Territory",
   "BN": "Brunei Darussalam",
   "BG": "Bulgaria",
   "BF": "Burkina Faso",
@@ -307,16 +307,16 @@ const countryListObjByCode = {
   "CM": "Cameroon",
   "CA": "Canada",
   "KY": "Cayman Islands (the)",
-  "CF": "Central African Republic (the)",
+  "CF": "Central African Republic",
   "TD": "Chad",
   "CL": "Chile",
   "CN": "China",
   "CX": "Christmas Island",
   "CC": "Cocos (Keeling) Islands (the)",
   "CO": "Colombia",
-  "KM": "Comoros (the)",
-  "CD": "Congo (the Democratic Republic of the)",
-  "CG": "Congo (the)",
+  "KM": "Comoros",
+  "CD": "Congo (Kinshasa)",
+  "CG": "Congo (Brazzaville)",
   "CK": "Cook Islands (the)",
   "CR": "Costa Rica",
   "HR": "Croatia",
@@ -328,7 +328,7 @@ const countryListObjByCode = {
   "DK": "Denmark",
   "DJ": "Djibouti",
   "DM": "Dominica",
-  "DO": "Dominican Republic (the)",
+  "DO": "Dominican Republic",
   "EC": "Ecuador",
   "EG": "Egypt",
   "SV": "El Salvador",
@@ -346,7 +346,7 @@ const countryListObjByCode = {
   "PF": "French Polynesia",
   "TF": "French Southern Territories (the)",
   "GA": "Gabon",
-  "GM": "Gambia (the)",
+  "GM": "Gambia",
   "GE": "Georgia",
   "DE": "Germany",
   "GH": "Ghana",
@@ -370,7 +370,7 @@ const countryListObjByCode = {
   "IS": "Iceland",
   "IN": "India",
   "ID": "Indonesia",
-  "IR": "Iran (Islamic Republic of)",
+  "IR": "Iran",
   "IQ": "Iraq",
   "IE": "Ireland",
   "IM": "Isle of Man",
@@ -384,10 +384,10 @@ const countryListObjByCode = {
   "KE": "Kenya",
   "KI": "Kiribati",
   "KP": "Korea (the Democratic People's Republic of)",
-  "KR": "Korea (the Republic of)",
+  "KR": "Korea, South",
   "KW": "Kuwait",
   "KG": "Kyrgyzstan",
-  "LA": "Lao People's Democratic Republic (the)",
+  "LA": "Laos",
   "LV": "Latvia",
   "LB": "Lebanon",
   "LS": "Lesotho",
@@ -410,7 +410,7 @@ const countryListObjByCode = {
   "YT": "Mayotte",
   "MX": "Mexico",
   "FM": "Micronesia (Federated States of)",
-  "MD": "Moldova (the Republic of)",
+  "MD": "Moldova",
   "MC": "Monaco",
   "MN": "Mongolia",
   "ME": "Montenegro",
@@ -421,15 +421,15 @@ const countryListObjByCode = {
   "NA": "Namibia",
   "NR": "Nauru",
   "NP": "Nepal",
-  "NL": "Netherlands (the)",
+  "NL": "Netherlands",
   "NC": "New Caledonia",
   "NZ": "New Zealand",
   "NI": "Nicaragua",
-  "NE": "Niger (the)",
+  "NE": "Niger",
   "NG": "Nigeria",
   "NU": "Niue",
   "NF": "Norfolk Island",
-  "MP": "Northern Mariana Islands (the)",
+  "MP": "Northern Mariana Islands",
   "NO": "Norway",
   "OM": "Oman",
   "PK": "Pakistan",
@@ -439,13 +439,13 @@ const countryListObjByCode = {
   "PG": "Papua New Guinea",
   "PY": "Paraguay",
   "PE": "Peru",
-  "PH": "Philippines (the)",
+  "PH": "Philippines",
   "PN": "Pitcairn",
   "PL": "Poland",
   "PT": "Portugal",
   "PR": "Puerto Rico",
   "QA": "Qatar",
-  "MK": "Republic of North Macedonia",
+  "MK": "North Macedonia",
   "RO": "Romania",
   "RU": "Russia",
   "RW": "Rwanda",
@@ -454,7 +454,7 @@ const countryListObjByCode = {
   "SH": "Saint Helena, Ascension and Tristan da Cunha",
   "KN": "Saint Kitts and Nevis",
   "LC": "Saint Lucia",
-  "MF": "Saint Martin (French part)",
+  "MF": "Saint Martin",
   "PM": "Saint Pierre and Miquelon",
   "VC": "Saint Vincent and the Grenadines",
   "WS": "Samoa",
@@ -466,7 +466,7 @@ const countryListObjByCode = {
   "SC": "Seychelles",
   "SL": "Sierra Leone",
   "SG": "Singapore",
-  "SX": "Sint Maarten (Dutch part)",
+  "SX": "Sint Maarten",
   "SK": "Slovakia",
   "SI": "Slovenia",
   "SB": "Solomon Islands",
@@ -476,15 +476,15 @@ const countryListObjByCode = {
   "SS": "South Sudan",
   "ES": "Spain",
   "LK": "Sri Lanka",
-  "SD": "Sudan (the)",
+  "SD": "Sudan",
   "SR": "Suriname",
   "SJ": "Svalbard and Jan Mayen",
   "SE": "Sweden",
   "CH": "Switzerland",
-  "SY": "Syrian Arab Republic",
-  "TW": "Taiwan (Province of China)",
+  "SY": "Syria",
+  "TW": "Taiwan*",
   "TJ": "Tajikistan",
-  "TZ": "Tanzania, United Republic of",
+  "TZ": "Tanzania",
   "TH": "Thailand",
   "TL": "Timor-Leste",
   "TG": "Togo",
@@ -498,15 +498,15 @@ const countryListObjByCode = {
   "TV": "Tuvalu",
   "UG": "Uganda",
   "UA": "Ukraine",
-  "AE": "United Arab Emirates (the)",
-  "GB": "United Kingdom of Great Britain and Northern Ireland (the)",
+  "AE": "United Arab Emirates",
+  "GB": "United Kingdom",
   "UM": "United States Minor Outlying Islands (the)",
   "US": "United States",
   "UY": "Uruguay",
   "UZ": "Uzbekistan",
   "VU": "Vanuatu",
-  "VE": "Venezuela (Bolivarian Republic of)",
-  "VN": "Viet Nam",
+  "VE": "Venezuela",
+  "VN": "Vietnam",
   "VG": "Virgin Islands (British)",
   "VI": "Virgin Islands (U.S.)",
   "WF": "Wallis and Futuna",
@@ -1032,7 +1032,7 @@ const countryListNumeric = {
 // Country names object using numeric country codes to reference country name
 // ISO 3166 Numberic Format: [Numeric Country Code]: [Country Name]
 // Alphabetical by Country Name
-const countryListAllIsoData = [
+const countryListISOData = [
   { "code": "AF", "code3": "AFG", "name": "Afghanistan", "number": "004" },
   { "code": "AL", "code3": "ALB", "name": "Albania", "number": "008" },
   { "code": "DZ", "code3": "DZA", "name": "Algeria", "number": "012" },
@@ -1284,4 +1284,22 @@ const countryListAllIsoData = [
   { "code": "AX", "code3": "ALA", "name": "Åland Islands", "number": "248" }
 ];
 
-export { countryList, countryListObjByCode }
+function getCountryCode(country) {
+  for (const key in countryListObjByCode) {
+    if (country !== 'US') {
+      if (countryListObjByCode[key] === country) return key;
+    } else {
+      return country;
+    }
+  }
+}
+
+function findCountry(country) {
+  for (const key in countryListObjByCode) {
+    if (countryListObjByCode[key].includes(country)) {
+      console.log(`${key} : ${countryListObjByCode[key]}`)
+    }
+  }
+}
+
+export { countryList, countryListObjByCode, countryListISOData, getCountryCode, findCountry }
