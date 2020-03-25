@@ -9,7 +9,6 @@ export default class USMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // map: 'world_mill',
       center: [0, 0],
       zoom: 1,
       currentCountry: null,
