@@ -23,8 +23,12 @@ export default class WorldMap extends Component {
     // If there are multiple datasets for the same country, reduce it to a sum of total confirmed, recovered, and deaths.
   }
 
-  handleRegionClick(e, countryCode) {
+  handleCountryClick() {
+    this.setState({ regionClicked: false })
+  }
 
+  handleCountryData(e, countryCode) {
+    this.setState({ regionClicked: true, })
   }
 
   render() {
