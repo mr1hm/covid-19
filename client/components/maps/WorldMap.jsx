@@ -13,16 +13,20 @@ export default class WorldMap extends Component {
         recovered: null,
         deaths: null,
       },
+      countriesColorData: {},
     };
     this.handleCountryClick = this.handleCountryClick.bind(this);
+    this.handleCountryData = this.handleCountryData.bind(this);
   }
 
   handleCountryClick() {
-    this.setState({ regionClicked: false })
+    this.setState({ countryClicked: false })
   }
 
   handleCountryData(e, countryCode) {
-    this.setState({ regionClicked: true, })
+    this.refs.map.$mapObject.tip.hide();
+    console.log(countryCode);
+    this.setState({ countryClicked: true })
   }
 
   render() {
