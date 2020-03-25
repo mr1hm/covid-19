@@ -70,10 +70,10 @@ export default class USMap extends Component {
   handleRegionData(e, countryRegionCode) {
     this.refs.map.$mapObject.tip.hide();
     const regionName = abbrState(countryRegionCode.split('-')[1], 'name');
-    const state = this.props.USData.filter(val => val.province === regionName);
-    const totalInfected = state[0].latest.confirmed;
-    const totalRecovered = state[0].latest.recovered;
-    const totalDeaths = state[0].latest.deaths;
+    const state = this.props.data.filter(val => val.province === regionName);
+    const totalInfected = state.reduce((acc, val) => acc + val.confirmed, 0);
+    const totalRecovered = state.reduce((acc, val) => acc + val.recovered, 0);
+    const totalDeaths = state.reduce((acc, val) => acc + val.deaths, 0);
     this.setState(prevState => ({
       regionClicked: true,
       regionData: { ...prevState.regionData, regionName, infected: totalInfected, recovered: totalRecovered, deaths: totalDeaths }
@@ -82,9 +82,10 @@ export default class USMap extends Component {
 
   render() {
     const { data, USData, setTooltipContent, countryCodeData, stateData } = this.props;
+    if (!this.state.stateColorData) return <div>LOADING...</div>
     return (
       <main className="world-map-container container-fluid">
-        <small>*A brighter/lighter shade of red represents more COVID-19 related deaths in that region</small>
+        <small>*A brighter/lighter shade of red represents more COVID-19 infections in that region</small>
         <section className="row">
           <div className="col d-flex justify-content-center world-map-col">
             <VectorMap
@@ -163,7 +164,7 @@ export default class USMap extends Component {
               series={{
                 regions: [
                   {
-                    values: stateData,
+                    values: this.state.stateColorData,
                     scale: ['#146804', '#ff0000'],
                     normalizeFunction: 'polynomial',
                   }
