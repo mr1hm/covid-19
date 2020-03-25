@@ -31,7 +31,6 @@ export default class App extends Component {
   }
 
   getData2() {
-    // TESTING ONLY RIGHT NOW
     fetch(`https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/stats`, {
       'method': 'GET',
       'headers': {
@@ -65,23 +64,23 @@ export default class App extends Component {
       })
   }
 
-  getData() {
-    fetch(`http://covid19api.xapix.io/v2/locations`)
-      .then(res => res.json())
-      .then(info => {
-        let data = Object.entries(info).shift()[1];
-        data.sort((a, b) => b.latest.deaths - a.latest.deaths);
-        const USData = data.filter(val => val.country_code === 'US').sort((a, b) => b.latest.deaths - a.latest.deaths);
-        const USRegionsData = USData.filter(val => !val.province.includes(','));
-        let stateData = {}, countries = [];
-        for (let i = 0; i < USRegionsData.length; i++) {
-          stateData[`US-${abbrState(USRegionsData[i].province, 'abbr')}`] = USRegionsData[i].latest.deaths
-        }
-        console.log(stateData);
-        this.setState({ data, dataView: data, USData, stateData });
-      })
-      .catch(err => console.error(err));
-  }
+  // getData() {
+  //   fetch(`http://covid19api.xapix.io/v2/locations`)
+  //     .then(res => res.json())
+  //     .then(info => {
+  //       let data = Object.entries(info).shift()[1];
+  //       data.sort((a, b) => b.latest.deaths - a.latest.deaths);
+  //       const USData = data.filter(val => val.country_code === 'US').sort((a, b) => b.latest.deaths - a.latest.deaths);
+  //       const USRegionsData = USData.filter(val => !val.province.includes(','));
+  //       let stateData = {}, countries = [];
+  //       for (let i = 0; i < USRegionsData.length; i++) {
+  //         stateData[`US-${abbrState(USRegionsData[i].province, 'abbr')}`] = USRegionsData[i].latest.deaths
+  //       }
+  //       console.log(stateData);
+  //       this.setState({ data, dataView: data, USData, stateData });
+  //     })
+  //     .catch(err => console.error(err));
+  // }
 
   handleShowAllBtn() {
     this.setState({ showAll: !this.state.showAll })
