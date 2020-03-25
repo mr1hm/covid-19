@@ -9,43 +9,42 @@ export default class USMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // map: 'world_mill',
       center: [0, 0],
       zoom: 1,
       currentCountry: null,
       regionClicked: false,
       regionData: {
-        stateName: '',
+        regionName: '',
         infected: null,
         recovered: null,
         deaths: null,
       },
     };
-    this.roundedPop = this.roundedPop.bind(this);
-    this.getPercentage = this.getPercentage.bind(this);
+    // this.roundedPop = this.roundedPop.bind(this);
+    // this.getPercentage = this.getPercentage.bind(this);
     this.handleRegionData = this.handleRegionData.bind(this);
     this.handleRegionClick = this.handleRegionClick.bind(this);
   }
 
-  roundedPop(num) {
-    if (num > 1000000000) {
-      return Math.round(num / 100000000) / 10 + 'Bn';
-    } else if (num > 1000000) {
-      return Math.round(num / 100000) / 10 + 'M';
-    } else {
-      return Math.round(num / 100) / 10 + 'K';
-    }
-  }
+  // roundedPop(num) {
+  //   if (num > 1000000000) {
+  //     return Math.round(num / 100000000) / 10 + 'Bn';
+  //   } else if (num > 1000000) {
+  //     return Math.round(num / 100000) / 10 + 'M';
+  //   } else {
+  //     return Math.round(num / 100) / 10 + 'K';
+  //   }
+  // }
 
-  getPercentage(num) {
-    if (num > 1000000000) {
-      return Math.round(num / 100000000) / 10 + '%';
-    } else if (num > 1000000) {
-      return Math.round(num / 100000) / 10 + '%';
-    } else {
-      return Math.round(num / 100) / 10 + '%';
-    }
-  }
+  // getPercentage(num) {
+  //   if (num > 1000000000) {
+  //     return Math.round(num / 100000000) / 10 + '%';
+  //   } else if (num > 1000000) {
+  //     return Math.round(num / 100000) / 10 + '%';
+  //   } else {
+  //     return Math.round(num / 100) / 10 + '%';
+  //   }
+  // }
 
   handleRegionClick() {
     this.setState({ regionClicked: false })
@@ -53,15 +52,14 @@ export default class USMap extends Component {
 
   handleRegionData(e, countryRegionCode) {
     this.refs.map.$mapObject.tip.hide();
-    const stateName = abbrState(countryRegionCode.split('-')[1], 'name');
-    // const countryCode = countryRegionCode.split('-')[1];
-    const state = this.props.USData.filter(val => val.province === stateName);
+    const regionName = abbrState(countryRegionCode.split('-')[1], 'name');
+    const state = this.props.USData.filter(val => val.province === regionName);
     const totalInfected = state[0].latest.confirmed;
     const totalRecovered = state[0].latest.recovered;
     const totalDeaths = state[0].latest.deaths;
     this.setState(prevState => ({
       regionClicked: true,
-      regionData: { ...prevState.regionData, stateName, infected: totalInfected, recovered: totalRecovered, deaths: totalDeaths }
+      regionData: { ...prevState.regionData, regionName, infected: totalInfected, recovered: totalRecovered, deaths: totalDeaths }
     }));
   }
 
@@ -69,7 +67,7 @@ export default class USMap extends Component {
     const { data, USData, setTooltipContent, countryCodeData, stateData } = this.props;
     return (
       <main className="world-map-container container-fluid">
-        <small>*A brighter red represents more deaths in that region</small>
+        <small>*A brighter/lighter shade of red represents more COVID-19 related deaths in that region</small>
         <section className="row">
           <div className="col d-flex justify-content-center world-map-col">
             <VectorMap
