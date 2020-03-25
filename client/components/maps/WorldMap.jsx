@@ -42,7 +42,7 @@ export default class WorldMap extends Component {
               backgroundColor='#0077be'
               zoomOnScroll={false}
               zoomStep={1.5}
-              onRegionClick={this.handleRegionClick}
+              onRegionClick={this.handleCountryData}
               containerStyle={{ width: '100%', height: '600px' }}
               containerClassName={`world-map ${this.state.regionClicked ? 'regionClicked' : ''}`}
               regionStyle={{
