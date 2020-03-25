@@ -447,7 +447,7 @@ const countryListObjByCode = {
   "QA": "Qatar",
   "MK": "Republic of North Macedonia",
   "RO": "Romania",
-  "RU": "Russian Federation (the)",
+  "RU": "Russia",
   "RW": "Rwanda",
   "RE": "Réunion",
   "BL": "Saint Barthélemy",
