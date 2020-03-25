@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import { VectorMap } from 'react-jvectormap';
+import RegionData from '../regionData';
 
 export default class WorldMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      regionClicked: false,
+      countryClicked: false,
+      countryData: {
+        countryName: '',
+        infected: null,
+        recovered: null,
+        deaths: null,
+      },
     };
-    this.handleRegionClick = this.handleRegionClick.bind(this);
+    this.handleCountryClick = this.handleCountryClick.bind(this);
   }
 
   countryData() {
