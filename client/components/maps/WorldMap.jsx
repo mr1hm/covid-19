@@ -17,6 +17,7 @@ export default class WorldMap extends Component {
   render() {
     return (
       <main className="world-map-container container-fluid">
+        <small>*A brighter red represents more deaths in that region</small>
         <section className="row">
           <div className="col d-flex justify-content-center">
             <VectorMap
