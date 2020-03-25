@@ -14,14 +14,14 @@ export default class USMap extends Component {
       currentCountry: null,
       regionClicked: false,
       regionData: {
-        stateName: '',
+        regionName: '',
         infected: null,
         recovered: null,
         deaths: null,
       },
     };
-    this.roundedPop = this.roundedPop.bind(this);
-    this.getPercentage = this.getPercentage.bind(this);
+    // this.roundedPop = this.roundedPop.bind(this);
+    // this.getPercentage = this.getPercentage.bind(this);
     this.handleRegionData = this.handleRegionData.bind(this);
     this.handleRegionClick = this.handleRegionClick.bind(this);
   }
