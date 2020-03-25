@@ -10,11 +10,18 @@ export default class WorldMap extends Component {
     this.handleRegionClick = this.handleRegionClick.bind(this);
   }
 
+  countryData() {
+    const { data } = this.props;
+    // Add code to manipulate data by Country
+    // If there are multiple datasets for the same country, reduce it to a sum of total confirmed, recovered, and deaths.
+  }
+
   handleRegionClick(e, countryCode) {
 
   }
 
   render() {
+    const { countryData } = this.props;
     return (
       <main className="world-map-container container-fluid">
         <small>*A brighter red represents more deaths in that region</small>
