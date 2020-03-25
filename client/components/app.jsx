@@ -68,6 +68,11 @@ export default class App extends Component {
     this.setState({ [name]: value })
   }
 
+  handleMapViewChange(e) {
+    const name = e.target.name, value = e.target.value;
+    this.setState({ [name]: value });
+  }
+
   handleSearchSubmit(e) {
     const { searchInput, showAll } = this.state;
     const keyCode = e.keyCode || e.which;
