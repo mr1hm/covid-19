@@ -53,7 +53,6 @@ export default class USMap extends Component {
   handleRegionData(e, countryRegionCode) {
     this.refs.map.$mapObject.tip.hide();
     const stateName = abbrState(countryRegionCode.split('-')[1], 'name');
-    // const countryCode = countryRegionCode.split('-')[1];
     const state = this.props.USData.filter(val => val.province === stateName);
     const totalInfected = state[0].latest.confirmed;
     const totalRecovered = state[0].latest.recovered;
