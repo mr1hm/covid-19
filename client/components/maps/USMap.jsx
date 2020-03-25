@@ -1,12 +1,11 @@
 import React, { Component, memo } from 'react';
 import { ComposableMap, ZoomableGroup, Geographies, Geography, Marker, Annotation } from 'react-simple-maps';
 import { geoCentroid } from 'd3-geo';
-import allStates from './data/allStates.json';
-import abbrState from './stateHelper';
-import RegionData from './regionData';
+import abbrState from '../stateHelper';
+import RegionData from '../regionData';
 import { VectorMap } from 'react-jvectormap';
 
-class WorldMap extends Component {
+export default class USMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -154,5 +153,3 @@ class WorldMap extends Component {
     );
   }
 }
-
-export default WorldMap;

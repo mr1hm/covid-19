@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Header from './layout/header';
 import DataTable from './dataTable';
-import WorldMap from './worldMap';
+import USMap from './maps/USMap';
+import WorldMap from './maps/WorldMap';
 import ReactTooltip from 'react-tooltip';
 import abbrState from './stateHelper';
 import { countryListObjByCode } from './countries';
@@ -18,10 +19,12 @@ export default class App extends Component {
       searchInput: '',
       showAll: false,
       countryCodeData: null,
+      mapView: '',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleShowAllBtn = this.handleShowAllBtn.bind(this);
+    this.handleMapViewChange = this.handleMapViewChange.bind(this);
   }
 
   componentDidMount() {
@@ -66,6 +69,11 @@ export default class App extends Component {
     this.setState({ [name]: value })
   }
 
+  handleMapViewChange(e) {
+    const name = e.target.name, value = e.target.value;
+    this.setState({ [name]: value });
+  }
+
   handleSearchSubmit(e) {
     const { searchInput, showAll } = this.state;
     const keyCode = e.keyCode || e.which;
@@ -86,8 +94,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { data, dataView, searchInput, showAll, countryCodeData, USData, stateData } = this.state;
-    const mapWidth = 1080, height = mapWidth / 2;
+    const { data, dataView, searchInput, showAll, countryCodeData, USData, stateData, mapView } = this.state;
     if (data.length === 0) return <div>LOADING...</div>
     return (
       <>
@@ -97,7 +104,7 @@ export default class App extends Component {
           <section className="row">
             <div className="col d-flex">
               <button className="btn world-view">World</button>
-              <select name="countryView" id="country-views">
+              <select onChange={this.handleMapViewChange} name="mapView" id="country-views">
                 {Object.entries(countryListObjByCode).map((val, i) => {
                   return (
                     <option key={i}>{val[1]}</option>
@@ -107,7 +114,7 @@ export default class App extends Component {
             </div>
           </section>
         </main>
-        <WorldMap stateData={stateData} countryCodeData={countryCodeData} USData={USData} data={data} />
+        {mapView === 'United States' ? <USMap stateData={stateData} countryCodeData={countryCodeData} USData={USData} data={data} /> : <WorldMap data={data} />}
         <main className="search-container container">
           <section className="row">
             <div className="col d-flex flex-column align-items-center">
