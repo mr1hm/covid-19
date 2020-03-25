@@ -14,7 +14,7 @@ export default class WorldMap extends Component {
         recovered: null,
         deaths: null,
       },
-      countriesColorData: {},
+      countriesData: {},
     };
     this.handleCountryClick = this.handleCountryClick.bind(this);
     this.handleCountryData = this.handleCountryData.bind(this);
@@ -30,6 +30,13 @@ export default class WorldMap extends Component {
       return 0;
     });
     console.log(sortedCountriesData);
+    let countriesData = {};
+    for (let i = 0; i < sortedCountriesData.length; i++) {
+      const countryCode = sortedCountriesData[i].country_code;
+      if (countriesData[countryCode]) countriesData[countryCode] += sortedCountriesData[i].latest.confirmed;
+      else countriesData[countryCode] = sortedCountriesData[i].latest.confirmed;
+    }
+    this.setState({ countriesData })
   }
 
   handleCountryClick() {
