@@ -18,10 +18,12 @@ export default class App extends Component {
       searchInput: '',
       showAll: false,
       countryCodeData: null,
+      mapView: '',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleShowAllBtn = this.handleShowAllBtn.bind(this);
+    this.handleMapViewChange = this.handleMapViewChange.bind(this);
   }
 
   componentDidMount() {
