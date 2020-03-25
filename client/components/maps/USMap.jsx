@@ -23,6 +23,7 @@ export default class USMap extends Component {
     };
     this.roundedPop = this.roundedPop.bind(this);
     this.getPercentage = this.getPercentage.bind(this);
+    this.handleRegionData = this.handleRegionData.bind(this);
     this.handleRegionClick = this.handleRegionClick.bind(this);
   }
 
