@@ -113,7 +113,7 @@ export default class WorldMap extends Component {
               series={{
                 regions: [
                   {
-                    values: countryData,
+                    values: this.state.countriesData,
                     scale: ['#146804', '#ff0000'],
                     normalizeFunction: 'polynomial',
                   },
@@ -121,7 +121,7 @@ export default class WorldMap extends Component {
               }}
             />
           </div>
-          {this.state.countryClicked ? <RegionData handleCountryClick={this.handleCountryClick} /> : null}
+          {this.state.countryClicked ? <RegionData countryData={countryData} handleCountryClick={this.handleCountryClick} /> : null}
         </section>
       </main>
     );
