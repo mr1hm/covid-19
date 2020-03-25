@@ -93,6 +93,7 @@ export default class WorldMap extends Component {
               }}
             />
           </div>
+          {this.state.countryClicked ? <RegionData /> : null}
         </section>
       </main>
     );
