@@ -26,18 +26,42 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this.getData();
+    // this.getData();
     this.getData2();
   }
 
   getData2() {
     // TESTING ONLY RIGHT NOW
-    fetch(`https://services1.arcgis.com/0MSEUqKaxRlEPj5g/ArcGIS/rest/services/Coronavirus_2019_nCoV_Cases/FeatureServer/1/query?where=1=1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=standard&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=deaths,Confirmed,Recovered,Country_Region&returnGeometry=true&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=json&token=`)
+    fetch(`https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/stats`, {
+      'method': 'GET',
+      'headers': {
+        "x-rapidapi-host": "covid-19-coronavirus-statistics.p.rapidapi.com",
+        "x-rapidapi-key": "05b38be8cbmshd0a7f0f3b05745ep1665d5jsn393930b0712b"
+      },
+    })
       .then(res => res.json())
       .then(info => {
-        const data2 = Object.entries(info).filter(val => val[0] === 'features')[0][1];
-        console.log(data2);
-        this.setState({ data2 });
+        const data = Object.entries(info)[3][1].covid19Stats;
+        data.sort((a, b) => {
+          let countryNameA = a.country.toUpperCase();
+          let countryNameB = b.country.toUpperCase();
+          if (countryNameA < countryNameB) return -1;
+          if (countryNameA > countryNameB) return 1;
+          return 0;
+        });
+        let countriesColorData = {}, countryCode;
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].country !== 'US') {
+            for (const key in countryListObjByCode) {
+              if (countryListObjByCode[key] === data[i].country) countryCode = key;
+            }
+          } else {
+            countryCode = data[i].country
+          }
+          if (countriesColorData[countryCode]) countriesColorData[countryCode] += data[i].confirmed;
+          else countriesColorData[countryCode] = data[i].confirmed;
+        }
+        this.setState({ data, countriesColorData });
       })
   }
 
