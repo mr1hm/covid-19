@@ -70,6 +70,16 @@ export default class WorldMap extends Component {
                 },
                 selectedHover: {}
               }}
+              regionsSelectable={true}
+              series={{
+                regions: [
+                  {
+                    values: countryData,
+                    scale: ['#146804', '#ff0000'],
+                    normalizeFunction: 'polynomial',
+                  },
+                ]
+              }}
             />
           </div>
         </section>
