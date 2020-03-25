@@ -100,7 +100,7 @@ export default class App extends Component {
       <>
         <Header />
         <main className="view-filter-container container-fluid">
-          <h5>Region Selection</h5>
+          <h5>Country Selection</h5>
           <section className="row">
             <div className="col d-flex">
               <button className="btn world-view">World</button>
