@@ -500,7 +500,7 @@ const countryListObjByCode = {
   "AE": "United Arab Emirates (the)",
   "GB": "United Kingdom of Great Britain and Northern Ireland (the)",
   "UM": "United States Minor Outlying Islands (the)",
-  "US": "United States of America (the)",
+  "US": "United States",
   "UY": "Uruguay",
   "UZ": "Uzbekistan",
   "VU": "Vanuatu",
