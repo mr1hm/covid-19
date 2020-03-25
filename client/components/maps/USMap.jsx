@@ -9,8 +9,7 @@ export default class USMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      center: [0, 0],
-      zoom: 1,
+      stateColorData: {},
       currentCountry: null,
       regionClicked: false,
       regionData: {
@@ -24,6 +23,24 @@ export default class USMap extends Component {
     // this.getPercentage = this.getPercentage.bind(this);
     this.handleRegionData = this.handleRegionData.bind(this);
     this.handleRegionClick = this.handleRegionClick.bind(this);
+  }
+
+  componentDidMount() {
+    this.setUSData();
+  }
+
+  setUSData() {
+    const { data } = this.props;
+    const filteredUSData = data.filter(val => val.country === 'US');
+    console.log(filteredUSData)
+    let stateColorData = {};
+    for (let i = 0; i < filteredUSData.length; i++) {
+      const stateName = `US-${abbrState(filteredUSData[i].province, 'abbr')}`;
+      if (stateColorData[stateName]) stateColorData[stateName] += filteredUSData[i].confirmed;
+      else stateColorData[stateName] = filteredUSData[i].confirmed;
+    }
+    console.log(stateColorData);
+    this.setState({ stateColorData });
   }
 
   // roundedPop(num) {
