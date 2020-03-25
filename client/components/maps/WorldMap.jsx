@@ -33,7 +33,7 @@ export default class WorldMap extends Component {
     const { countryData } = this.props;
     return (
       <main className="world-map-container container-fluid">
-        <small>*A brighter red represents more deaths in that region</small>
+        <small>*A brighter/lighter shade of red represents more COVID-19 related deaths in that region</small>
         <section className="row">
           <div className="col d-flex justify-content-center">
             <VectorMap
