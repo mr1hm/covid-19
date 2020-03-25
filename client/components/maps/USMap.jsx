@@ -81,10 +81,11 @@ export default class USMap extends Component {
   }
 
   render() {
-    const { data, USData, setTooltipContent, countryCodeData, stateData } = this.props;
-    if (!this.state.stateColorData) return <div>LOADING...</div>
+    const { data, USData, setTooltipContent, stateData } = this.props;
+    const { regionClicked, stateColorData } = this.state;
+    // if (!this.state.stateColorData) return <div>LOADING...</div>
     return (
-      <main className="world-map-container container-fluid">
+      <main className="usa-map-container container-fluid">
         <small>*A brighter/lighter shade of red represents more COVID-19 infections in that region</small>
         <section className="row">
           <div className="col d-flex justify-content-center world-map-col">
@@ -96,7 +97,7 @@ export default class USMap extends Component {
               zoomStep={1.5}
               onRegionClick={this.handleRegionData}
               containerStyle={{ width: '100%', height: '600px' }}
-              containerClassName={`world-map ${this.state.regionClicked ? 'regionClicked' : ''}`}
+              containerClassName={`world-map ${regionClicked ? 'regionClicked' : ''}`}
               regionStyle={{
                 initial: {
                   fill: '#e4e4e4',
@@ -164,7 +165,7 @@ export default class USMap extends Component {
               series={{
                 regions: [
                   {
-                    values: this.state.stateColorData,
+                    values: stateColorData,
                     scale: ['#146804', '#ff0000'],
                     normalizeFunction: 'polynomial',
                   }
