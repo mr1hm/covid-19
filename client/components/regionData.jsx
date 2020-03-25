@@ -10,15 +10,27 @@ export default class RegionData extends Component {
   }
 
   render() {
-    const { regionData, handleRegionClick } = this.props;
-    if (!regionData) {
+    const { regionData, countryData, handleRegionClick, handleCountryClick } = this.props;
+    if (!regionData && !countryData) {
       return (
-        <div>Please select a state to view data</div>
+        <div className="col-4 d-flex flex-column region-data">
+          <i onClick={() => {
+            if (handleRegionClick) handleRegionClick();
+            else handleCountryClick();
+          }}
+            className="fas fa-arrow-right close-region-data"></i>
+          <hr />
+          <div>Please select a country or region to view data</div>
+        </div>
       );
     }
     return (
       <div className="col-4 d-flex flex-column region-data">
-        <i onClick={() => handleRegionClick()} className="fas fa-arrow-right close-region-data"></i>
+        <i onClick={() => {
+          if (handleRegionClick) handleRegionClick();
+          else handleCountryClick();
+        }}
+          className="fas fa-arrow-right close-region-data"></i>
         <hr />
         <h4>{regionData.stateName}</h4>
         <p><span className="infections">Infections</span>: {regionData.infected}</p>
