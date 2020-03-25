@@ -45,12 +45,22 @@ export default class WorldMap extends Component {
 
   handleCountryData(e, countryCode) {
     this.refs.map.$mapObject.tip.hide();
-    console.log(countryCode);
-    this.setState({ countryClicked: true })
+    const countryArr = this.props.data.filter(val => val.country_code === countryCode);
+    console.log(countryArr);
+    const totalInfected = countryArr.reduce((acc, val) => acc + val.latest.confirmed, 0);
+    const totalRecovered = countryArr.reduce((acc, val) => acc + val.latest.recovered, 0);
+    const totalDeaths = countryArr.reduce((acc, val) => acc + val.latest.deaths, 0);
+    const countryName = countryListObjByCode[countryCode];
+    this.setState(prevState =>
+      ({
+        countryData: { ...prevState.countryData, countryName, infected: totalInfected, recovered: totalRecovered, deaths: totalDeaths },
+        countryClicked: true
+      })
+    )
   }
 
   render() {
-    const { countryData } = this.props;
+    const { countryData } = this.state;
     return (
       <main className="world-map-container container-fluid">
         <small>*A brighter/lighter shade of red represents more COVID-19 related deaths in that region</small>
