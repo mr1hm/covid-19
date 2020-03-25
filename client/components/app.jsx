@@ -122,12 +122,12 @@ export default class App extends Component {
       <>
         <Header />
         <main className="view-filter-container container-fluid">
-          <h5>Country Selection</h5>
+          <h5>{mapView === 'United States' ? `State Selection` : `Country Selection`}</h5>
           <section className="row">
             <div className="col d-flex">
               <button className="btn world-view">World</button>
               <select onChange={this.handleMapViewChange} name="mapView" id="country-views">
-                {Object.entries(countryListObjByCode).map((val, i) => {
+                {mapView === 'United States' ? abbrState('states', 'list').map((val, i) => <option key={i}>{val}</option>) : Object.entries(countryListObjByCode).map((val, i) => {
                   return (
                     <option key={i}>{val[1]}</option>
                   );
