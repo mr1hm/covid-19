@@ -47,7 +47,11 @@ export default class USMap extends Component {
     }
   }
 
-  handleRegionClick(e, countryRegionCode) {
+  handleRegionClick() {
+    this.setState({ regionClicked: false })
+  }
+
+  handleRegionData(e, countryRegionCode) {
     this.refs.map.$mapObject.tip.hide();
     const stateName = abbrState(countryRegionCode.split('-')[1], 'name');
     // const countryCode = countryRegionCode.split('-')[1];
