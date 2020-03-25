@@ -80,6 +80,10 @@ hr {
   animation: slide-info linear 2s both;
 }
 
+.close-region-data {
+  cursor: pointer;
+}
+
 @keyframes slide-info {
   0% {width: 0%}
   25% {width: 25%}
