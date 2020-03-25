@@ -94,7 +94,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { data, dataView, searchInput, showAll, countryCodeData, USData, stateData } = this.state;
+    const { data, dataView, searchInput, showAll, countryCodeData, USData, stateData, mapView } = this.state;
     if (data.length === 0) return <div>LOADING...</div>
     return (
       <>
