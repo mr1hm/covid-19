@@ -97,7 +97,7 @@ export default class USMap extends Component {
               zoomStep={1.5}
               onRegionClick={this.handleRegionData}
               containerStyle={{ width: '100%', height: '600px' }}
-              containerClassName={`world-map ${this.state.regionClicked ? 'regionClicked' : ''}`}
+              containerClassName={`world-map ${regionClicked ? 'regionClicked' : ''}`}
               regionStyle={{
                 initial: {
                   fill: '#e4e4e4',
@@ -165,7 +165,7 @@ export default class USMap extends Component {
               series={{
                 regions: [
                   {
-                    values: this.state.stateColorData,
+                    values: stateColorData,
                     scale: ['#146804', '#ff0000'],
                     normalizeFunction: 'polynomial',
                   }

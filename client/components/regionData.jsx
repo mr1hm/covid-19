@@ -5,10 +5,6 @@ export default class RegionData extends Component {
     super(props);
   }
 
-  handleClick() {
-
-  }
-
   render() {
     const { regionData, countryData, handleRegionClick, handleCountryClick } = this.props;
     if (!regionData && !countryData) {
