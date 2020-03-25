@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { VectorMap } from 'react-jvectormap';
 import RegionData from '../regionData';
-import { countryListObjByCode } from '../countries';
+import { countryListObjByCode, countryListISOData, getCountryCode, findCountry } from '../countries';
 
 export default class WorldMap extends Component {
   constructor(props) {
@@ -20,36 +20,23 @@ export default class WorldMap extends Component {
     this.handleCountryData = this.handleCountryData.bind(this);
   }
 
-  componentDidMount() {
-    const sortedCountriesData = this.props.data.slice();
-    sortedCountriesData.sort((a, b) => {
-      let countryNameA = a.country.toUpperCase();
-      let countryNameB = b.country.toUpperCase();
-      if (countryNameA < countryNameB) return -1;
-      if (countryNameA > countryNameB) return 1;
-      return 0;
-    });
-    console.log(sortedCountriesData);
-    let countriesData = {};
-    for (let i = 0; i < sortedCountriesData.length; i++) {
-      const countryCode = sortedCountriesData[i].country_code;
-      if (countriesData[countryCode]) countriesData[countryCode] += sortedCountriesData[i].latest.confirmed;
-      else countriesData[countryCode] = sortedCountriesData[i].latest.confirmed;
-    }
-    this.setState({ countriesData })
-  }
-
   handleCountryClick() {
     this.setState({ countryClicked: false })
   }
 
+  checkIfCountryExistsInData(countryName) { // TEST PURPOSES ONLY
+    let temp = `Mali`
+    const filtered = sortedCountriesData.filter(val => val.country.includes(temp));
+    console.log(filtered);
+    console.log(findCountry(temp));
+  }
+
   handleCountryData(e, countryCode) {
     this.refs.map.$mapObject.tip.hide();
-    const countryArr = this.props.data.filter(val => val.country_code === countryCode);
-    console.log(countryArr);
-    const totalInfected = countryArr.reduce((acc, val) => acc + val.latest.confirmed, 0);
-    const totalRecovered = countryArr.reduce((acc, val) => acc + val.latest.recovered, 0);
-    const totalDeaths = countryArr.reduce((acc, val) => acc + val.latest.deaths, 0);
+    const countryArr = this.props.data.filter(val => getCountryCode(val.country) === countryCode);
+    const totalInfected = countryArr.reduce((acc, val) => acc + val.confirmed, 0);
+    const totalRecovered = countryArr.reduce((acc, val) => acc + val.recovered, 0);
+    const totalDeaths = countryArr.reduce((acc, val) => acc + val.deaths, 0);
     const countryName = countryListObjByCode[countryCode];
     this.setState(prevState =>
       ({
@@ -60,10 +47,11 @@ export default class WorldMap extends Component {
   }
 
   render() {
-    const { countryData } = this.state;
+    const { countryData, countriesData } = this.state;
+    const { countriesColorData } = this.props;
     return (
       <main className="world-map-container container-fluid">
-        <small>*A brighter/lighter shade of red represents more COVID-19 related deaths in that region</small>
+        <small>*A brighter/lighter shade of red represents more COVID-19 infections in that region</small>
         <section className="row">
           <div className="col d-flex justify-content-center">
             <VectorMap
@@ -113,7 +101,7 @@ export default class WorldMap extends Component {
               series={{
                 regions: [
                   {
-                    values: this.state.countriesData,
+                    values: countriesColorData,
                     scale: ['#146804', '#ff0000'],
                     normalizeFunction: 'polynomial',
                   },
