@@ -59,22 +59,26 @@ export default class USMap extends Component {
     const totalInfected = state[0].latest.confirmed;
     const totalRecovered = state[0].latest.recovered;
     const totalDeaths = state[0].latest.deaths;
-    this.setState(prevState => ({ regionClicked: true, regionData: { ...prevState.regionData, stateName, infected: totalInfected, recovered: totalRecovered, deaths: totalDeaths } }))
+    this.setState(prevState => ({
+      regionClicked: true,
+      regionData: { ...prevState.regionData, stateName, infected: totalInfected, recovered: totalRecovered, deaths: totalDeaths }
+    }));
   }
 
   render() {
     const { data, USData, setTooltipContent, countryCodeData, stateData } = this.props;
     return (
       <main className="world-map-container container-fluid">
+        <small>*A brighter red represents more deaths in that region</small>
         <section className="row">
           <div className="col d-flex justify-content-center world-map-col">
             <VectorMap
-              map={this.state.map || 'us_aea'}
+              map={'us_aea'}
               ref="map"
               backgroundColor='#0077be'
               zoomOnScroll={false}
               zoomStep={1.5}
-              onRegionClick={this.handleRegionClick}
+              onRegionClick={this.handleRegionData}
               containerStyle={{ width: '100%', height: '600px' }}
               containerClassName={`world-map ${this.state.regionClicked ? 'regionClicked' : ''}`}
               regionStyle={{
@@ -152,7 +156,7 @@ export default class USMap extends Component {
               }}
             />
           </div>
-          {this.state.regionClicked ? <RegionData regionData={this.state.regionData} /> : null}
+          {this.state.regionClicked ? <RegionData handleRegionClick={this.handleRegionClick} regionData={this.state.regionData} /> : null}
         </section>
       </main >
     );
