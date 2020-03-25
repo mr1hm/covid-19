@@ -19,6 +19,18 @@ export default class WorldMap extends Component {
     this.handleCountryData = this.handleCountryData.bind(this);
   }
 
+  componentDidMount() {
+    const sortedCountriesData = this.props.data.slice();
+    sortedCountriesData.sort((a, b) => {
+      let countryNameA = a.country.toUpperCase();
+      let countryNameB = b.country.toUpperCase();
+      if (countryNameA < countryNameB) return -1;
+      if (countryNameA > countryNameB) return 1;
+      return 0;
+    });
+    console.log(sortedCountriesData);
+  }
+
   handleCountryClick() {
     this.setState({ countryClicked: false })
   }
