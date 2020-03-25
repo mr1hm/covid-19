@@ -17,12 +17,6 @@ export default class WorldMap extends Component {
     this.handleCountryClick = this.handleCountryClick.bind(this);
   }
 
-  countryData() {
-    const { data } = this.props;
-    // Add code to manipulate data by Country
-    // If there are multiple datasets for the same country, reduce it to a sum of total confirmed, recovered, and deaths.
-  }
-
   handleCountryClick() {
     this.setState({ regionClicked: false })
   }
