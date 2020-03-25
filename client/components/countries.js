@@ -265,6 +265,7 @@ const countryList = [
 // ISO 3166 Alpha-2 Format: [2 letter Country Code]: [Country Name]
 // Alphabetical by Country Name
 const countryListObjByCode = {
+  "WD": "World",
   "AF": "Afghanistan",
   "AL": "Albania",
   "DZ": "Algeria",
