@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { VectorMap } from 'react-jvectormap';
 import RegionData from '../regionData';
+import { countryListObjByCode } from '../countries';
 
 export default class WorldMap extends Component {
   constructor(props) {

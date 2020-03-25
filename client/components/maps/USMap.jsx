@@ -52,14 +52,14 @@ export default class USMap extends Component {
 
   handleRegionData(e, countryRegionCode) {
     this.refs.map.$mapObject.tip.hide();
-    const stateName = abbrState(countryRegionCode.split('-')[1], 'name');
-    const state = this.props.USData.filter(val => val.province === stateName);
+    const regionName = abbrState(countryRegionCode.split('-')[1], 'name');
+    const state = this.props.USData.filter(val => val.province === regionName);
     const totalInfected = state[0].latest.confirmed;
     const totalRecovered = state[0].latest.recovered;
     const totalDeaths = state[0].latest.deaths;
     this.setState(prevState => ({
       regionClicked: true,
-      regionData: { ...prevState.regionData, stateName, infected: totalInfected, recovered: totalRecovered, deaths: totalDeaths }
+      regionData: { ...prevState.regionData, regionName, infected: totalInfected, recovered: totalRecovered, deaths: totalDeaths }
     }));
   }
 
