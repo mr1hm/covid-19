@@ -12,13 +12,11 @@ export default class App extends Component {
     super(props);
     this.state = {
       data: [],
-      data2: [],
       dataView: [],
-      USData: [],
       stateData: null,
       searchInput: '',
       showAll: false,
-      countryCodeData: null,
+      countriesColorData: null,
       mapView: '',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
