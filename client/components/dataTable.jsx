@@ -18,7 +18,6 @@ export default class DataTable extends Component {
           <table className="table data-table">
             <thead>
               <tr>
-                <th scope="col">Country Code</th>
                 <th scope="col">Country</th>
                 <th scope="col">Province</th>
                 <th scope="col">Confirmed</th>

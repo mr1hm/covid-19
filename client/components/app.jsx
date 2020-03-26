@@ -26,53 +26,10 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    // this.getData();
-    this.getData2();
-    // this.getData3();
+    this.getData();
   }
 
-  // getData3() {
-  //   const fetchConfirmedAndDeaths = fetch(`https://coronavirus-tracker-api.herokuapp.com/v2/locations/225`);
-  //   const fetchRecovered = fetch(`https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/stats`, {
-  //     'headers': {
-  //       "x-rapidapi-host": "covid-19-coronavirus-statistics.p.rapidapi.com",
-  //       "x-rapidapi-key": "05b38be8cbmshd0a7f0f3b05745ep1665d5jsn393930b0712b"
-  //     },
-  //   });
-  //   Promise.all([fetchConfirmedAndDeaths, fetchRecovered])
-  //     .then(res => Promise.all(res.map(response => response.json())))
-  //     .then(results => {
-  //       console.log(results);
-  //       let data = Object.entries(results[0])[1][1];
-  //       data.sort((a, b) => {
-  //         let countryNameA = a.country.toUpperCase();
-  //         let countryNameB = b.country.toUpperCase();
-  //         if (countryNameA < countryNameB) return -1;
-  //         if (countryNameA > countryNameB) return 1;
-  //         return 0;
-  //       });
-  //       let countriesColorData = {}, countryCode;
-  //       for (let i = 0; i < data.length; i++) {
-  //         if (data[i].country !== 'US') {
-  //           for (const key in countryListObjByCode) {
-  //             if (countryListObjByCode[key] === data[i].country) countryCode = key;
-  //           }
-  //         } else {
-  //           countryCode = data[i].country
-  //         }
-  //         if (countriesColorData[countryCode]) countriesColorData[countryCode] += data[i].confirmed;
-  //         else countriesColorData[countryCode] = data[i].confirmed;
-  //       }
-  //       const latestGlobalData = Object.entries(results)[0][1];
-  //       console.log('confirmed infections and deaths:', data);
-  //       console.log('recovered:', Object.entries(results[1])[3][1].covid19Stats);
-  //       this.setState({ data, latestGlobalData })
-  //     })
-  //     .catch(err => console.error(err));
-  // }
-
-
-  getData2() {
+  getData() {
     fetch(`https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/stats`, {
       'method': 'GET',
       'headers': {
@@ -109,23 +66,6 @@ export default class App extends Component {
         this.setState({ data, countriesColorData });
       })
   }
-  // getData() {
-  //   fetch(`http://covid19api.xapix.io/v2/locations`)
-  //     .then(res => res.json())
-  //     .then(info => {
-  //       let data = Object.entries(info).shift()[1];
-  //       data.sort((a, b) => b.latest.deaths - a.latest.deaths);
-  //       const USData = data.filter(val => val.country_code === 'US').sort((a, b) => b.latest.deaths - a.latest.deaths);
-  //       const USRegionsData = USData.filter(val => !val.province.includes(','));
-  //       let stateData = {}, countries = [];
-  //       for (let i = 0; i < USRegionsData.length; i++) {
-  //         stateData[`US-${abbrState(USRegionsData[i].province, 'abbr')}`] = USRegionsData[i].latest.deaths
-  //       }
-  //       console.log(stateData);
-  //       this.setState({ data, dataView: data, USData, stateData });
-  //     })
-  //     .catch(err => console.error(err));
-  // }
 
   handleShowAllBtn() {
     this.setState({ showAll: !this.state.showAll })
