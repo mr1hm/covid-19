@@ -14,6 +14,7 @@ export default class WorldMap extends Component {
         infected: null,
         recovered: null,
         deaths: null,
+        view: '',
       },
       countriesData: {},
     };
