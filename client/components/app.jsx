@@ -14,11 +14,10 @@ export default class App extends Component {
     this.state = {
       data: [],
       dataView: [],
-      stateData: null,
       searchInput: '',
       showAll: false,
       countriesColorData: null,
-      mapView: '',
+      mapView: null,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
