@@ -10,6 +10,7 @@ export default class WorldMap extends Component {
       countryClicked: false,
       countryData: {
         countryName: '',
+        lastUpdated: null,
         infected: null,
         recovered: null,
         deaths: null,
