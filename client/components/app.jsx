@@ -94,7 +94,10 @@ export default class App extends Component {
         for (let i = 0; i < data.length; i++) {
           if (data[i].country !== 'US') {
             for (const key in countryListObjByCode) {
-              if (countryListObjByCode[key] === data[i].country) countryCode = key;
+              if (countryListObjByCode[key] === data[i].country) {
+                data[i].country_code = key;
+                countryCode = key;
+              }
             }
           } else {
             countryCode = data[i].country
@@ -102,10 +105,10 @@ export default class App extends Component {
           if (countriesColorData[countryCode]) countriesColorData[countryCode] += data[i].confirmed;
           else countriesColorData[countryCode] = data[i].confirmed;
         }
+        console.log(data);
         this.setState({ data, countriesColorData });
       })
   }
-
   // getData() {
   //   fetch(`http://covid19api.xapix.io/v2/locations`)
   //     .then(res => res.json())
