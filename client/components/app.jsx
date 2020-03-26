@@ -57,7 +57,8 @@ export default class App extends Component {
               }
             }
           } else {
-            countryCode = data[i].country
+            data[i].country_code = data[i].country;
+            countryCode = data[i].country;
           }
           if (countriesColorData[countryCode]) countriesColorData[countryCode] += data[i].confirmed;
           else countriesColorData[countryCode] = data[i].confirmed;
