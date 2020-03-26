@@ -385,6 +385,7 @@ const countryListObjByCode = {
   "KI": "Kiribati",
   "KP": "Korea (the Democratic People's Republic of)",
   "KR": "Korea, South",
+  "XK": "Kosovo",
   "KW": "Kuwait",
   "KG": "Kyrgyzstan",
   "LA": "Laos",
