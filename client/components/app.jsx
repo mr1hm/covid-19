@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Header from './layout/header';
 import DataTable from './dataTable';
-import USMap from './maps/USMap';
 import WorldMap from './maps/WorldMap';
+import USMap from './maps/USMap';
+import KoreaMap from './maps/KoreaMap';
 import ReactTooltip from 'react-tooltip';
 import abbrState from './stateHelper';
 import { countryListObjByCode } from './countries';
