@@ -24,12 +24,12 @@ export default class WorldMap extends Component {
     this.setState({ countryClicked: false })
   }
 
-  checkIfCountryExistsInData(countryName) { // TEST PURPOSES ONLY
-    let temp = `Mali`
-    const filtered = sortedCountriesData.filter(val => val.country.includes(temp));
-    console.log(filtered);
-    console.log(findCountry(temp));
-  }
+  // checkIfCountryExistsInData(countryName) { // TEST PURPOSES ONLY
+  //   let temp = `Mali`
+  //   const filtered = sortedCountriesData.filter(val => val.country.includes(temp));
+  //   console.log(filtered);
+  //   console.log(findCountry(temp));
+  // }
 
   handleCountryData(e, countryCode) {
     this.refs.map.$mapObject.tip.hide();
