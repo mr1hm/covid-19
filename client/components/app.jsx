@@ -136,9 +136,9 @@ export default class App extends Component {
     this.setState({ [name]: value })
   }
 
-  handleMapViewChange(e) {
+  handleMapViewChange(e, countryName) {
     const name = e.target.name, value = e.target.value;
-    this.setState({ [name]: value });
+    this.setState({ mapView: countryName });
   }
 
   handleSearchSubmit(e) {
@@ -167,21 +167,21 @@ export default class App extends Component {
       <>
         <Header />
         <main className="view-filter-container container-fluid">
-          <h5>{mapView === 'United States' ? `State Selection` : `Country Selection`}</h5>
+          <small>VIEW</small>
           <section className="row">
             <div className="col d-flex">
-              <button className="btn world-view">World</button>
-              <select onChange={this.handleMapViewChange} name="mapView" id="country-views">
+              <button className="btn world-view">World<i className="fas fa-globe-americas globe-icon"></i></button>
+              {/* <select onChange={this.handleMapViewChange} name="mapView" id="country-views">
                 {mapView === 'United States' ? abbrState('states', 'list').map((val, i) => <option key={i}>{val}</option>) : Object.entries(countryListObjByCode).map((val, i) => {
                   return (
                     <option key={i}>{val[1]}</option>
                   );
                 })}
-              </select>
+              </select> */}
             </div>
           </section>
         </main>
-        {mapView === 'United States' ? <USMap stateData={stateData} countryCodeData={countryCodeData} data={data} /> : <WorldMap countriesColorData={countriesColorData} data={data} />}
+        {mapView === 'United States' ? <USMap stateData={stateData} countryCodeData={countryCodeData} data={data} /> : <WorldMap handleMapViewChange={this.handleMapViewChange} countriesColorData={countriesColorData} data={data} />}
         <main className="search-container container">
           <section className="row">
             <div className="col d-flex flex-column align-items-center">
