@@ -21,6 +21,7 @@ export default class RegionData extends Component {
       );
     }
     if (countryData) {
+      console.log(countryData);
       return (
         <div className="col-4 d-flex flex-column region-data">
           <i onClick={() => {
