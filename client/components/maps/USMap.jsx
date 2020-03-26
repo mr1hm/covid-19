@@ -39,7 +39,6 @@ export default class USMap extends Component {
       if (stateColorData[stateName]) stateColorData[stateName] += filteredUSData[i].confirmed;
       else stateColorData[stateName] = filteredUSData[i].confirmed;
     }
-    console.log(stateColorData);
     this.setState({ stateColorData });
   }
 
