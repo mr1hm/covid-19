@@ -85,6 +85,7 @@ export default class App extends Component {
       'USMap': USMap,
       'WorldMap': WorldMap,
       'KoreaMap': KoreaMap,
+      'SwitzerlandMap': SwitzerlandMap,
     }
     if (view) this.setState({ mapView: mapObj[view] });
     else this.setState({ [name]: value });
