@@ -76,9 +76,9 @@ export default class App extends Component {
     this.setState({ [name]: value })
   }
 
-  handleMapViewChange(e, countryName) {
+  handleMapViewChange(e, view) {
     const name = e.target.name, value = e.target.value;
-    this.setState({ mapView: countryName });
+    this.setState({ mapView: view });
   }
 
   handleSearchSubmit(e) {
