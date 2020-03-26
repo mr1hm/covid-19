@@ -30,7 +30,7 @@ export default class DataTable extends Component {
               {data.map((val, i) => {
                 return (
                   <tr key={i}>
-                    <th scope="row">{val.country_code}</th>
+                    <td scope="row">{val.country_code}</td>
                     <td>{val.country}</td>
                     <td>{val.province}</td>
                     <td>{val.confirmed}</td>

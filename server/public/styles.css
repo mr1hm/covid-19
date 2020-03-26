@@ -28,6 +28,10 @@ hr {
   text-transform: uppercase;
 }
 
+.globe-icon {
+  margin-left: 0.25em;
+}
+
 .view-filter-container h5 {
   margin-top: 0.5em;
 }
@@ -78,6 +82,13 @@ hr {
   padding: 20px;
   margin-right: 15px;
   animation: slide-info linear 2s both;
+}
+
+.country-title-btn {
+  text-align: start;
+  width: 15%;
+  padding: 0;
+  margin-bottom: 1em;
 }
 
 .close-region-data {

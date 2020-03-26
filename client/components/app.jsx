@@ -26,12 +26,10 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    // this.getData();
-    this.getData2();
+    this.getData();
   }
 
-  getData2() {
-    // TESTING ONLY RIGHT NOW
+  getData() {
     fetch(`https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/stats`, {
       'method': 'GET',
       'headers': {
@@ -53,34 +51,21 @@ export default class App extends Component {
         for (let i = 0; i < data.length; i++) {
           if (data[i].country !== 'US') {
             for (const key in countryListObjByCode) {
-              if (countryListObjByCode[key] === data[i].country) countryCode = key;
+              if (countryListObjByCode[key] === data[i].country) {
+                data[i].country_code = key;
+                countryCode = key;
+              }
             }
           } else {
-            countryCode = data[i].country
+            data[i].country_code = data[i].country;
+            countryCode = data[i].country;
           }
           if (countriesColorData[countryCode]) countriesColorData[countryCode] += data[i].confirmed;
           else countriesColorData[countryCode] = data[i].confirmed;
         }
+        console.log(data);
         this.setState({ data, countriesColorData });
       })
-  }
-
-  getData() {
-    fetch(`http://covid19api.xapix.io/v2/locations`)
-      .then(res => res.json())
-      .then(info => {
-        let data = Object.entries(info).shift()[1];
-        data.sort((a, b) => b.latest.deaths - a.latest.deaths);
-        const USData = data.filter(val => val.country_code === 'US').sort((a, b) => b.latest.deaths - a.latest.deaths);
-        const USRegionsData = USData.filter(val => !val.province.includes(','));
-        let stateData = {}, countries = [];
-        for (let i = 0; i < USRegionsData.length; i++) {
-          stateData[`US-${abbrState(USRegionsData[i].province, 'abbr')}`] = USRegionsData[i].latest.deaths
-        }
-        console.log(stateData);
-        this.setState({ data, dataView: data, USData, stateData });
-      })
-      .catch(err => console.error(err));
   }
 
   handleShowAllBtn() {
@@ -92,9 +77,9 @@ export default class App extends Component {
     this.setState({ [name]: value })
   }
 
-  handleMapViewChange(e) {
+  handleMapViewChange(e, view) {
     const name = e.target.name, value = e.target.value;
-    this.setState({ [name]: value });
+    this.setState({ mapView: view });
   }
 
   handleSearchSubmit(e) {
@@ -123,21 +108,21 @@ export default class App extends Component {
       <>
         <Header />
         <main className="view-filter-container container-fluid">
-          <h5>Country Selection</h5>
+          <small>VIEW</small>
           <section className="row">
             <div className="col d-flex">
-              <button className="btn world-view">World</button>
-              <select onChange={this.handleMapViewChange} name="mapView" id="country-views">
-                {Object.entries(countryListObjByCode).map((val, i) => {
+              <button onClick={e => this.handleMapViewChange(e, 'world')} className="btn world-view">World<i className="fas fa-globe-americas globe-icon"></i></button>
+              {/* <select onChange={this.handleMapViewChange} name="mapView" id="country-views">
+                {mapView === 'United States' ? abbrState('states', 'list').map((val, i) => <option key={i}>{val}</option>) : Object.entries(countryListObjByCode).map((val, i) => {
                   return (
                     <option key={i}>{val[1]}</option>
                   );
                 })}
-              </select>
+              </select> */}
             </div>
           </section>
         </main>
-        {mapView === 'United States' ? <USMap stateData={stateData} countryCodeData={countryCodeData} data={data} /> : <WorldMap countriesColorData={countriesColorData} data={data} />}
+        {mapView === 'United States' ? <USMap stateData={stateData} countryCodeData={countryCodeData} data={data} /> : <WorldMap handleMapViewChange={this.handleMapViewChange} countriesColorData={countriesColorData} data={data} />}
         <main className="search-container container">
           <section className="row">
             <div className="col d-flex flex-column align-items-center">

@@ -10,6 +10,7 @@ export default class WorldMap extends Component {
       countryClicked: false,
       countryData: {
         countryName: '',
+        lastUpdated: null,
         infected: null,
         recovered: null,
         deaths: null,
@@ -24,23 +25,32 @@ export default class WorldMap extends Component {
     this.setState({ countryClicked: false })
   }
 
-  checkIfCountryExistsInData(countryName) { // TEST PURPOSES ONLY
-    let temp = `Mali`
-    const filtered = sortedCountriesData.filter(val => val.country.includes(temp));
-    console.log(filtered);
-    console.log(findCountry(temp));
-  }
+  // checkIfCountryExistsInData(countryName) { // TEST PURPOSES ONLY
+  //   let temp = `Mali`
+  //   const filtered = sortedCountriesData.filter(val => val.country.includes(temp));
+  //   console.log(filtered);
+  //   console.log(findCountry(temp));
+  // }
 
   handleCountryData(e, countryCode) {
     this.refs.map.$mapObject.tip.hide();
-    const countryArr = this.props.data.filter(val => getCountryCode(val.country) === countryCode);
-    const totalInfected = countryArr.reduce((acc, val) => acc + val.confirmed, 0);
-    const totalRecovered = countryArr.reduce((acc, val) => acc + val.recovered, 0);
-    const totalDeaths = countryArr.reduce((acc, val) => acc + val.deaths, 0);
-    const countryName = countryListObjByCode[countryCode];
+    const countryArr = this.props.data.filter(val => val.country_code === countryCode);
+    console.log(countryArr);
+    let lastUpdated, totalInfected, totalRecovered, totalDeaths, countryName = countryListObjByCode[countryCode];;
+    if (countryArr.length >= 1) {
+      lastUpdated = countryArr[0].lastUpdate;
+      totalInfected = countryArr.reduce((acc, val) => acc + val.confirmed, 0);
+      totalRecovered = countryArr.reduce((acc, val) => acc + val.recovered, 0);
+      totalDeaths = countryArr.reduce((acc, val) => acc + val.deaths, 0);
+    } else {
+      lastUpdated = `This country currently has no data available`;
+      totalInfected = `NA`;
+      totalRecovered = `NA`;
+      totalDeaths = `NA`;
+    }
     this.setState(prevState =>
       ({
-        countryData: { ...prevState.countryData, countryName, infected: totalInfected, recovered: totalRecovered, deaths: totalDeaths },
+        countryData: { ...prevState.countryData, countryName, lastUpdated, infected: totalInfected, recovered: totalRecovered, deaths: totalDeaths },
         countryClicked: true
       })
     )
@@ -109,7 +119,7 @@ export default class WorldMap extends Component {
               }}
             />
           </div>
-          {this.state.countryClicked ? <RegionData countryData={countryData} handleCountryClick={this.handleCountryClick} /> : null}
+          {this.state.countryClicked ? <RegionData handleMapViewChange={this.props.handleMapViewChange} countryData={countryData} handleCountryClick={this.handleCountryClick} /> : null}
         </section>
       </main>
     );
