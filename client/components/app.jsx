@@ -58,12 +58,12 @@ export default class App extends Component {
             }
           } else {
             data[i].country_code = data[i].country;
+            data[i].view = 'USMap'
             countryCode = data[i].country;
           }
           if (countriesColorData[countryCode]) countriesColorData[countryCode] += data[i].confirmed;
           else countriesColorData[countryCode] = data[i].confirmed;
         }
-        console.log(data);
         this.setState({ data, countriesColorData });
       })
   }
@@ -79,7 +79,13 @@ export default class App extends Component {
 
   handleMapViewChange(e, view) {
     const name = e.target.name, value = e.target.value;
-    this.setState({ mapView: view });
+    const mapObj = {
+      'USMap': USMap,
+      'WorldMap': WorldMap,
+      'KoreaMap': KoreaMap,
+    }
+    if (view) this.setState({ mapView: mapObj[view] });
+    else this.setState({ [name]: value });
   }
 
   handleSearchSubmit(e) {
