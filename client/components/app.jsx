@@ -110,7 +110,7 @@ export default class App extends Component {
           <small>VIEW</small>
           <section className="row">
             <div className="col d-flex">
-              <button className="btn world-view">World<i className="fas fa-globe-americas globe-icon"></i></button>
+              <button onClick={e => this.handleMapViewChange(e, 'world')} className="btn world-view">World<i className="fas fa-globe-americas globe-icon"></i></button>
               {/* <select onChange={this.handleMapViewChange} name="mapView" id="country-views">
                 {mapView === 'United States' ? abbrState('states', 'list').map((val, i) => <option key={i}>{val}</option>) : Object.entries(countryListObjByCode).map((val, i) => {
                   return (
