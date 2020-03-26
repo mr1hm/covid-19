@@ -69,5 +69,7 @@ export default function abbrState(input, to) {
         return (states[z][0]);
       }
     }
+  } else if (input == 'states' && to == 'list') {
+    return states.filter(val => val[0]);
   }
 }

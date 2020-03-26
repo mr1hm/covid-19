@@ -109,7 +109,7 @@ export default class WorldMap extends Component {
               }}
             />
           </div>
-          {this.state.countryClicked ? <RegionData countryData={countryData} handleCountryClick={this.handleCountryClick} /> : null}
+          {this.state.countryClicked ? <RegionData handleMapViewChange={this.props.handleMapViewChange} countryData={countryData} handleCountryClick={this.handleCountryClick} /> : null}
         </section>
       </main>
     );
