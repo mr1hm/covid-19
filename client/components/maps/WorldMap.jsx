@@ -14,6 +14,7 @@ export default class WorldMap extends Component {
         infected: null,
         recovered: null,
         deaths: null,
+        view: '',
       },
       countriesData: {},
     };
@@ -35,22 +36,32 @@ export default class WorldMap extends Component {
   handleCountryData(e, countryCode) {
     this.refs.map.$mapObject.tip.hide();
     const countryArr = this.props.data.filter(val => val.country_code === countryCode);
-    console.log(countryArr);
-    let lastUpdated, totalInfected, totalRecovered, totalDeaths, countryName = countryListObjByCode[countryCode];;
+    let lastUpdated, totalInfected, totalRecovered, totalDeaths, view, countryName = countryListObjByCode[countryCode];
     if (countryArr.length >= 1) {
       lastUpdated = countryArr[0].lastUpdate;
       totalInfected = countryArr.reduce((acc, val) => acc + val.confirmed, 0);
       totalRecovered = countryArr.reduce((acc, val) => acc + val.recovered, 0);
       totalDeaths = countryArr.reduce((acc, val) => acc + val.deaths, 0);
+      if (countryArr[0]) {
+        switch (countryArr[0].country_code) {
+          case 'US':
+            view = `USMap`;
+            break;
+          case 'KR':
+            view = `KoreaMap`;
+            break;
+        }
+      }
     } else {
       lastUpdated = `This country currently has no data available`;
       totalInfected = `NA`;
       totalRecovered = `NA`;
       totalDeaths = `NA`;
+      view = `NA`;
     }
     this.setState(prevState =>
       ({
-        countryData: { ...prevState.countryData, countryName, lastUpdated, infected: totalInfected, recovered: totalRecovered, deaths: totalDeaths },
+        countryData: { ...prevState.countryData, countryName, lastUpdated, infected: totalInfected, recovered: totalRecovered, deaths: totalDeaths, view },
         countryClicked: true
       })
     )

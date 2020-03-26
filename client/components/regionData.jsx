@@ -21,6 +21,7 @@ export default class RegionData extends Component {
       );
     }
     if (countryData) {
+      console.log(countryData);
       return (
         <div className="col-4 d-flex flex-column region-data">
           <i onClick={() => {
@@ -31,7 +32,7 @@ export default class RegionData extends Component {
           <hr />
           <h4>{countryData.countryName}</h4>
           <small>Last Updated: {countryData.lastUpdated ? countryData.lastUpdated : `This country currently has no data available`}</small>
-          <button onClick={(e) => this.props.handleMapViewChange(e, countryData.countryName)} className="btn country-title-btn"><small>Show Map</small></button>
+          <button onClick={(e) => this.props.handleMapViewChange(e, countryData.view)} className="btn country-title-btn"><small>Show Map</small></button>
           <p><span className="infections">Infections</span>: {countryData.infected}</p>
           <p><span className="recovered">Recovered</span>: {countryData.recovered || countryData.recovered === 0 ? countryData.recovered : regionData.recovered}</p>
           <p><span className="deaths">Deaths</span>: {countryData.deaths || countryData.deaths === 0 ? countryData.deaths : regionData.deaths}</p>

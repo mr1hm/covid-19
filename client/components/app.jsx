@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Header from './layout/header';
 import DataTable from './dataTable';
-import USMap from './maps/USMap';
 import WorldMap from './maps/WorldMap';
+import USMap from './maps/USMap';
+import KoreaMap from './maps/KoreaMap';
 import ReactTooltip from 'react-tooltip';
 import abbrState from './stateHelper';
 import { countryListObjByCode } from './countries';
@@ -13,11 +14,10 @@ export default class App extends Component {
     this.state = {
       data: [],
       dataView: [],
-      stateData: null,
       searchInput: '',
       showAll: false,
       countriesColorData: null,
-      mapView: '',
+      mapView: null,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
@@ -58,12 +58,12 @@ export default class App extends Component {
             }
           } else {
             data[i].country_code = data[i].country;
+            data[i].view = 'USMap'
             countryCode = data[i].country;
           }
           if (countriesColorData[countryCode]) countriesColorData[countryCode] += data[i].confirmed;
           else countriesColorData[countryCode] = data[i].confirmed;
         }
-        console.log(data);
         this.setState({ data, countriesColorData });
       })
   }
@@ -79,7 +79,13 @@ export default class App extends Component {
 
   handleMapViewChange(e, view) {
     const name = e.target.name, value = e.target.value;
-    this.setState({ mapView: view });
+    const mapObj = {
+      'USMap': USMap,
+      'WorldMap': WorldMap,
+      'KoreaMap': KoreaMap,
+    }
+    if (view) this.setState({ mapView: mapObj[view] });
+    else this.setState({ [name]: value });
   }
 
   handleSearchSubmit(e) {
@@ -102,7 +108,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { data, dataView, countriesColorData, searchInput, showAll, countryCodeData, USData, stateData, mapView } = this.state;
+    const { data, dataView, countriesColorData, searchInput, showAll, mapView } = this.state;
     if (data.length === 0) return <div>LOADING...</div>
     return (
       <>
@@ -111,18 +117,18 @@ export default class App extends Component {
           <small>VIEW</small>
           <section className="row">
             <div className="col d-flex">
-              <button onClick={e => this.handleMapViewChange(e, 'world')} className="btn world-view">World<i className="fas fa-globe-americas globe-icon"></i></button>
-              {/* <select onChange={this.handleMapViewChange} name="mapView" id="country-views">
+              <button onClick={e => this.handleMapViewChange(e, 'WorldMap')} className="btn world-view">World<i className="fas fa-globe-americas globe-icon"></i></button>
+              <select onChange={e => this.handleMapViewChange} name="mapView" id="country-views">
                 {mapView === 'United States' ? abbrState('states', 'list').map((val, i) => <option key={i}>{val}</option>) : Object.entries(countryListObjByCode).map((val, i) => {
                   return (
                     <option key={i}>{val[1]}</option>
                   );
                 })}
-              </select> */}
+              </select>
             </div>
           </section>
         </main>
-        {mapView === 'United States' ? <USMap stateData={stateData} countryCodeData={countryCodeData} data={data} /> : <WorldMap handleMapViewChange={this.handleMapViewChange} countriesColorData={countriesColorData} data={data} />}
+        {mapView ? React.createElement(mapView, { countriesColorData, data }, null) : <WorldMap handleMapViewChange={this.handleMapViewChange} countriesColorData={countriesColorData} data={data} />}
         <main className="search-container container">
           <section className="row">
             <div className="col d-flex flex-column align-items-center">

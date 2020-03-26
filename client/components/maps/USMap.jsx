@@ -39,7 +39,6 @@ export default class USMap extends Component {
       if (stateColorData[stateName]) stateColorData[stateName] += filteredUSData[i].confirmed;
       else stateColorData[stateName] = filteredUSData[i].confirmed;
     }
-    console.log(stateColorData);
     this.setState({ stateColorData });
   }
 
@@ -81,7 +80,7 @@ export default class USMap extends Component {
   }
 
   render() {
-    const { data, USData, setTooltipContent, stateData } = this.props;
+    const { data } = this.props;
     const { regionClicked, stateColorData } = this.state;
     // if (!this.state.stateColorData) return <div>LOADING...</div>
     return (
