@@ -48,7 +48,6 @@ export default class App extends Component {
           if (countryNameA > countryNameB) return 1;
           return 0;
         });
-        console.log(data);
         let countriesColorData = {}, countryCode;
         for (let i = 0; i < data.length; i++) {
           if (data[i].country !== 'US') {
