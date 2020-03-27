@@ -33,7 +33,6 @@ export default class USMap extends Component {
   setUSData() {
     const { data } = this.props;
     const filteredUSData = data.filter(val => val.country === 'US');
-    console.log(filteredUSData)
     let stateColorData = {};
     for (let i = 0; i < filteredUSData.length; i++) {
       const stateName = `US-${abbrState(filteredUSData[i].province, 'abbr')}`;
