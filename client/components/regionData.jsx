@@ -48,6 +48,7 @@ export default class RegionData extends Component {
             className="fas fa-arrow-right close-region-data"></i>
           <hr />
           <h4>{regionData.regionName}</h4>
+          <small className="province-last-updated">Last Updated: {regionData.lastUpdated ? regionData.lastUpdated : `This province currently has no data available`}</small>
           <p><span className="infections">Infections</span>: {regionData.infected}</p>
           <p><span className="recovered">Recovered</span>: {regionData.recovered === 0 ? regionData.recovered : regionData.recovered}</p>
           <p><span className="deaths">Deaths</span>: {regionData.deaths === 0 ? regionData.deaths : regionData.deaths}</p>

@@ -1,32 +1,33 @@
 import React, { Component } from 'react';
 import { VectorMap } from 'react-jvectormap';
 
-export default class KoreaMap extends Component {
+export default class ChinaMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      regionClicked: false,
     };
   }
 
+  handleSwitzerlandData(e) {
+
+  }
+
   render() {
-    const { data, USData, setTooltipContent, stateData } = this.props;
-    const { regionClicked, stateColorData } = this.state;
-    // if (!this.state.stateColorData) return <div>LOADING...</div>
     return (
-      <main className="korea-map-container container-fluid">
+      <main className="world-map-container container-fluid">
         <small>*A brighter/lighter shade of red represents more COVID-19 infections in that region</small>
         <section className="row">
-          <div className="col d-flex justify-content-center world-map-col">
+          <div className="col d-flex justify-content-center">
             <VectorMap
-              map={'kr_mill'}
+              map={'cn_mill'}
               ref="map"
               backgroundColor='#0077be'
               zoomOnScroll={false}
               zoomStep={1.5}
-              onRegionClick={this.handleRegionData}
+              onRegionClick={this.handleCountryData}
               containerStyle={{ width: '100%', height: '600px' }}
-              containerClassName={`world-map ${regionClicked ? 'regionClicked' : ''}`}
+              containerClassName={`world-map ${this.state.regionClicked ? 'regionClicked' : ''}`}
               regionStyle={{
                 initial: {
                   fill: '#e4e4e4',
@@ -61,28 +62,20 @@ export default class KoreaMap extends Component {
                 },
                 selectedHover: {}
               }}
-              labels={{
-                regions: {
-                  render: code => {
-                    return code.split('-')[1];
-                  },
-                }
-              }}
               regionsSelectable={true}
               series={{
                 regions: [
                   {
-                    values: stateColorData,
+                    values: {},
                     scale: ['#146804', '#ff0000'],
                     normalizeFunction: 'polynomial',
-                  }
+                  },
                 ]
               }}
             />
           </div>
-          {this.state.regionClicked ? <RegionData handleRegionClick={this.handleRegionClick} regionData={this.state.regionData} /> : null}
         </section>
-      </main >
+      </main>
     );
   }
 }

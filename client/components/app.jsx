@@ -4,6 +4,7 @@ import DataTable from './dataTable';
 import WorldMap from './maps/WorldMap';
 import USMap from './maps/USMap';
 import KoreaMap from './maps/KoreaMap';
+import ChinaMap from './maps/SwitzerlandMap';
 import ReactTooltip from 'react-tooltip';
 import abbrState from './stateHelper';
 import { countryListObjByCode } from './countries';
@@ -83,6 +84,7 @@ export default class App extends Component {
       'USMap': USMap,
       'WorldMap': WorldMap,
       'KoreaMap': KoreaMap,
+      'ChinaMap': ChinaMap,
     }
     if (view) this.setState({ mapView: mapObj[view] });
     else this.setState({ [name]: value });

@@ -90,8 +90,12 @@ hr {
 
 .country-title-btn {
   text-align: start;
-  width: 15%;
+  width: 18%;
   padding: 0;
+  margin-bottom: 1em;
+}
+
+.province-last-updated {
   margin-bottom: 1em;
 }
 
