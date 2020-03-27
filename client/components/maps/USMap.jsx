@@ -70,12 +70,13 @@ export default class USMap extends Component {
     this.refs.map.$mapObject.tip.hide();
     const regionName = abbrState(countryRegionCode.split('-')[1], 'name');
     const state = this.props.data.filter(val => val.province === regionName);
+    const lastUpdated = state[0].lastUpdate;
     const totalInfected = state.reduce((acc, val) => acc + val.confirmed, 0);
     const totalRecovered = state.reduce((acc, val) => acc + val.recovered, 0);
     const totalDeaths = state.reduce((acc, val) => acc + val.deaths, 0);
     this.setState(prevState => ({
       regionClicked: true,
-      regionData: { ...prevState.regionData, regionName, infected: totalInfected, recovered: totalRecovered, deaths: totalDeaths }
+      regionData: { ...prevState.regionData, regionName, lastUpdated, infected: totalInfected, recovered: totalRecovered, deaths: totalDeaths }
     }));
   }
 
