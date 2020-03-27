@@ -14,7 +14,7 @@ export default class KoreaMap extends Component {
     const { regionClicked, stateColorData } = this.state;
     // if (!this.state.stateColorData) return <div>LOADING...</div>
     return (
-      <main className="usa-map-container container-fluid">
+      <main className="korea-map-container container-fluid">
         <small>*A brighter/lighter shade of red represents more COVID-19 infections in that region</small>
         <section className="row">
           <div className="col d-flex justify-content-center world-map-col">
