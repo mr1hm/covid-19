@@ -14,6 +14,7 @@ export default class USMap extends Component {
       regionClicked: false,
       regionData: {
         regionName: '',
+        lastUpdated: null,
         infected: null,
         recovered: null,
         deaths: null,
