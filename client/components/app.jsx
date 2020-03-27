@@ -4,7 +4,7 @@ import DataTable from './dataTable';
 import WorldMap from './maps/WorldMap';
 import USMap from './maps/USMap';
 import KoreaMap from './maps/KoreaMap';
-import SwitzerlandMap from './maps/SwitzerlandMap';
+import ChinaMap from './maps/SwitzerlandMap';
 import ReactTooltip from 'react-tooltip';
 import abbrState from './stateHelper';
 import { countryListObjByCode } from './countries';
@@ -48,7 +48,6 @@ export default class App extends Component {
           if (countryNameA > countryNameB) return 1;
           return 0;
         });
-        console.log(data);
         let countriesColorData = {}, countryCode;
         for (let i = 0; i < data.length; i++) {
           if (data[i].country !== 'US') {
@@ -85,7 +84,7 @@ export default class App extends Component {
       'USMap': USMap,
       'WorldMap': WorldMap,
       'KoreaMap': KoreaMap,
-      'SwitzerlandMap': SwitzerlandMap,
+      'ChinaMap': ChinaMap,
     }
     if (view) this.setState({ mapView: mapObj[view] });
     else this.setState({ [name]: value });

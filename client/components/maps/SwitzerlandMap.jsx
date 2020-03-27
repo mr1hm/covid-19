@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { VectorMap } from 'react-jvectormap';
 
-export default class SwitzerlandMap extends Component {
+export default class ChinaMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,7 +20,7 @@ export default class SwitzerlandMap extends Component {
         <section className="row">
           <div className="col d-flex justify-content-center">
             <VectorMap
-              map={'ch_mill'}
+              map={'cn_mill'}
               ref="map"
               backgroundColor='#0077be'
               zoomOnScroll={false}
