@@ -71,7 +71,7 @@ export default class App extends Component {
           if (countriesColorData[countryCode]) countriesColorData[countryCode] += data[i].confirmed;
           else countriesColorData[countryCode] = data[i].confirmed;
         }
-        this.setState({ data, countriesColorData });
+        this.setState({ data, news, countriesColorData });
       })
   }
 
@@ -90,7 +90,6 @@ export default class App extends Component {
       'USMap': USMap,
       'WorldMap': WorldMap,
       'KoreaMap': KoreaMap,
-      'ChinaMap': ChinaMap,
     }
     if (view) this.setState({ mapView: mapObj[view] });
     else this.setState({ [name]: value });
