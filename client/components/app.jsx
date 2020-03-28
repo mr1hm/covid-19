@@ -28,19 +28,25 @@ export default class App extends Component {
 
   componentDidMount() {
     this.getData();
+
   }
 
   getData() {
-    fetch(`https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/stats`, {
+    const fetchCVData = fetch(`https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/stats`, {
       'method': 'GET',
       'headers': {
         "x-rapidapi-host": "covid-19-coronavirus-statistics.p.rapidapi.com",
         "x-rapidapi-key": "05b38be8cbmshd0a7f0f3b05745ep1665d5jsn393930b0712b"
       },
     })
-      .then(res => res.json())
-      .then(info => {
-        const data = Object.entries(info)[3][1].covid19Stats;
+    const fetchNews = fetch(`http://newsapi.org/v2/everything?q=coronavirus&sortBy=popularity&from=2020-03&apiKey=dd118ea81ac5402b932473468a0b8cdb`)
+    Promise.all([fetchCVData, fetchNews])
+      .then(res => Promise.all(res.map(response => response.json())))
+      .then(results => {
+        const data = results[0].data.covid19Stats;
+        const news = results[1].articles;
+        console.log(data);
+        console.log(news);
         data.sort((a, b) => {
           let countryNameA = a.country.toUpperCase();
           let countryNameB = b.country.toUpperCase();
