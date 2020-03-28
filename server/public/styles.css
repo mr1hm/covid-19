@@ -148,8 +148,17 @@ svg {
   margin-top: 1em;
 }
 
+.newsAPI {
+  font-size: 0.8rem;
+  margin-bottom: 1em;
+}
+
 .card-article {
   margin-bottom: 1em;
+}
+
+.article-title {
+  height: 60px;
 }
 
 .news-container .card img {
