@@ -30,7 +30,7 @@ export default class News extends Component {
                 <div className="card">
                   {article.urlToImage ? <img className="card-img-top article-card-img" src={article.urlToImage} alt="Card image cap" /> : <img className="card-img-top" src={article.urlToImage} alt="No Image Available" />}
                   <div className="card-body">
-                    <h5 className="card-title">{article.title}</h5>
+                    <h6 className="card-title article-title">{article.title.toUpperCase()}</h6>
                     <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     <a href={article.url} target="_blank" className="btn btn-primary">Go to Article</a>
                   </div>
