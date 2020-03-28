@@ -14,6 +14,7 @@ export default class App extends Component {
     this.state = {
       data: [],
       dataView: [],
+      news: [],
       searchInput: '',
       showAll: false,
       countriesColorData: null,
