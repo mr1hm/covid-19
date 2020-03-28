@@ -125,8 +125,9 @@ svg {
   vertical-align: middle;
 }
 
-.search-input-label {
+.related-news-label {
   margin-top: 1em;
+  letter-spacing: 1px;
 }
 
 .search-input {
