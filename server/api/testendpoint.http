@@ -1,0 +1,1 @@
+GET http://newsapi.org/v2/everything?q=coronavirus&from=2020-03&sortBy=publishedAt&apiKey=dd118ea81ac5402b932473468a0b8cdb
