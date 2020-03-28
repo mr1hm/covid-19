@@ -115,7 +115,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { data, dataView, countriesColorData, searchInput, showAll, mapView } = this.state;
+    const { data, news, dataView, countriesColorData, searchInput, showAll, mapView } = this.state;
     if (data.length === 0) return <div>LOADING...</div>
     return (
       <>
@@ -139,7 +139,7 @@ export default class App extends Component {
         <main className="search-container container">
           <section className="row">
             <div className="col d-flex flex-column align-items-center">
-              <h6 className="search-input-label">SEARCH BY COUNTRY OR COUNTRY CODE</h6>
+              <h6 className="search-input-label">RELATED NEWS</h6>
               <div className="input-group mb-3 search-input">
                 <div className="input-group-prepend">
                   <span className="input-group-text" id="basic-addon1">@</span>
