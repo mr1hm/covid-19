@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from './layout/header';
-import DataTable from './dataTable';
+import News from './news';
 import WorldMap from './maps/WorldMap';
 import USMap from './maps/USMap';
 import KoreaMap from './maps/KoreaMap';
@@ -14,6 +14,7 @@ export default class App extends Component {
     this.state = {
       data: [],
       dataView: [],
+      news: [],
       searchInput: '',
       showAll: false,
       countriesColorData: null,
@@ -27,19 +28,25 @@ export default class App extends Component {
 
   componentDidMount() {
     this.getData();
+
   }
 
   getData() {
-    fetch(`https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/stats`, {
+    const fetchCVData = fetch(`https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/stats`, {
       'method': 'GET',
       'headers': {
         "x-rapidapi-host": "covid-19-coronavirus-statistics.p.rapidapi.com",
         "x-rapidapi-key": "05b38be8cbmshd0a7f0f3b05745ep1665d5jsn393930b0712b"
       },
     })
-      .then(res => res.json())
-      .then(info => {
-        const data = Object.entries(info)[3][1].covid19Stats;
+    const fetchNews = fetch(`http://newsapi.org/v2/everything?q=coronavirus&sortBy=popularity&from=2020-03&apiKey=dd118ea81ac5402b932473468a0b8cdb`)
+    Promise.all([fetchCVData, fetchNews])
+      .then(res => Promise.all(res.map(response => response.json())))
+      .then(results => {
+        const data = results[0].data.covid19Stats;
+        const news = results[1].articles;
+        console.log(data);
+        console.log(news);
         data.sort((a, b) => {
           let countryNameA = a.country.toUpperCase();
           let countryNameB = b.country.toUpperCase();
@@ -64,7 +71,7 @@ export default class App extends Component {
           if (countriesColorData[countryCode]) countriesColorData[countryCode] += data[i].confirmed;
           else countriesColorData[countryCode] = data[i].confirmed;
         }
-        this.setState({ data, countriesColorData });
+        this.setState({ data, news, countriesColorData });
       })
   }
 
@@ -83,7 +90,6 @@ export default class App extends Component {
       'USMap': USMap,
       'WorldMap': WorldMap,
       'KoreaMap': KoreaMap,
-      'ChinaMap': ChinaMap,
     }
     if (view) this.setState({ mapView: mapObj[view] });
     else this.setState({ [name]: value });
@@ -109,7 +115,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { data, dataView, countriesColorData, searchInput, showAll, mapView } = this.state;
+    const { data, news, dataView, countriesColorData, searchInput, showAll, mapView } = this.state;
     if (data.length === 0) return <div>LOADING...</div>
     return (
       <>
@@ -133,7 +139,7 @@ export default class App extends Component {
         <main className="search-container container">
           <section className="row">
             <div className="col d-flex flex-column align-items-center">
-              <h6 className="search-input-label">SEARCH BY COUNTRY OR COUNTRY CODE</h6>
+              <h6 className="search-input-label">RELATED NEWS</h6>
               <div className="input-group mb-3 search-input">
                 <div className="input-group-prepend">
                   <span className="input-group-text" id="basic-addon1">@</span>
@@ -143,7 +149,8 @@ export default class App extends Component {
             </div>
           </section>
         </main>
-        {showAll ? <DataTable handleShowAllBtn={this.handleShowAllBtn} data={data} /> : <DataTable handleShowAllBtn={this.handleShowAllBtn} data={dataView.length > 0 ? dataView : data} />}
+        <News news={news} />
+        {/* {showAll ? <DataTable handleShowAllBtn={this.handleShowAllBtn} data={data} /> : <DataTable handleShowAllBtn={this.handleShowAllBtn} data={dataView.length > 0 ? dataView : data} />} */}
       </>
     );
   }
