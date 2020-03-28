@@ -4,7 +4,6 @@ import DataTable from './dataTable';
 import WorldMap from './maps/WorldMap';
 import USMap from './maps/USMap';
 import KoreaMap from './maps/KoreaMap';
-import ChinaMap from './maps/SwitzerlandMap';
 import ReactTooltip from 'react-tooltip';
 import abbrState from './stateHelper';
 import { countryListObjByCode } from './countries';
