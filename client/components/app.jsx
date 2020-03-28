@@ -39,7 +39,7 @@ export default class App extends Component {
         "x-rapidapi-key": "05b38be8cbmshd0a7f0f3b05745ep1665d5jsn393930b0712b"
       },
     })
-    const fetchNews = fetch(`http://newsapi.org/v2/everything?q=coronavirus&sortBy=popularity&from=2020-03&apiKey=dd118ea81ac5402b932473468a0b8cdb`)
+    const fetchNews = fetch(`http://newsapi.org/v2/top-headlines?country=us&apiKey=dd118ea81ac5402b932473468a0b8cdb`)
     Promise.all([fetchCVData, fetchNews])
       .then(res => Promise.all(res.map(response => response.json())))
       .then(results => {

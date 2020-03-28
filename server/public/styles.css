@@ -146,3 +146,11 @@ svg {
 .data-table {
   margin-top: 1em;
 }
+
+.card-article {
+  margin-bottom: 1em;
+}
+
+.news-container .card img {
+  height: 225px;
+}
