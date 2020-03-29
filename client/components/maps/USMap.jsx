@@ -157,6 +157,7 @@ export default class USMap extends Component {
                       'CT': [0, -4],
                       'MD': [0, -7],
                       'TX': [10, 0],
+                      'NJ': [3, 0],
                     }[code.split('-')[1]];
                   }
                 }

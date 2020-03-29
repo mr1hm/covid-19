@@ -125,8 +125,9 @@ svg {
   vertical-align: middle;
 }
 
-.search-input-label {
-  margin-top: 1em;
+.related-news-label {
+  margin-top: 1.5em;
+  letter-spacing: 1px;
 }
 
 .search-input {
@@ -147,10 +148,28 @@ svg {
   margin-top: 1em;
 }
 
+.newsAPI {
+  font-size: 0.8rem;
+  margin-bottom: 2em;
+}
+
 .card-article {
   margin-bottom: 1em;
 }
 
+.article-title {
+  height: 60px;
+}
+
+.article-source-name {
+  color: black;
+}
+
+.article-source-arrow {
+  margin-left: 0.5em;
+}
+
 .news-container .card img {
   height: 225px;
+  border-bottom: 1px solid black;
 }
