@@ -161,6 +161,15 @@ svg {
   height: 60px;
 }
 
+.article-source-name {
+  color: black;
+}
+
+.article-source-arrow {
+  margin-left: 0.5em;
+}
+
 .news-container .card img {
   height: 225px;
+  border-bottom: 1px solid black;
 }
