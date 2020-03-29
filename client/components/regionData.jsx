@@ -45,7 +45,7 @@ export default class RegionData extends Component {
             if (handleRegionClick) handleRegionClick();
             else handleCountryClick();
           }}
-            className="fas fa-arrow-right close-region-data"></i>
+            className="fas fa-arrow-right close-region-data"><span style={{ fontFamily: 'Poppins', fontWeight: 'normal', fontSize: '0.9rem' }}> Close</span></i>
           <hr />
           <h4>{regionData.regionName}</h4>
           <small className="province-last-updated">Last Updated: {regionData.lastUpdated ? regionData.lastUpdated : `This province currently has no data available`}</small>
