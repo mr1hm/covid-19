@@ -132,7 +132,7 @@ export default class WorldMap extends Component {
                 regions: [
                   {
                     values: countriesColorData,
-                    scale: ['#146804', '#ff0000'],
+                    scale: ['#ffe5e5', '#4d0000'],
                     normalizeFunction: 'polynomial',
                   },
                 ]
