@@ -87,13 +87,13 @@ export default class USMap extends Component {
       <main className="usa-map-container container-fluid">
         <small className="map-color-key">
           <span className="map-color-key-less">Less</span>
-          <i className="fas fa-circle"></i>
-          <i className="fas fa-circle"></i>
-          <i className="fas fa-circle"></i>
-          <i className="fas fa-circle"></i>
-          <i className="fas fa-circle"></i>
-          <i className="fas fa-circle"></i>
-          <i className="fas fa-circle"></i>
+          <i className="fas fa-circle" style={{ color: '#ffb3b3' }}></i>
+          <i className="fas fa-circle" style={{ color: '#ff8080' }}></i>
+          <i className="fas fa-circle" style={{ color: '#ff4d4d' }}></i>
+          <i className="fas fa-circle" style={{ color: '#ff1a1a' }}></i>
+          <i className="fas fa-circle" style={{ color: '#e60000' }}></i>
+          <i className="fas fa-circle" style={{ color: '#b30000' }}></i>
+          <i className="fas fa-circle" style={{ color: '#4d0000' }}></i>
         </small>
         <section className="row">
           <div className="col d-flex justify-content-center world-map-col">
