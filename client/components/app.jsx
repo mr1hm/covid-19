@@ -20,6 +20,7 @@ export default class App extends Component {
       showAll: false,
       countriesColorData: null,
       mapView: null,
+      lastUpdated: '',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
