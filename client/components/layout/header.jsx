@@ -15,7 +15,7 @@ export default class Header extends Component {
         <section className="row">
           <div className="col d-flex flex-column align-items-center">
             <h5>COVID-19 Tracker</h5>
-            <small>Last Updated: {lastUpdated.toString()}</small>
+            <small className="text-center">Last Updated: {lastUpdated.toString()}</small>
           </div>
         </section>
       </main>
