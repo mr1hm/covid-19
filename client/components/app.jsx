@@ -118,11 +118,11 @@ export default class App extends Component {
   }
 
   render() {
-    const { data, news, dataView, countriesColorData, searchInput, showAll, mapView } = this.state;
+    const { data, news, dataView, countriesColorData, searchInput, showAll, mapView, lastUpdated } = this.state;
     if (data.length === 0) return <div>LOADING...</div>
     return (
       <>
-        <Header />
+        <Header lastUpdated={lastUpdated.toString()} />
         <main className="view-filter-container container-fluid">
           <small>VIEW</small>
           <section className="row">
