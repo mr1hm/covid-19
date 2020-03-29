@@ -175,7 +175,7 @@ export default class USMap extends Component {
                 regions: [
                   {
                     values: stateColorData,
-                    scale: ['#146804', '#ff0000'],
+                    scale: ['#ffe5e5', '#800000'],
                     normalizeFunction: 'polynomial',
                   }
                 ]
