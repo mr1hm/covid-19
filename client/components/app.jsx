@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './layout/header';
+import Tabs from './tabs';
 import News from './news';
 import WorldMap from './maps/WorldMap';
 import USMap from './maps/USMap';
@@ -19,6 +20,7 @@ export default class App extends Component {
       showAll: false,
       countriesColorData: null,
       mapView: null,
+      lastUpdated: '',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
@@ -28,7 +30,6 @@ export default class App extends Component {
 
   componentDidMount() {
     this.getData();
-
   }
 
   getData() {
@@ -43,8 +44,10 @@ export default class App extends Component {
     Promise.all([fetchCVData, fetchNews])
       .then(res => Promise.all(res.map(response => response.json())))
       .then(results => {
+        const lastUpdated = new Date(results[0].data.lastChecked);
         const data = results[0].data.covid19Stats;
         const news = results[1].articles;
+        console.log(lastUpdated.toString());
         console.log(data);
         console.log(news);
         data.sort((a, b) => {
@@ -71,7 +74,7 @@ export default class App extends Component {
           if (countriesColorData[countryCode]) countriesColorData[countryCode] += data[i].confirmed;
           else countriesColorData[countryCode] = data[i].confirmed;
         }
-        this.setState({ data, news, countriesColorData });
+        this.setState({ data, news, countriesColorData, lastUpdated });
       })
   }
 
@@ -115,11 +118,11 @@ export default class App extends Component {
   }
 
   render() {
-    const { data, news, dataView, countriesColorData, searchInput, showAll, mapView } = this.state;
+    const { data, news, dataView, countriesColorData, searchInput, showAll, mapView, lastUpdated } = this.state;
     if (data.length === 0) return <div>LOADING...</div>
     return (
       <>
-        <Header />
+        <Header lastUpdated={lastUpdated.toString()} />
         <main className="view-filter-container container-fluid">
           <small>VIEW</small>
           <section className="row">
