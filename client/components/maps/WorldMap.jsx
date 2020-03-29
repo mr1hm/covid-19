@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { VectorMap } from 'react-jvectormap';
 import RegionData from '../regionData';
-import { countryListObjByCode, countryListISOData, getCountryCode, findCountry } from '../countries';
+import { countryListObjByCode, countryListISOData, getCountryCode, findCountry } from '../lib/countries';
 
 export default class WorldMap extends Component {
   constructor(props) {
@@ -72,7 +72,16 @@ export default class WorldMap extends Component {
     const { countriesColorData } = this.props;
     return (
       <main className="world-map-container container-fluid">
-        <small>*A brighter/lighter shade of red represents more COVID-19 infections in that region</small>
+        <small className="map-color-key">
+          <span className="map-color-key-less">Less</span>
+          <i className="fas fa-circle"></i>
+          <i className="fas fa-circle"></i>
+          <i className="fas fa-circle"></i>
+          <i className="fas fa-circle"></i>
+          <i className="fas fa-circle"></i>
+          <i className="fas fa-circle"></i>
+          <i className="fas fa-circle"></i>
+        </small>
         <section className="row">
           <div className="col d-flex justify-content-center">
             <VectorMap
@@ -123,7 +132,7 @@ export default class WorldMap extends Component {
                 regions: [
                   {
                     values: countriesColorData,
-                    scale: ['#146804', '#ff0000'],
+                    scale: ['#ffe5e5', '#4d0000'],
                     normalizeFunction: 'polynomial',
                   },
                 ]

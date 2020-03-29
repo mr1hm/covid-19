@@ -5,8 +5,8 @@ import WorldMap from './maps/WorldMap';
 import USMap from './maps/USMap';
 import KoreaMap from './maps/KoreaMap';
 import ReactTooltip from 'react-tooltip';
-import abbrState from './stateHelper';
-import { countryListObjByCode } from './countries';
+import abbrState from './lib/stateHelper';
+import { countryListObjByCode } from './lib/countries';
 
 export default class App extends Component {
   constructor(props) {

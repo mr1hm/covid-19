@@ -1,7 +1,6 @@
 import React, { Component, memo } from 'react';
-import { ComposableMap, ZoomableGroup, Geographies, Geography, Marker, Annotation } from 'react-simple-maps';
 import { geoCentroid } from 'd3-geo';
-import abbrState from '../stateHelper';
+import abbrState from '../lib/stateHelper';
 import RegionData from '../regionData';
 import { VectorMap } from 'react-jvectormap';
 
@@ -86,7 +85,16 @@ export default class USMap extends Component {
     // if (!this.state.stateColorData) return <div>LOADING...</div>
     return (
       <main className="usa-map-container container-fluid">
-        <small>*A brighter/lighter shade of red represents more COVID-19 infections in that region</small>
+        <small className="map-color-key">
+          <span className="map-color-key-less">Less</span>
+          <i className="fas fa-circle"></i>
+          <i className="fas fa-circle"></i>
+          <i className="fas fa-circle"></i>
+          <i className="fas fa-circle"></i>
+          <i className="fas fa-circle"></i>
+          <i className="fas fa-circle"></i>
+          <i className="fas fa-circle"></i>
+        </small>
         <section className="row">
           <div className="col d-flex justify-content-center world-map-col">
             <VectorMap
@@ -167,7 +175,7 @@ export default class USMap extends Component {
                 regions: [
                   {
                     values: stateColorData,
-                    scale: ['#146804', '#ff0000'],
+                    scale: ['#ffe5e5', '#800000'],
                     normalizeFunction: 'polynomial',
                   }
                 ]

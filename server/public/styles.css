@@ -40,6 +40,32 @@ hr {
   margin-top: 0.5em;
 }
 
+.map-color-key i {
+  margin-left: 0.5em;
+}
+
+.map-color-key i:nth-child(2) {
+  color: #ffb3b3;
+}
+.map-color-key i:nth-child(3) {
+  color: #ff8080;
+}
+.map-color-key i:nth-child(4) {
+  color: #ff4d4d;
+}
+.map-color-key i:nth-child(5) {
+  color: #ff1a1a;
+}
+.map-color-key i:nth-child(6) {
+  color: #e60000;
+}
+.map-color-key i:nth-child(7) {
+  color: #b30000;
+}
+.map-color-key i:nth-child(8) {
+  color: #4d0000;
+}
+
 .usa-map-container {
   margin-top: 2em;
 }
@@ -149,7 +175,7 @@ svg {
 }
 
 .newsAPI {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   margin-bottom: 2em;
 }
 
@@ -171,5 +197,5 @@ svg {
 
 .news-container .card img {
   height: 225px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
