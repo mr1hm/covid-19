@@ -74,7 +74,7 @@ export default class App extends Component {
           if (countriesColorData[countryCode]) countriesColorData[countryCode] += data[i].confirmed;
           else countriesColorData[countryCode] = data[i].confirmed;
         }
-        this.setState({ data, news, countriesColorData });
+        this.setState({ data, news, countriesColorData, lastUpdated });
       })
   }
 
