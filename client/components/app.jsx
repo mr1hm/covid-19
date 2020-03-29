@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './layout/header';
+import Tabs from './tabs';
 import News from './news';
 import WorldMap from './maps/WorldMap';
 import USMap from './maps/USMap';
