@@ -5,7 +5,6 @@ import News from './news';
 import WorldMap from './maps/WorldMap';
 import USMap from './maps/USMap';
 import KoreaMap from './maps/KoreaMap';
-import ReactTooltip from 'react-tooltip';
 import abbrState from './lib/stateHelper';
 import { countryListObjByCode } from './lib/countries';
 
@@ -47,9 +46,9 @@ export default class App extends Component {
         const lastUpdated = new Date(results[0].data.lastChecked);
         const data = results[0].data.covid19Stats;
         const news = results[1].articles;
-        console.log(lastUpdated.toString());
-        console.log(data);
-        console.log(news);
+        // console.log(lastUpdated.toString());
+        // console.log(data);
+        // console.log(news);
         data.sort((a, b) => {
           let countryNameA = a.country.toUpperCase();
           let countryNameB = b.country.toUpperCase();
