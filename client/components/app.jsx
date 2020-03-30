@@ -78,7 +78,7 @@ export default class App extends Component {
           if (countriesColorData[countryCode]) countriesColorData[countryCode] += data[i].confirmed;
           else countriesColorData[countryCode] = data[i].confirmed;
         }
-        this.setState({ data, news, countriesColorData, lastUpdated });
+        this.setState(prevState => ({ data, news: { ...prevState.news, headlines, trending, health }, countriesColorData, lastUpdated }));
       })
   }
 
@@ -158,14 +158,14 @@ export default class App extends Component {
           </section>
         </main>
         <Tabs>
-          <div label="Current Headlines">
-            <News news={news} />
+          <div label="Today's Headlines">
+            <News news={news.headlines} />
           </div>
-          <div label="Croc">
-            After 'while, <em>Crocodile</em>!
+          <div filter={'popularity'} label="Trending">
+            <News news={news.trending} />
           </div>
-          <div label="Sarcosuchus">
-            Nothing to see here, this tab is <em>extinct</em>!
+          <div label="Health">
+            <News news={news.health} />
           </div>
         </Tabs>
         {/* {showAll ? <DataTable handleShowAllBtn={this.handleShowAllBtn} data={data} /> : <DataTable handleShowAllBtn={this.handleShowAllBtn} data={dataView.length > 0 ? dataView : data} />} */}
