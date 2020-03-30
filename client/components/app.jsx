@@ -87,7 +87,7 @@ export default class App extends Component {
           if (countriesColorData[countryCode]) countriesColorData[countryCode] += data[i].confirmed;
           else countriesColorData[countryCode] = data[i].confirmed;
         }
-        this.setState(prevState => ({ data, news: { ...prevState.news, headlines, trending, health }, countriesColorData, lastUpdated }));
+        this.setState(prevState => ({ data, world: { ...prevState.world, confirmed: worldConfirmed, recovered: worldRecovered, deaths: worldDeaths }, news: { ...prevState.news, headlines, trending, health }, countriesColorData, lastUpdated }));
       })
   }
 
@@ -131,11 +131,11 @@ export default class App extends Component {
   }
 
   render() {
-    const { data, news, dataView, countriesColorData, searchInput, showAll, mapView, lastUpdated } = this.state;
+    const { data, news, dataView, countriesColorData, searchInput, showAll, mapView, lastUpdated, world } = this.state;
     if (data.length === 0) return <div>LOADING...</div>
     return (
       <>
-        <Header lastUpdated={lastUpdated.toString()} />
+        <Header worldData={world} lastUpdated={lastUpdated.toString()} />
         <main className="view-filter-container container-fluid">
           <small>VIEW</small>
           <section className="row">
