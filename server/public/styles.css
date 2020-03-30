@@ -36,6 +36,11 @@ hr {
   margin-right: 0.25em;
 }
 
+.world-data,
+.view-filter {
+  padding: 10px;
+}
+
 .view-filter-container h5 {
   margin-top: 0.5em;
 }
@@ -57,7 +62,8 @@ hr {
   transition: all 400ms ease;
 }
 
-.world-map {
+.world-map,
+.usa-map {
   width: 100%;
   height: 600px;
   border: 1px solid black;
@@ -87,10 +93,19 @@ hr {
 .region-data {
   border: 1px solid black;
   border-radius: 5px;
-  padding: 20px;
+  padding: 15px;
   margin-right: 15px;
-  animation: slide-info linear 2s both;
+  /* animation: slide-info linear 2s both; */
 }
+
+@keyframes slide-info {
+  0% {width: 0%}
+  25% {width: 25%}
+  50% {width: 50%}
+  75% {width: 75%}
+  100% {width: 100%}
+}
+
 
 .country-title-btn {
   text-align: start;
@@ -107,22 +122,14 @@ hr {
   cursor: pointer;
 }
 
-@keyframes slide-info {
-  0% {width: 0%}
-  25% {width: 25%}
-  50% {width: 50%}
-  75% {width: 75%}
-  100% {width: 100%}
-}
-
-path {
+/* path {
   pointer-events: all;
 }
 
 path:hover {
   opacity: 0.50;
   cursor: pointer;
-}
+} */
 
 svg {
   display: inline-block;
@@ -196,4 +203,55 @@ svg {
 .news-container .card img {
   height: 225px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+/*-------------------------------------------------------------------
+
+                        10. RESPONSIVE
+
+-------------------------------------------------------------------*/
+
+@media (min-width: 1200px) { /* col-xl breakpoint */
+
+}
+
+@media (min-width: 992px) { /* col-lg breakpoint */
+
+}
+
+@media (min-width: 768px) { /* col-md breakpoint */
+
+}
+
+@media (min-width: 576px) { /* col-sm breakpoint */
+
+}
+
+@media (max-width: 575px) { /* col-xs breakpoint */
+  .world-map,
+  .usa-map {
+    max-width: 100%;
+    height: 200px;
+  }
+  /* .region-data-col {
+    animation: slide-height linear 2s both;
+  } */
+  /* @keyframes slide-height {
+    0% {height: 0px;}
+    25% {height: 50px;}
+    50% {height: 100px;}
+    75% {height: 150px;}
+    100% {height: 290px;}
+  } */
+  .region-data {
+    margin-top: 1em;
+    margin-right: 0;
+    /* animation: slide-height linear 2s both; */
+  }
+  .region-data h4 {
+    font-size: 18px;
+  }
+  .region-data p {
+    font-size: 14px;
+  }
 }
