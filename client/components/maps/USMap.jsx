@@ -95,7 +95,7 @@ export default class USMap extends Component {
           <i className="fas fa-circle" style={{ color: '#4d0000' }}></i>
         </small>
         <section className="row">
-          <div className="col d-flex justify-content-center world-map-col">
+          <div className="col d-flex justify-content-center">
             <VectorMap
               map={'us_aea'}
               ref="map"
@@ -104,7 +104,7 @@ export default class USMap extends Component {
               zoomStep={1.5}
               onRegionClick={this.handleRegionData}
               containerStyle={{ width: '100%', height: '600px' }}
-              containerClassName={`us-map ${regionClicked ? 'regionClicked' : ''}`}
+              containerClassName={`usa-map ${regionClicked ? 'regionClicked' : ''}`}
               regionStyle={{
                 initial: {
                   fill: '#e4e4e4',
