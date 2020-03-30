@@ -56,6 +56,10 @@ export default class App extends Component {
       .then(results => {
         const lastUpdated = new Date(results[0].data.lastChecked);
         const data = results[0].data.covid19Stats;
+        console.log(data);
+        const worldConfirmed = data.reduce((acc, val) => acc + val.confirmed, 0);
+        const worldRecovered = data.reduce((acc, val) => acc + val.recovered, 0);
+        const worldDeaths = data.reduce((acc, val) => acc + val.deaths, 0);
         const headlines = results[1].articles;
         const trending = results[2].articles;
         const health = results[3].articles;
