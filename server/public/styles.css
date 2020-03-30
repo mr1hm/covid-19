@@ -111,9 +111,9 @@ hr {
 
 .country-title-btn {
   text-align: start;
-  width: 18%;
+  width: 19%;
   padding: 0;
-  margin-bottom: 1em;
+  /* margin-bottom: 1em; */
 }
 
 .province-last-updated {
