@@ -1,5 +1,4 @@
 import React, { Component, memo } from 'react';
-import { geoCentroid } from 'd3-geo';
 import abbrState from '../lib/stateHelper';
 import RegionData from '../regionData';
 import { VectorMap } from 'react-jvectormap';
