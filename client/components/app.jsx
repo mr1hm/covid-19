@@ -43,16 +43,17 @@ export default class App extends Component {
         "x-rapidapi-key": "05b38be8cbmshd0a7f0f3b05745ep1665d5jsn393930b0712b"
       },
     })
-    const fetchNews = fetch(`http://newsapi.org/v2/top-headlines?country=us&apiKey=dd118ea81ac5402b932473468a0b8cdb`)
-    Promise.all([fetchCVData, fetchNews])
+    const fetchNewsHeadlines = fetch(`http://newsapi.org/v2/top-headlines?country=us&apiKey=dd118ea81ac5402b932473468a0b8cdb`)
+    const fetchNewsTrending = fetch(`https://newsapi.org/v2/everything?q=coronavirus&sortBy=popularity&apiKey=dd118ea81ac5402b932473468a0b8cdb`)
+    const fetchNewsHealth = fetch(`http://newsapi.org/v2/top-headlines?category=health&country=us&apiKey=dd118ea81ac5402b932473468a0b8cdb`)
+    Promise.all([fetchCVData, fetchNewsHeadlines, fetchNewsTrending, fetchNewsHealth])
       .then(res => Promise.all(res.map(response => response.json())))
       .then(results => {
         const lastUpdated = new Date(results[0].data.lastChecked);
         const data = results[0].data.covid19Stats;
-        const news = results[1].articles;
-        // console.log(lastUpdated.toString());
-        // console.log(data);
-        // console.log(news);
+        const headlines = results[1].articles;
+        const trending = results[2].articles;
+        const health = results[3].articles;
         data.sort((a, b) => {
           let countryNameA = a.country.toUpperCase();
           let countryNameB = b.country.toUpperCase();
