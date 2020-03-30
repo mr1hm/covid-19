@@ -2,10 +2,19 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,.5);
+  width: 100%;
+}
+
 .header-container {
   margin-top: 1em;
   border-bottom: 1px solid black;
   text-transform: uppercase;
+  letter-spacing: 1px;
   animation: header-border ease-in-out 0.75s both;
 }
 
@@ -14,6 +23,177 @@ body {
   100% {width: 100%;}
 }
 
+.view-filter-container h5,
+.region-data h4 {
+  text-transform: uppercase;
+}
+
+.globe-icon {
+  margin-left: 0.25em;
+}
+
+.show-map-icon {
+  margin-right: 0.25em;
+}
+
+.view-filter-container h5 {
+  margin-top: 0.5em;
+}
+
+.map-color-key i {
+  margin-left: 0.5em;
+}
+
+.usa-map-container {
+  margin-top: 2em;
+}
+
+.world-map-container {
+  margin-top: 2em;
+}
+
+.world-map-col {
+  flex-shrink: 1;
+  transition: all 400ms ease;
+}
+
+.world-map {
+  width: 100%;
+  height: 600px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+@keyframes slide-map {
+  0% {width: 100%}
+  25% {width: 90%}
+  50% {width: 80%}
+  75% {width: 70%}
+  100% {width: 60%}
+}
+
+.region-data .infections {
+  color: purple;
+}
+
+.region-data .recovered {
+  color: green;
+}
+
+.region-data .deaths {
+  color: red;
+}
+
+.region-data {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 20px;
+  margin-right: 15px;
+  animation: slide-info linear 2s both;
+}
+
+.country-title-btn {
+  text-align: start;
+  width: 18%;
+  padding: 0;
+  margin-bottom: 1em;
+}
+
+.province-last-updated {
+  margin-bottom: 1em;
+}
+
+.close-region-data {
+  cursor: pointer;
+}
+
+@keyframes slide-info {
+  0% {width: 0%}
+  25% {width: 25%}
+  50% {width: 50%}
+  75% {width: 75%}
+  100% {width: 100%}
+}
+
+path {
+  pointer-events: all;
+}
+
+path:hover {
+  opacity: 0.50;
+  cursor: pointer;
+}
+
+svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.related-news-label {
+  margin-top: 1.5em;
+  letter-spacing: 1px;
+}
+
+.search-input {
+  margin-top: 0.05em;
+}
+
 .data-container {
-  margin-top: 5em;
+  margin-top: 1em;
+}
+
+.show-all-btn {
+  margin-left: 1em;
+  outline: none;
+  cursor: pointer;
+}
+
+.data-table {
+  margin-top: 1em;
+}
+
+.newsAPI {
+  font-size: 0.7rem;
+  margin-bottom: 2em;
+}
+
+.tab-list {
+  border-bottom: 1px solid #ccc;
+  padding-left: 0;
+}
+
+.tab-list-item {
+  display: inline-block;
+  list-style: none;
+  margin-bottom: -1px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+}
+
+.tab-list-active {
+  background-color: white;
+  border: solid #ccc;
+  border-width: 1px 1px 0 1px;
+  border-radius: 5px;
+}
+
+.card-article {
+  margin-bottom: 1em;
+}
+
+.article-title {
+  height: 60px;
+}
+
+.article-source-name {
+  color: black;
+}
+
+.article-source-arrow {
+  margin-left: 0.5em;
+}
+
+.news-container .card img {
+  height: 225px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }

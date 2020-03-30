@@ -9,11 +9,13 @@ export default class Header extends Component {
   }
 
   render() {
+    const { lastUpdated } = this.props;
     return (
       <main className="header-container container-fluid">
         <section className="row">
-          <div className="col d-flex justify-content-center">
+          <div className="col d-flex flex-column align-items-center">
             <h5>COVID-19 Tracker</h5>
+            <small className="text-center">Last Updated: {lastUpdated.toString()}</small>
           </div>
         </section>
       </main>

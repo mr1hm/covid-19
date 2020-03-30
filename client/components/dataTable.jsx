@@ -4,22 +4,24 @@ export default class DataTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      data: [],
     };
   }
 
   render() {
-    const { data } = this.props;
+    const { data, dataView, handleShowAllBtn } = this.props;
     return (
       <main className="data-container container">
         <section className="row">
-          <table className="table">
+          <h5>INFECTIONS</h5>
+          <button onClick={() => handleShowAllBtn()} className="show-all-btn">Show All</button>
+          <table className="table data-table">
             <thead>
               <tr>
                 <th scope="col">Country Code</th>
                 <th scope="col">Country</th>
                 <th scope="col">Province</th>
-                <th scope="col">Confirmed Infected</th>
+                <th scope="col">Confirmed</th>
                 <th scope="col">Recovered</th>
                 <th scope="col">Death(s)</th>
               </tr>
@@ -28,12 +30,12 @@ export default class DataTable extends Component {
               {data.map((val, i) => {
                 return (
                   <tr key={i}>
-                    <th scope="row">{val.country_code}</th>
+                    <td scope="row">{val.country_code}</td>
                     <td>{val.country}</td>
                     <td>{val.province}</td>
-                    <td>{val.latest.confirmed}</td>
-                    <td>{val.latest.recovered}</td>
-                    <td>{val.latest.deaths}</td>
+                    <td>{val.confirmed}</td>
+                    <td>{val.recovered}</td>
+                    <td>{val.deaths}</td>
                   </tr>
                 );
               })}
