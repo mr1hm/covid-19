@@ -227,7 +227,7 @@ svg {
 
 }
 
-@media (max-width: 575px) { /* col-xs breakpoint */
+@media (max-width: 575px) { /* col- breakpoint */
   .world-map,
   .usa-map {
     max-width: 100%;
