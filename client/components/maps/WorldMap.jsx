@@ -83,15 +83,19 @@ export default class WorldMap extends Component {
           <i className="fas fa-circle" style={{ color: '#4d0000' }}></i>
         </small>
         <section className="row">
-          <div className="col d-flex justify-content-center">
+          <div className="col-12 col-xl d-flex justify-content-center">
             <VectorMap
               map={'world_mill'}
               ref="map"
               backgroundColor='#0077be'
               zoomOnScroll={false}
               zoomStep={1.5}
+              panOnDrag={false}
               onRegionClick={this.handleCountryData}
               containerClassName={`world-map ${this.state.regionClicked ? 'regionClicked' : ''}`}
+              setFocus={{
+                scale: 20,
+              }}
               regionStyle={{
                 initial: {
                   fill: '#e4e4e4',
