@@ -27,7 +27,7 @@ export default class News extends Component {
             return (
               <div key={i} className="col-12 col-lg-3 col-xl-3 d-flex card-article">
                 <div className="card">
-                  {article.urlToImage ? <img className="card-img-top article-card-img" src={article.urlToImage} alt="article-image" /> : <img className="card-img-top" src={article.urlToImage} alt="No Image Available" />}
+                  {article.urlToImage ? <img className="card-img-top article-card-img img-fluid" src={article.urlToImage} alt="article-image" /> : <img className="card-img-top" src={article.urlToImage} alt="No Image Available" />}
                   <div className="card-body">
                     <h5 className="card-title article-source"><a href={article.url} target="_blank" className="article-source-name">{article.source.name.toUpperCase()}<i className="fas fa-angle-double-right article-source-arrow"></i></a></h5>
                     <p className="card-text article-title">{articleTitle}</p>

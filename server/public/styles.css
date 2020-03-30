@@ -217,7 +217,7 @@ svg {
 
 @media (min-width: 992px) { /* col-lg breakpoint */
   .news-container .card img {
-    height: 280px;
+    height: 225px;
     /* not taking this breakpoint for some reason */
   }
   .article-title {
@@ -227,7 +227,7 @@ svg {
 
 @media (min-width: 768px) { /* col-md breakpoint */
   .news-container .card img {
-    height: 355px;
+    height: 435px;
   }
 }
 
@@ -262,7 +262,13 @@ svg {
   .region-data p {
     font-size: 14px;
   }
+  .news-container .card img {
+    height: 220px;
+  }
+  .card-title {
+    font-size: 1.07rem
+  }
   .article-title {
-    height: 85px;
+    height: 110px;
   }
 }
