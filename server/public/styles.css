@@ -36,6 +36,10 @@ hr {
   margin-right: 0.25em;
 }
 
+.world-data {
+  padding: 10px;
+}
+
 .view-filter-container h5 {
   margin-top: 0.5em;
 }
