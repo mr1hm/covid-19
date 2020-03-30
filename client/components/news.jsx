@@ -21,9 +21,6 @@ export default class News extends Component {
     const { news } = this.props;
     return (
       <main className="news-container container-fluid">
-        <section className="row tabs">
-
-        </section>
         <section className="row justify-content-center">
           {news.map((article, i) => {
             const articleTitle = article.title.split(' - ')[0];
