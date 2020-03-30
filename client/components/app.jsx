@@ -157,6 +157,12 @@ export default class App extends Component {
                 })}
               </select> */}
             </div>
+            <div className="col d-flex flex-column align-items-center world-data">
+              <h6>World Data</h6>
+              <small>Infections: <strong style={{ color: 'purple' }}>{world.confirmed}</strong></small>
+              <small>Recovered: <strong style={{ color: 'green' }}>{world.recovered}</strong></small>
+              <small>Deaths: <strong style={{ color: 'red' }}>{world.deaths}</strong></small>
+            </div>
           </section>
         </main>
         {mapView ? React.createElement(mapView, { countriesColorData, data, handleMapViewChange: this.handleMapViewChange, }, null) : <WorldMap handleMapViewChange={this.handleMapViewChange} countriesColorData={countriesColorData} data={data} />}
