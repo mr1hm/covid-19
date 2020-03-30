@@ -91,7 +91,6 @@ export default class WorldMap extends Component {
               zoomOnScroll={false}
               zoomStep={1.5}
               onRegionClick={this.handleCountryData}
-              containerStyle={{ width: '100%', height: '650px' }}
               containerClassName={`world-map ${this.state.regionClicked ? 'regionClicked' : ''}`}
               regionStyle={{
                 initial: {
