@@ -211,7 +211,23 @@ svg {
 
 -------------------------------------------------------------------*/
 
-@media (max-width: 575px) {
+@media (min-width: 1200px) { /* col-xl breakpoint */
+
+}
+
+@media (min-width: 992px) { /* col-lg breakpoint */
+
+}
+
+@media (min-width: 768px) { /* col-md breakpoint */
+
+}
+
+@media (min-width: 576px) { /* col-sm breakpoint */
+
+}
+
+@media (max-width: 575px) { /* col-xs breakpoint */
   .world-map,
   .usa-map {
     max-width: 100%;
