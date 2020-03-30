@@ -36,7 +36,8 @@ hr {
   margin-right: 0.25em;
 }
 
-.world-data {
+.world-data,
+.view-filter {
   padding: 10px;
 }
 
