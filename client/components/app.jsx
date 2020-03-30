@@ -152,7 +152,17 @@ export default class App extends Component {
             </div>
           </section>
         </main>
-        <News news={news} />
+        <Tabs>
+          <div label="Current Headlines">
+            <News news={news} />
+          </div>
+          <div label="Croc">
+            After 'while, <em>Crocodile</em>!
+          </div>
+          <div label="Sarcosuchus">
+            Nothing to see here, this tab is <em>extinct</em>!
+          </div>
+        </Tabs>
         {/* {showAll ? <DataTable handleShowAllBtn={this.handleShowAllBtn} data={data} /> : <DataTable handleShowAllBtn={this.handleShowAllBtn} data={dataView.length > 0 ? dataView : data} />} */}
       </>
     );
