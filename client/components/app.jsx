@@ -137,14 +137,16 @@ export default class App extends Component {
       <>
         <Header lastUpdated={lastUpdated.toString()} />
         <main className="view-filter-container container-fluid">
-          <section className="row">
+          {/* <section className="row">
             <div className="col d-flex flex-column align-items-center world-data">
               <h6>World Data</h6>
-              <small>Infections: <strong style={{ color: 'purple' }}>{world.confirmed}</strong> - Recovered: <strong style={{ color: 'green' }}>{world.recovered}</strong> - Deaths: <strong style={{ color: 'red' }}>{world.deaths}</strong></small>
+              <small>Infections: <strong style={{ color: 'purple' }}>{world.confirmed}</strong></small>
+              <small>Recovered: <strong style={{ color: 'green' }}>{world.recovered}</strong></small>
+              <small>Deaths: <strong style={{ color: 'red' }}>{world.deaths}</strong></small>
             </div>
-          </section>
+          </section> */}
           <section className="row">
-            <div className="col d-flex flex-column align-items-center">
+            <div className="col d-flex flex-column align-items-center view-filter">
               <h6>View</h6>
               <button onClick={e => this.handleMapViewChange(e, 'WorldMap')} className="btn world-view">World<i className="fas fa-globe-americas globe-icon"></i></button>
               {/* <select onChange={e => this.handleMapViewChange} name="mapView" id="country-views">
