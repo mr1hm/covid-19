@@ -103,7 +103,6 @@ export default class USMap extends Component {
               zoomOnScroll={false}
               zoomStep={1.5}
               onRegionClick={this.handleRegionData}
-              containerStyle={{ width: '100%', height: '600px' }}
               containerClassName={`usa-map ${regionClicked ? 'regionClicked' : ''}`}
               regionStyle={{
                 initial: {
