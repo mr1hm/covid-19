@@ -37,7 +37,8 @@ hr {
 }
 
 .world-data,
-.view-filter {
+.view-filter,
+.last-updated {
   padding: 10px;
 }
 
@@ -124,14 +125,14 @@ hr {
   cursor: pointer;
 }
 
-/* path {
+path {
   pointer-events: all;
 }
 
 path:hover {
   opacity: 0.50;
   cursor: pointer;
-} */
+}
 
 svg {
   display: inline-block;
