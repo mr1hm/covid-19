@@ -25,7 +25,7 @@ export default class News extends Component {
           {news.map((article, i) => {
             const articleTitle = article.title.split(' - ')[0];
             return (
-              <div key={i} className="col-12 col-md-6 col-lg-6 col-xl-4 d-flex card-article">
+              <div key={i} className="col-12 col-md-6 col-lg-6 col-xl-3 d-flex card-article">
                 <div className="card">
                   {article.urlToImage ? <img className="card-img-top article-card-img img-fluid" src={article.urlToImage} alt="article-image" /> : <img className="card-img-top" src={article.urlToImage} alt="No Image Available" />}
                   <div className="card-body">
