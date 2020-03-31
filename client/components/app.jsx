@@ -50,7 +50,7 @@ export default class App extends Component {
     })
     const fetchNewsHeadlines = fetch(`http://newsapi.org/v2/top-headlines?country=us&apiKey=dd118ea81ac5402b932473468a0b8cdb`)
     const fetchNewsTrending = fetch(`https://newsapi.org/v2/everything?q=coronavirus&sortBy=popularity&apiKey=dd118ea81ac5402b932473468a0b8cdb`)
-    const fetchNewsHealth = fetch(`http://newsapi.org/v2/top-headlines?category=health&country=us&apiKey=dd118ea81ac5402b932473468a0b8cdb`)
+    const fetchNewsHealth = fetch(`https://newsapi.org/v2/top-headlines?category=health&country=us&apiKey=dd118ea81ac5402b932473468a0b8cdb`)
     Promise.all([fetchCVData, fetchNewsHeadlines, fetchNewsTrending, fetchNewsHealth])
       .then(res => Promise.all(res.map(response => response.json())))
       .then(results => {
