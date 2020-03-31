@@ -36,6 +36,12 @@ hr {
   margin-right: 0.25em;
 }
 
+.world-data,
+.view-filter,
+.last-updated {
+  padding: 10px;
+}
+
 .view-filter-container h5 {
   margin-top: 0.5em;
 }
@@ -57,7 +63,8 @@ hr {
   transition: all 400ms ease;
 }
 
-.world-map {
+.world-map,
+.usa-map {
   width: 100%;
   height: 600px;
   border: 1px solid black;
@@ -88,23 +95,10 @@ hr {
   border: 1px solid black;
   border-radius: 5px;
   padding: 20px;
-  margin-right: 15px;
-  animation: slide-info linear 2s both;
-}
-
-.country-title-btn {
-  text-align: start;
-  width: 18%;
-  padding: 0;
-  margin-bottom: 1em;
-}
-
-.province-last-updated {
-  margin-bottom: 1em;
-}
-
-.close-region-data {
-  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  /* margin-right: 15px; */
+  /* animation: slide-info linear 2s both; */
 }
 
 @keyframes slide-info {
@@ -113,6 +107,22 @@ hr {
   50% {width: 50%}
   75% {width: 75%}
   100% {width: 100%}
+}
+
+
+.country-title-btn {
+  text-align: start;
+  width: 19%;
+  padding: 0;
+  /* margin-bottom: 1em; */
+}
+
+.province-last-updated {
+  margin-bottom: 1em;
+}
+
+.close-region-data {
+  cursor: pointer;
 }
 
 path {
@@ -193,7 +203,78 @@ svg {
   margin-left: 0.5em;
 }
 
-.news-container .card img {
-  height: 225px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+/*-------------------------------------------------------------------
+
+                           RESPONSIVE
+
+-------------------------------------------------------------------*/
+
+@media (min-width: 1200px) { /* col-xl breakpoint */
+  .news-container .card img {
+    height: 275px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) { /* col-lg breakpoint */
+  .world-map,
+  .usa-map {
+    max-width: 100%;
+    height: 400px;
+  }
+  .region-data {
+    margin-top: 1em;
+  }
+  .news-container .card img {
+    height: 275px;
+  }
+  .article-title {
+    height: 135px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) { /* col-md breakpoint */
+  .world-map,
+  .usa-map {
+    max-width: 100%;
+    height: 400px;
+  }
+  .region-data {
+    margin-top: 1em;
+  }
+  .news-container .card img {
+    height: 200px;
+  }
+}
+
+@media (min-width: 576px) { /* col-sm breakpoint */
+
+}
+
+@media (max-width: 575px) { /* col- breakpoint */
+  .view-filter-container h6 {
+    font-size: 14px;
+  }
+  .view-filter-container small {
+    font-size: 10px;
+  }
+  .world-map,
+  .usa-map {
+    max-width: 100%;
+    height: 200px;
+  }
+  .region-data {
+    margin-top: 1em;
+  }
+  .region-data h4 {
+    font-size: 18px;
+  }
+  .region-data p {
+    font-size: 14px;
+  }
+  .news-container .card img {
+    height: 175px;
+  }
+  .article-title {
+    height: 110px;
+  }
 }
