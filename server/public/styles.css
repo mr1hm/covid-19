@@ -212,18 +212,23 @@ svg {
 -------------------------------------------------------------------*/
 
 @media (min-width: 1200px) { /* col-xl breakpoint */
-
+  .news-container .card img {
+    height: 315px;
+  }
 }
 
-@media (min-width: 992px) { /* col-lg breakpoint */
+@media (min-width: 992px) and (max-width: 1199px) { /* col-lg breakpoint */
+  .news-container .card img {
+    height: 275px;
+  }
   .article-title {
     height: 135px;
   }
 }
 
-@media (min-width: 768px) { /* col-md breakpoint */
+@media (min-width: 768px) and (max-width: 991px) { /* col-md breakpoint */
   .news-container .card img {
-    height: 435px;
+    height: 200px;
   }
 }
 
@@ -259,10 +264,7 @@ svg {
     font-size: 14px;
   }
   .news-container .card img {
-    height: 220px;
-  }
-  .card-title {
-    font-size: 1.07rem
+    height: 200px;
   }
   .article-title {
     height: 110px;
