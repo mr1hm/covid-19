@@ -93,8 +93,10 @@ hr {
 .region-data {
   border: 1px solid black;
   border-radius: 5px;
-  padding: 15px;
-  margin-right: 15px;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  /* margin-right: 15px; */
   /* animation: slide-info linear 2s both; */
 }
 
@@ -109,9 +111,9 @@ hr {
 
 .country-title-btn {
   text-align: start;
-  width: 18%;
+  width: 19%;
   padding: 0;
-  margin-bottom: 1em;
+  /* margin-bottom: 1em; */
 }
 
 .province-last-updated {
@@ -222,6 +224,15 @@ svg {
 }
 
 @media (min-width: 768px) { /* col-md breakpoint */
+  .world-map,
+  .usa-map {
+    max-width: 100%;
+    height: 375px;
+  }
+  .region-data {
+    margin-top: 1em;
+    margin-right: 0;
+  }
   .news-container .card img {
     height: 435px;
   }
@@ -237,20 +248,9 @@ svg {
     max-width: 100%;
     height: 200px;
   }
-  /* .region-data-col {
-    animation: slide-height linear 2s both;
-  } */
-  /* @keyframes slide-height {
-    0% {height: 0px;}
-    25% {height: 50px;}
-    50% {height: 100px;}
-    75% {height: 150px;}
-    100% {height: 290px;}
-  } */
   .region-data {
     margin-top: 1em;
     margin-right: 0;
-    /* animation: slide-height linear 2s both; */
   }
   .region-data h4 {
     font-size: 18px;
