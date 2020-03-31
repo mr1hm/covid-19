@@ -221,6 +221,9 @@ svg {
   .article-title {
     height: 135px;
   }
+  .news-container .card img {
+    height: 255px;
+  }
 }
 
 @media (min-width: 768px) { /* col-md breakpoint */
