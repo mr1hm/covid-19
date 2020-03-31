@@ -83,7 +83,7 @@ export default class WorldMap extends Component {
           <i className="fas fa-circle" style={{ color: '#4d0000' }}></i>
         </small>
         <section className="row">
-          <div className="col-12 col-xl d-flex justify-content-center">
+          <div className="col-12 col-lg col-xl d-flex justify-content-center">
             <VectorMap
               map={'world_mill'}
               ref="map"
