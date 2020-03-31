@@ -210,7 +210,10 @@ svg {
 
 @media (min-width: 1200px) { /* col-xl breakpoint */
   .news-container .card img {
-    height: 275px;
+    height: 250px;
+  }
+  .article-title {
+    height: 80px;
   }
 }
 
