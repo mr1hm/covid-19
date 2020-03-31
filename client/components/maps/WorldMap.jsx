@@ -93,11 +93,6 @@ export default class WorldMap extends Component {
               panOnDrag={false}
               onRegionClick={this.handleCountryData}
               containerClassName={`world-map ${this.state.regionClicked ? 'regionClicked' : ''}`}
-              setFocus={{
-                focusOn: {
-                  scale: 1.5,
-                }
-              }}
               regionStyle={{
                 initial: {
                   fill: '#e4e4e4',
