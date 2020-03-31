@@ -23,7 +23,7 @@ export default class RegionData extends Component {
     if (countryData) {
       console.log(countryData);
       return (
-        <div className="col-12 col-xl-4 d-flex flex-column">
+        <div className="col-12 col-lg-4 col-xl-4 d-flex flex-column">
           <div className="region-data">
             <i onClick={() => {
               if (handleRegionClick) handleRegionClick();
@@ -44,7 +44,7 @@ export default class RegionData extends Component {
       );
     } else {
       return (
-        <div className="col-12 col-xl-4 d-flex flex-column">
+        <div className="col-12 col-lg-4 col-xl-4 d-flex flex-column">
           <div className="region-data">
             <i onClick={() => {
               if (handleRegionClick) handleRegionClick();
