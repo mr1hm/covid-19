@@ -160,12 +160,6 @@ export default class App extends Component {
             <div className="col d-flex flex-column align-items-center">
               <h5 className="related-news-label">RELATED NEWS</h5>
               <span className="newsAPI">Powered By NewsAPI</span>
-              {/* <div className="input-group mb-3 search-input">
-                <div className="input-group-prepend">
-                  <span className="input-group-text" id="basic-addon1">@</span>
-                </div>
-                <input name="searchInput" value={searchInput} onKeyPress={this.handleSearchSubmit} onChange={this.handleInputChange} type="text" className="form-control" placeholder="Country" aria-label="Country" aria-describedby="basic-addon1" />
-              </div> */}
             </div>
           </section>
         </main>
