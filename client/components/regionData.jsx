@@ -21,7 +21,6 @@ export default class RegionData extends Component {
       );
     }
     if (countryData) {
-      console.log(countryData);
       return (
         <div className="col-12 col-lg-4 col-xl-4 d-flex flex-column">
           <div className="region-data">
