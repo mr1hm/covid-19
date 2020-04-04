@@ -85,8 +85,11 @@ hr {
   100% {width: 60%}
 }
 
+.region-data-lastUpdated {
+  font-size: 12px;
+}
+
 .region-data .infections {
-  margin-top: 1em;
   color: purple;
 }
 
