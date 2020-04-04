@@ -20,6 +20,7 @@ COVID-19 Tracker
 - Usage of react-jvectormap to display a World and USA view
 
 ## Getting Started
+- If you'd like to really navigate through the code, please follow these steps. Else, please simply click on the live link at the top of this readme file
 
 - Create a copy on your local machine:
   - Fork this repository to your github
