@@ -31,6 +31,8 @@ COVID-19 Tracker
     - `$ npm install`
   - Run npm run dev
     - `$ npm run dev`
+  - Go to your browser and enter "localhost:3000" into your address bar
+  - You should be seeing a website with the title "COVID-19 TRACKER" at the top of the window
 
 ## Guide
 - When on the landing page, click on a country to view its current statistics
