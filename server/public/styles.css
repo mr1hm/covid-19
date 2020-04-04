@@ -28,6 +28,11 @@ hr {
   text-transform: uppercase;
 }
 
+.world-view,
+.usa-view {
+  cursor: pointer;
+}
+
 .globe-icon {
   margin-left: 0.25em;
 }
