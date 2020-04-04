@@ -86,6 +86,7 @@ hr {
 }
 
 .region-data .infections {
+  margin-top: 1em;
   color: purple;
 }
 
