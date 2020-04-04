@@ -140,7 +140,7 @@ export default class App extends Component {
             <div className="col d-flex flex-column align-items-center view-filter">
               <h6>View</h6>
               <small className="world-view"><a onClick={e => this.handleMapViewChange(e, 'WorldMap')}>World</a><i className="fas fa-globe-americas globe-icon"></i></small>
-              <small className="usa-view"><a onClick={e => this.handleMapViewChange(e, 'USMap')}>USA</a><i className="fas fa-globe-americas globe-icon"></i></small>
+              <small className="usa-view"><a onClick={e => this.handleMapViewChange(e, 'USMap')}>USA</a><i class="fas fa-flag-usa"></i></small>
             </div>
             <div className="col d-flex flex-column align-items-center last-updated">
               <h6>Last Updated</h6>
