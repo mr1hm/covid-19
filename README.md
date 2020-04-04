@@ -29,8 +29,8 @@ COVID-19 Tracker
     - `$ cd covid-19/`
   - Run npm install
     - `$ npm install`
-  - Run npm run build
-    - `$ npm run build`
+  - Run npm run dev
+    - `$ npm run dev`
 
 ## Guide
 - When on the landing page, click on a country to view its current statistics
