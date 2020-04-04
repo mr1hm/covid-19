@@ -31,7 +31,7 @@ export default class RegionData extends Component {
               className="fas fa-arrow-right close-region-data"><span style={{ fontFamily: 'Poppins', fontWeight: 'normal', fontSize: '0.9rem' }}> Close</span></i>
             <hr />
             <h4>{countryData.countryName}</h4>
-            <small>Last Updated: {countryData.lastUpdated ? countryData.lastUpdated : `This country currently has no data available`}</small>
+            <p className="region-data-lastUpdated">Last Updated: {countryData.lastUpdated ? countryData.lastUpdated : `This country currently has no data available`}</p>
             {/* <p> */}
             {/* <small onClick={(e) => this.props.handleMapViewChange(e, countryData.view)} className="btn country-title-btn"><a><i className="fas fa-map-marked-alt show-map-icon"></i><small>Show Map</small></a></small> */}
             {/* </p> */}
@@ -53,7 +53,7 @@ export default class RegionData extends Component {
               className="fas fa-arrow-right close-region-data"><span style={{ fontFamily: 'Poppins', fontWeight: 'normal', fontSize: '0.9rem' }}> Close</span></i>
             <hr />
             <h4>{regionData.regionName}</h4>
-            <small className="province-last-updated">Last Updated: {regionData.lastUpdated ? regionData.lastUpdated : `This province currently has no data available`}</small>
+            <p className="region-data-lastUpdated">Last Updated: {regionData.lastUpdated ? regionData.lastUpdated : `This province currently has no data available`}</p>
             <p><span className="infections">Infections</span>: {regionData.infected}</p>
             <p><span className="recovered">Recovered</span>: {regionData.recovered === 0 ? regionData.recovered : regionData.recovered}</p>
             <p><span className="deaths">Deaths</span>: {regionData.deaths === 0 ? regionData.deaths : regionData.deaths}</p>
