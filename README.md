@@ -1,7 +1,7 @@
 COVID-19 Tracker 
 ======
 
-- A simple web application to show statistics and related news on the current COVID-19 pandemic.
+- A simple web application to show statistics and related news on the current COVID-19 pandemic. <br>
 [COVID-19 Tracker](https://cvtracker.kevinihm.com)
 
 ## Tech Stack
