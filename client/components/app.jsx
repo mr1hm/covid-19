@@ -161,24 +161,24 @@ export default class App extends Component {
     else this.setState({ [name]: value });
   }
 
-  handleSearchSubmit(e) {
-    const { searchInput, showAll } = this.state;
-    const keyCode = e.keyCode || e.which;
-    if (keyCode === 13) {
-      const copy = this.state.data.slice();
-      const dataView = copy.filter((val, i) => {
-        if (searchInput.toUpperCase() === 'US') return val.country === 'US';
-        if (searchInput.length > 2) {
-          if ((val.country.toLowerCase() === searchInput.toLowerCase())) return val.country.toLowerCase() === searchInput.toLowerCase();
-          else return val.country.toLowerCase().includes(searchInput.toLowerCase());
-        } else {
-          return val.country_code.toLowerCase() === searchInput.toLowerCase();
-        }
-      });
-      if (showAll) this.setState({ dataView, searchInput: '', showAll: false });
-      else this.setState({ dataView, searchInput: '' });
-    }
-  }
+  // handleSearchSubmit(e) {
+  //   const { searchInput, showAll } = this.state;
+  //   const keyCode = e.keyCode || e.which;
+  //   if (keyCode === 13) {
+  //     const copy = this.state.data.slice();
+  //     const dataView = copy.filter((val, i) => {
+  //       if (searchInput.toUpperCase() === 'US') return val.country === 'US';
+  //       if (searchInput.length > 2) {
+  //         if ((val.country.toLowerCase() === searchInput.toLowerCase())) return val.country.toLowerCase() === searchInput.toLowerCase();
+  //         else return val.country.toLowerCase().includes(searchInput.toLowerCase());
+  //       } else {
+  //         return val.country_code.toLowerCase() === searchInput.toLowerCase();
+  //       }
+  //     });
+  //     if (showAll) this.setState({ dataView, searchInput: '', showAll: false });
+  //     else this.setState({ dataView, searchInput: '' });
+  //   }
+  // }
 
   render() {
     const { data, news, dataView, countriesColorData, searchInput, showAll, mapView, lastUpdated, world } = this.state;
