@@ -31,13 +31,63 @@ export default class App extends Component {
       lastUpdated: '',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+    // this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleShowAllBtn = this.handleShowAllBtn.bind(this);
     this.handleMapViewChange = this.handleMapViewChange.bind(this);
+    this.storeDateAndTime = this.storeDateAndTime.bind(this);
   }
 
   componentDidMount() {
     this.getData();
+    this.getLastStoredTime();
+  }
+
+  getLastStoredTime() {
+    fetch('/api/storeTime.php')
+      .then(res => res.json())
+      .then(time => console.log(time))
+      .catch(err => console.error(err));
+  }
+
+  formatDateAndTime(dateAndTime) {
+    let dateArr = dateAndTime.split(' ');
+    console.log(dateArr);
+    dateAndTime = `${dateArr[0]} ${dateArr[1]} ${dateArr[2]}, ${dateArr[3]} ${dateArr[4]}`;
+    let time = dateArr[4];
+    console.log(dateAndTime);
+
+    function formatDate() {
+      let d = new Date(dateAndTime),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+
+      return [year, month, day].join('-');
+    }
+
+    dateAndTime = `${formatDate(dateAndTime)} ${time}`;
+    let unixTimestamp = new Date(dateAndTime.replace(' ', 'T') + 'Z').getTime() / 1000;
+    console.log({ unixTimestamp })
+    this.storeDateAndTime({ unixTimestamp });
+  }
+
+  storeDateAndTime(unixTimestamp) {
+    const timestamp = { timestamp: unixTimestamp.unixTimestamp }
+    fetch(`/api/storeTime.php`, {
+      method: 'POST',
+      body: JSON.stringify(timestamp),
+      // header: {
+      //   'Content-Type': 'application/json',
+      // }
+    })
+      .then(res => res.text())
+      .then(time => {
+        console.log(time);
+      })
+      .catch(err => console.error(err));
   }
 
   getData() {
