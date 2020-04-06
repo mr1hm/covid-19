@@ -131,8 +131,9 @@ export default class App extends Component {
 
   render() {
     const { data, news, dataView, countriesColorData, searchInput, showAll, mapView, lastUpdated, world } = this.state;
-    console.log(news.trending);
+    console.log(news);
     if (data.length === 0) return <div>LOADING...</div>
+    if (!news) return null;
     return (
       <>
         <Header />
