@@ -104,7 +104,8 @@ export default class App extends Component {
     Promise.all([fetchCVData, fetchNewsHeadlines, fetchNewsTrending, fetchNewsHealth])
       .then(res => Promise.all(res.map(response => response.json())))
       .then(results => {
-        const lastUpdated = new Date(results[0].data.lastChecked);
+        let lastUpdated = new Date(results[0].data.lastChecked).toString();
+        this.formatDateAndTime(lastUpdated);
         const data = results[0].data.covid19Stats;
         const worldConfirmed = data.reduce((acc, val) => acc + val.confirmed, 0);
         const worldRecovered = data.reduce((acc, val) => acc + val.recovered, 0);
