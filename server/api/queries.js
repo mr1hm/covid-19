@@ -1,5 +1,6 @@
 const Pool = require('pg').Pool;
 const conn = require('./db_conn');
+const ClientError = require('./client-error');
 
 const getLastUpdated = (req, res) => {
   conn.query(`SELECT * FROM lastUpdated ORDER BY id ASC`, (err, results) => {
