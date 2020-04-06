@@ -169,8 +169,8 @@ export default class App extends Component {
           <div label="Today's Headlines">
             <News news={news.headlines} />
           </div>
-          <div filter={'popularity'} label="Trending">
-            <News news={news.trending} />
+          <div label="Trending">
+            <News trending={true} news={news.trending} />
           </div>
           <div label="Health">
             <News news={news.health} />
