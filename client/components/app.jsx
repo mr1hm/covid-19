@@ -61,6 +61,7 @@ export default class App extends Component {
         const worldDeaths = data.reduce((acc, val) => acc + val.deaths, 0);
         const headlines = results[1].articles;
         const trending = results[2].articles;
+        if (trending.length === 0) trending = [];
         const health = results[3].articles;
         data.sort((a, b) => {
           let countryNameA = a.country.toUpperCase();
@@ -131,6 +132,7 @@ export default class App extends Component {
 
   render() {
     const { data, news, dataView, countriesColorData, searchInput, showAll, mapView, lastUpdated, world } = this.state;
+    console.log(news.trending);
     if (data.length === 0) return <div>LOADING...</div>
     return (
       <>
