@@ -8,6 +8,8 @@
     "dev:client": "webpack-dev-server",
     "dev:server": "nodemon server/index",
     "dev": "npm-run-all --parallel --silent dev:*",
+    "db:import": "source .env; psql $DATABASE_URL < database/dump.sql",
+    "db:export": "source .env; pg_dump -c -O $DATABASE_URL > database/dump.sql",
     "start": "node server/index.js",
     "build": "webpack --mode=production"
   },
