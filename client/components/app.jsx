@@ -50,10 +50,12 @@ export default class App extends Component {
         const currentTimestamp = new Date(formatDate(lastUpdated).replace(' ', 'T') + 'Z').getTime() / 1000;
         console.log(currentTimestamp, prevTimestamp)
         if (currentTimestamp > prevTimestamp) {
+          if (currentTimestamp === prevTimestamp) return; // THIS IS NOT WORKING - NEED TO FIND A WAY TO COMPARE PREV TIMSTAMP TO CURRENT TIMSTAMP AND ONLY INSERT IF IT'S DIFFERENT.
           console.log('storing new timestamp')
+          const timestamp = { unixTimestamp: currentTimestamp }
           fetch(`/api/lastUpdated`, {
             method: 'POST',
-            body: JSON.stringify(),
+            body: JSON.stringify(timestamp),
             headers: {
               'Content-Type': 'application/json'
             }
