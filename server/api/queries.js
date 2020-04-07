@@ -16,9 +16,15 @@ const getLastUpdated = (req, res, next) => {
 // }
 
 const storeLastUpdated = (req, res, next) => {
-  conn.query(`INSERT INTO lastupdated (datetime) VALUES ($1)`, [datetime])
-    .then(result => res.json(result.rows[0]))
-    .catch(err => next(err));
+  const { unixTimestamp } = req.body;
+  conn.query(`INSERT INTO lastupdated (datetime) VALUES ($1)`, [unixTimestamp], (err, results) => {
+    if (err) throw err;
+    res.status(201).json({
+      insertID: results.insertId
+    });
+  })
+  // .then(result => res.json(result.rows[0]))
+  // .catch(err => next(err));
 }
 
 // const storeLastUpdated = (req, res) => {
