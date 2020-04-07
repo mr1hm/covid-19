@@ -14,7 +14,9 @@ app.get('/api/health-check', (req, res, next) => {
   conn.query(`select 'successfully connected' as "message"`)
     .then(result => res.json(result.rows[0]))
     .catch(err => next(err));
-})
+});
+app.get('/api/lastUpdated', db.getLastUpdated);
+app.post('/api/lastUpdated', db.storeLastUpdated);
 
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
