@@ -37,8 +37,4 @@ app.get('/', (req, res) => {
   res.render('main');
 });
 
-app.get('/api/lastUpdated', db.getLastUpdated);
-app.post('/api/lastUpdated', db.storeLastUpdated);
-
-
 app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT}`));
