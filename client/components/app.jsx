@@ -40,6 +40,46 @@ export default class App extends Component {
     this.getData();
   }
 
+  compareLastUpdated(lastUpdated) {
+    let time = lastUpdated.split(' ');
+    fetch(`/api/lastUpdated`)
+      .then(res => res.json())
+      .then(dateAndTime => {
+        console.log(dateAndTime)
+        const prevTimestamp = new Date(formatDate(dateAndTime.datetime).replace(' ', 'T') + 'Z').getTime() / 1000;
+        const currentTimestamp = new Date(formatDate(lastUpdated).replace(' ', 'T') + 'Z').getTime() / 1000;
+        console.log(currentTimestamp, prevTimestamp)
+        if (currentTimestamp > prevTimestamp) {
+          console.log('storing new timestamp')
+          fetch(`/api/lastUpdated`, {
+            method: 'POST',
+            body: JSON.stringify(),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+            .then(res => res.json())
+            .then(storedTimestamp => console.log(storedTimestamp))
+            .catch(err => console.error(err));
+        }
+      })
+      .catch(err => console.error(err));
+
+    function formatDate(date) {
+      var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+      if (month.length < 2)
+        month = '0' + month;
+      if (day.length < 2)
+        day = '0' + day;
+
+      return `${[year, month, day].join('-')} ${time[time.length - 1]}`;
+    }
+  }
+
   getData() {
     const fetchCVData = fetch(`https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/stats`, {
       'method': 'GET',
@@ -54,7 +94,10 @@ export default class App extends Component {
     Promise.all([fetchCVData, fetchNewsHeadlines, fetchNewsTrending, fetchNewsHealth])
       .then(res => Promise.all(res.map(response => response.json())))
       .then(results => {
-        const lastUpdated = new Date(results[0].data.lastChecked);
+        const lastUpdated = new Date(results[0].data.lastChecked).toString().split(' ');
+        const dateAndTime = `${lastUpdated[0]} ${lastUpdated[1]} ${lastUpdated[2]}, ${lastUpdated[3]} ${lastUpdated[4]}`;
+        console.log(dateAndTime);
+        this.compareLastUpdated(dateAndTime);
         const data = results[0].data.covid19Stats;
         const worldConfirmed = data.reduce((acc, val) => acc + val.confirmed, 0);
         const worldRecovered = data.reduce((acc, val) => acc + val.recovered, 0);
