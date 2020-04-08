@@ -43,29 +43,47 @@ export default class App extends Component {
     this.getData();
   }
 
-  compareLastUpdated(lastUpdated) {
+  compareLastUpdated(lastUpdated, worldData) {
     let time = lastUpdated.split(' ');
+    let increased = false;
     fetch(`/api/lastUpdated`)
       .then(res => res.json())
-      .then(dateAndTime => {
-        console.log(dateAndTime)
-        const prevTimestamp = +dateAndTime.datetime;
+      .then(prevDateAndTime => {
+        console.log(prevDateAndTime, worldData)
+        if (prevDateAndTime.increased) {
+          if (worldData.confirmed >= prevDateAndTime.infections) {
+            this.setState({ worldConfirmed: true })
+            increased = true;
+          }
+          if (worldData.recovered >= prevDateAndTime.recovered) {
+            this.setState({ worldRecovered: true })
+            increased = true;
+          }
+          if (worldData.deaths >= prevDateAndTime.deaths) {
+            this.setState({ worldDeaths: true })
+            increase = true;
+          }
+        }
+        const prevTimestamp = +prevDateAndTime.datetime;
         const currentTimestamp = new Date(formatDate(lastUpdated).replace(' ', 'T') + 'Z').getTime() / 1000;
         console.log(prevTimestamp, currentTimestamp)
         if (currentTimestamp > prevTimestamp) {
-          if (currentTimestamp === prevTimestamp) return; // THIS IS NOT WORKING - NEED TO FIND A WAY TO COMPARE PREV TIMSTAMP TO CURRENT TIMSTAMP AND ONLY INSERT IF IT'S DIFFERENT.
           console.log('storing new timestamp')
-          const timestamp = { unixTimestamp: currentTimestamp }
+          const data = { unixTimestamp: currentTimestamp, infections: worldData.worldConfirmed, recovered: worldData.worldRecovered, deaths: worldData.worldDeaths, increased }
           fetch(`/api/lastUpdated`, {
             method: 'POST',
-            body: JSON.stringify(timestamp),
+            body: JSON.stringify(data),
             headers: {
               'Content-Type': 'application/json'
             }
           })
             .then(res => res.json())
-            .then(storedTimestamp => console.log(storedTimestamp))
+            .then(storedData => {
+              console.log(storedTimestamp);
+            })
             .catch(err => console.error(err));
+        } else {
+
         }
       })
       .catch(err => console.error(err));
