@@ -23,6 +23,12 @@ hr {
   100% {width: 100%;}
 }
 
+.infections-increased,
+.recovered-increased,
+.deaths-increased {
+  margin-left: 0.25em;
+}
+
 .view-filter,
 .last-updated,
 .world-data {
