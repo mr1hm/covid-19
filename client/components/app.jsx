@@ -96,8 +96,9 @@ export default class App extends Component {
     Promise.all([fetchCVData, fetchNewsHeadlines, fetchNewsTrending, fetchNewsHealth])
       .then(res => Promise.all(res.map(response => response.json())))
       .then(results => {
-        const lastUpdated = new Date(results[0].data.lastChecked).toString().split(' ');
-        const dateAndTime = `${lastUpdated[0]} ${lastUpdated[1]} ${lastUpdated[2]}, ${lastUpdated[3]} ${lastUpdated[4]}`;
+        const lastUpdated = new Date(results[0].data.lastChecked).toString();
+        const lastUpdatedArr = lastUpdated.split(' ');
+        const dateAndTime = `${lastUpdatedArr[0]} ${lastUpdatedArr[1]} ${lastUpdatedArr[2]}, ${lastUpdatedArr[3]} ${lastUpdatedArr[4]}`;
         console.log(dateAndTime);
         this.compareLastUpdated(dateAndTime);
         const data = results[0].data.covid19Stats;
@@ -184,17 +185,17 @@ export default class App extends Component {
         <Header />
         <main className="view-filter-container container-fluid">
           <section className="row">
-            <div className="col d-flex flex-column align-items-center view-filter">
-              <h6>View</h6>
+            <div className="col d-flex flex-column align-items-center">
+              <h6 className="view-filter">View</h6>
               <small className="world-view"><a onClick={e => this.handleMapViewChange(e, 'WorldMap')}>World<i className="fas fa-globe-americas globe-icon"></i></a></small>
               <small className="usa-view"><a onClick={e => this.handleMapViewChange(e, 'USMap')}>USA<i className="fas fa-flag-usa usa-flag-icon"></i></a></small>
             </div>
-            <div className="col d-flex flex-column align-items-center last-updated">
-              <h6>Last Updated</h6>
+            <div className="col d-flex flex-column align-items-center">
+              <h6 className="last-updated">Last Updated</h6>
               <small className="text-center">{lastUpdated.toString()}</small>
             </div>
-            <div className="col d-flex flex-column align-items-center world-data">
-              <h6>World Data</h6>
+            <div className="col d-flex flex-column align-items-center">
+              <h6 className="world-data">World Data</h6>
               <small>Infections: <strong style={{ color: 'purple' }}>{world.confirmed}</strong></small>
               <small>Recovered: <strong style={{ color: 'green' }}>{world.recovered}</strong></small>
               <small>Deaths: <strong style={{ color: 'red' }}>{world.deaths}</strong></small>
