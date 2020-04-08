@@ -217,9 +217,9 @@ export default class App extends Component {
             </div>
             <div className="col d-flex flex-column align-items-center">
               <h6 className="world-data">World Data</h6>
-              <small>Infections: <strong style={{ color: 'purple' }}>{world.confirmed}</strong></small>
-              <small>Recovered: <strong style={{ color: 'green' }}>{world.recovered}</strong></small>
-              <small>Deaths: <strong style={{ color: 'red' }}>{world.deaths}</strong></small>
+              <small>Infections: <strong style={{ color: 'purple' }}>{world.confirmed}{worldConfirmed ? <i className="fas fa-long-arrow-alt-up infections-increased"></i> : null}</strong></small>
+              <small>Recovered: <strong style={{ color: 'green' }}>{world.recovered}{worldRecovered ? <i className="fas fa-long-arrow-alt-up recovered-increased"></i> : null}</strong></small>
+              <small>Deaths: <strong style={{ color: 'red' }}>{world.deaths}{worldDeaths ? <i className="fas fa-long-arrow-alt-up deaths-increased"></i> : null}</strong></small>
             </div>
           </section>
         </main>
