@@ -17,7 +17,7 @@ const getLastUpdated = (req, res, next) => {
 
 const storeLastUpdated = (req, res, next) => {
   const { unixTimestamp } = req.body;
-  conn.query(`INSERT INTO lastupdated (datetime) VALUES ($1)`, [unixTimestamp], (err, results) => {
+  conn.query(`UPDATE lastupdated SET datetime = ($1) WHERE id = 1`, [unixTimestamp], (err, results) => {
     if (err) throw err;
     res.status(201).json({
       insertID: results.insertId
