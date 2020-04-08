@@ -34,7 +34,7 @@ export default class App extends Component {
       worldDeaths: true,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+    // this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleShowAllBtn = this.handleShowAllBtn.bind(this);
     this.handleMapViewChange = this.handleMapViewChange.bind(this);
   }
