@@ -46,9 +46,9 @@ export default class App extends Component {
       .then(res => res.json())
       .then(dateAndTime => {
         console.log(dateAndTime)
-        const prevTimestamp = new Date(formatDate(dateAndTime.datetime).replace(' ', 'T') + 'Z').getTime() / 1000;
+        const prevTimestamp = +dateAndTime.datetime;
         const currentTimestamp = new Date(formatDate(lastUpdated).replace(' ', 'T') + 'Z').getTime() / 1000;
-        console.log(currentTimestamp, prevTimestamp)
+        console.log(prevTimestamp, currentTimestamp)
         if (currentTimestamp > prevTimestamp) {
           if (currentTimestamp === prevTimestamp) return; // THIS IS NOT WORKING - NEED TO FIND A WAY TO COMPARE PREV TIMSTAMP TO CURRENT TIMSTAMP AND ONLY INSERT IF IT'S DIFFERENT.
           console.log('storing new timestamp')
