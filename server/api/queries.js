@@ -2,7 +2,7 @@ const Pool = require('pg').Pool;
 const conn = require('./db_conn');
 
 const getLastUpdated = (req, res, next) => {
-  conn.query(`select * from lastupdated order by id ASC`)
+  conn.query(`select * from lastupdated WHERE id = 1`)
     .then(result => res.json(result.rows[0]))
     .catch(err => next(err));
 }
