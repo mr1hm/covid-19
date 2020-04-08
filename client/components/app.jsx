@@ -54,14 +54,20 @@ export default class App extends Component {
           if (worldData.confirmed >= prevDateAndTime.infections) {
             this.setState({ worldConfirmed: true })
             increased = true;
+          } else {
+            this.setState({ worldConfirmed: 'less' })
           }
           if (worldData.recovered >= prevDateAndTime.recovered) {
             this.setState({ worldRecovered: true })
             increased = true;
+          } else {
+            this.setState({ worldRecovered: 'less' })
           }
           if (worldData.deaths >= prevDateAndTime.deaths) {
             this.setState({ worldDeaths: true })
             increase = true;
+          } else {
+            this.setState({ worldDeaths: 'less' })
           }
         }
         const prevTimestamp = +prevDateAndTime.datetime;
