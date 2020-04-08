@@ -23,7 +23,13 @@ hr {
   100% {width: 100%;}
 }
 
-.view-filter-container h5,
+.view-filter,
+.last-updated,
+.world-data {
+  margin-bottom: 0;
+  text-decoration: underline;
+}
+
 .region-data h4 {
   text-transform: uppercase;
 }
