@@ -85,7 +85,7 @@ export default class App extends Component {
           })
             .then(res => res.json())
             .then(storedData => {
-              console.log(storedTimestamp);
+              console.log(storedData);
             })
             .catch(err => console.error(err));
         } else {
