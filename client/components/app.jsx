@@ -117,15 +117,15 @@ export default class App extends Component {
     Promise.all([fetchCVData, fetchNewsHeadlines, fetchNewsTrending, fetchNewsHealth])
       .then(res => Promise.all(res.map(response => response.json())))
       .then(results => {
+        console.log(results)
         const lastUpdated = new Date(results[0].data.lastChecked).toString();
         const lastUpdatedArr = lastUpdated.split(' ');
         const dateAndTime = `${lastUpdatedArr[0]} ${lastUpdatedArr[1]} ${lastUpdatedArr[2]}, ${lastUpdatedArr[3]} ${lastUpdatedArr[4]}`;
-        console.log(dateAndTime);
-        this.compareLastUpdated(dateAndTime);
         const data = results[0].data.covid19Stats;
         const worldConfirmed = data.reduce((acc, val) => acc + val.confirmed, 0);
         const worldRecovered = data.reduce((acc, val) => acc + val.recovered, 0);
         const worldDeaths = data.reduce((acc, val) => acc + val.deaths, 0);
+        this.compareLastUpdated(dateAndTime, { worldConfirmed, worldRecovered, worldDeaths });
         const headlines = results[1].articles;
         const trending = results[2].articles;
         const health = results[3].articles;
@@ -197,7 +197,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { data, news, dataView, countriesColorData, searchInput, showAll, mapView, lastUpdated, world } = this.state;
+    const { data, news, dataView, countriesColorData, searchInput, showAll, mapView, lastUpdated, world, worldConfirmed, worldRecovered, worldDeaths } = this.state;
     console.log(news);
     if (data.length === 0) return <div>LOADING...</div>
     if (!news) return null;
