@@ -16,8 +16,8 @@ const getLastUpdated = (req, res, next) => {
 // }
 
 const storeLastUpdated = (req, res, next) => {
-  const { unixTimestamp } = req.body;
-  conn.query(`UPDATE lastupdated SET datetime = ($1) WHERE id = 1`, [unixTimestamp], (err, results) => {
+  const { unixTimestamp, infections, recovered, deaths, increased } = req.body;
+  conn.query(`UPDATE lastupdated SET datetime = ($1), infections = ($2), recovered = ($3), deaths = ($4), increased = ($5) WHERE id = 1`, [unixTimestamp, infections, recovered, deaths, increased], (err, results) => {
     if (err) throw err;
     res.status(201).json({
       insertID: results.insertId
