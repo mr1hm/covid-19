@@ -29,6 +29,9 @@ export default class App extends Component {
       countriesColorData: null,
       mapView: null,
       lastUpdated: '',
+      worldConfirmed: true,
+      worldRecovered: true,
+      worldDeaths: true,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
