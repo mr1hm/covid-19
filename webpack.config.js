@@ -1,3 +1,4 @@
+require('dotenv/config');
 const path = require('path');
 
 const srcPath = path.resolve(__dirname, 'client');
@@ -30,14 +31,14 @@ module.exports = {
   },
   devtool: 'source-map',
   devServer: {
-    host: '0.0.0.0',
-    port: 3000,
     contentBase: publicPath,
     historyApiFallback: true,
-    watchContentBase: true,
-    stats: 'minimal',
+    host: '0.0.0.0',
+    port: process.env.DEV_SERVER_PORT,
     proxy: {
-      '/api': 'http://localhost:3001'
-    }
+      '/api': `http://localhost:${process.env.PORT}`
+    },
+    stats: 'minimal',
+    watchContentBase: true
   }
-}
+};

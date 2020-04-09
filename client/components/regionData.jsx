@@ -36,7 +36,6 @@ export default class RegionData extends Component {
             {/* <small onClick={(e) => this.props.handleMapViewChange(e, countryData.view)} className="btn country-title-btn"><a><i className="fas fa-map-marked-alt show-map-icon"></i><small>Show Map</small></a></small> */}
             {/* </p> */}
             <p><span className="infections">Infections</span>: {countryData.infected}</p>
-            {/* <i className="fas fa-long-arrow-alt-up"></i> */}
             <p><span className="recovered">Recovered</span>: {countryData.recovered || countryData.recovered === 0 ? countryData.recovered : regionData.recovered}</p>
             <p><span className="deaths">Deaths</span>: {countryData.deaths || countryData.deaths === 0 ? countryData.deaths : regionData.deaths}</p>
           </div>
