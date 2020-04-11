@@ -49,25 +49,23 @@ export default class App extends Component {
       .then(res => res.json())
       .then(prevDateAndTime => {
         console.log(prevDateAndTime, worldData)
-        if (prevDateAndTime.increased) {
-          if (worldData.confirmed >= prevDateAndTime.infections) {
-            this.setState({ worldConfirmed: true })
-            increased = true;
-          } else {
-            this.setState({ worldConfirmed: 'less' })
-          }
-          if (worldData.recovered >= prevDateAndTime.recovered) {
-            this.setState({ worldRecovered: true })
-            increased = true;
-          } else {
-            this.setState({ worldRecovered: 'less' })
-          }
-          if (worldData.deaths >= prevDateAndTime.deaths) {
-            this.setState({ worldDeaths: true })
-            increase = true;
-          } else {
-            this.setState({ worldDeaths: 'less' })
-          }
+        if (worldData.worldConfirmed >= prevDateAndTime.infections) {
+          this.setState({ worldConfirmed: true })
+          increased = true;
+        } else {
+          this.setState({ worldConfirmed: 'less' })
+        }
+        if (worldData.worldRecovered >= prevDateAndTime.recovered) {
+          this.setState({ worldRecovered: true })
+          increased = true;
+        } else {
+          this.setState({ worldRecovered: 'less' })
+        }
+        if (worldData.worldDeaths >= prevDateAndTime.deaths) {
+          this.setState({ worldDeaths: true })
+          increased = true;
+        } else {
+          this.setState({ worldDeaths: 'less' })
         }
         const prevTimestamp = +prevDateAndTime.datetime;
         const currentTimestamp = new Date(formatDate(lastUpdated).replace(' ', 'T') + 'Z').getTime() / 1000;
