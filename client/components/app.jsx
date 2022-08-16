@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from './layout/header';
 import Tabs from './tabs';
-import News from './news';
+// import News from './news';
 import WorldMap from './maps/WorldMap';
 import USMap from './maps/USMap';
 import KoreaMap from './maps/KoreaMap';
@@ -114,10 +114,11 @@ export default class App extends Component {
         "x-rapidapi-key": "05b38be8cbmshd0a7f0f3b05745ep1665d5jsn393930b0712b"
       },
     })
-    const fetchNewsHeadlines = fetch(`https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&apiKey=dd118ea81ac5402b932473468a0b8cdb`)
-    const fetchNewsTrending = fetch(`https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?q=coronavirus&sortBy=popularity&apiKey=dd118ea81ac5402b932473468a0b8cdb`)
-    const fetchNewsHealth = fetch(`https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?category=health&country=us&apiKey=dd118ea81ac5402b932473468a0b8cdb`)
-    Promise.all([fetchCVData, fetchNewsHeadlines, fetchNewsTrending, fetchNewsHealth])
+    // const fetchNewsHeadlines = fetch(`https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&apiKey=dd118ea81ac5402b932473468a0b8cdb`)
+    // const fetchNewsTrending = fetch(`https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?q=coronavirus&sortBy=popularity&apiKey=dd118ea81ac5402b932473468a0b8cdb`)
+    // const fetchNewsHealth = fetch(`https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?category=health&country=us&apiKey=dd118ea81ac5402b932473468a0b8cdb`)
+    
+    Promise.all([fetchCVData]) // , fetchNewsHeadlines, fetchNewsTrending, fetchNewsHealth
       .then(res => Promise.all(res.map(response => response.json())))
       .then(results => {
         console.log(results)
@@ -129,9 +130,12 @@ export default class App extends Component {
         const worldRecovered = data.reduce((acc, val) => acc + val.recovered, 0);
         const worldDeaths = data.reduce((acc, val) => acc + val.deaths, 0);
         this.compareLastUpdated(dateAndTime, { worldConfirmed, worldRecovered, worldDeaths });
-        const headlines = results[1].articles;
-        const trending = results[2].articles;
-        const health = results[3].articles;
+        // const headlines = results[1].articles;
+        // const trending = results[2].articles;
+        // const health = results[3].articles;
+        const headlines = [];
+        const trending = [];
+        const health = [];
         data.sort((a, b) => {
           let countryNameA = a.country.toUpperCase();
           let countryNameB = b.country.toUpperCase();
@@ -183,8 +187,8 @@ export default class App extends Component {
   render() {
     const { data, news, dataView, countriesColorData, searchInput, showAll, mapView, lastUpdated, world, worldConfirmed, worldRecovered, worldDeaths } = this.state;
     console.log(news);
-    if (data.length === 0) return <div>LOADING...</div>
-    if (!news) return null;
+    // if (data.length === 0) return <div>LOADING...</div>
+    // if (!news) return null;
     return (
       <>
         <Header />
@@ -216,7 +220,7 @@ export default class App extends Component {
             </div>
           </section>
         </main>
-        <Tabs>
+        {/* <Tabs>
           <div label="Today's Headlines">
             <News news={news.headlines} />
           </div>
@@ -226,7 +230,7 @@ export default class App extends Component {
           <div label="Health">
             <News news={news.health} />
           </div>
-        </Tabs>
+        </Tabs> */}
         {/* {showAll ? <DataTable handleShowAllBtn={this.handleShowAllBtn} data={data} /> : <DataTable handleShowAllBtn={this.handleShowAllBtn} data={dataView.length > 0 ? dataView : data} />} */}
       </>
     );
